@@ -53,4 +53,8 @@ class Yard extends Model
         }
         return $slug;
     }
+    public function incrementReadCount() {
+        $this->view++;
+        return $this->save();
+    }
 }

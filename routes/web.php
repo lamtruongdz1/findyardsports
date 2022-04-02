@@ -13,9 +13,36 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/',[YardController::class,'index']);
+Route::get('/',[YardController::class,'index'])->name('home');
+Route::get('/home',[YardController::class,'index']);
 Route::get('/san/tim',[YardController::class,'yard']);
 Route::get('/san-bong/{param}',[YardController::class,'yard_district']);
 Route::get('/san/{param}',[YardController::class,'show']);
 Route::get('autocomplete', [YardController::class, 'autocomplete'])->name('autocomplete');
 
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified'
+])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+});
+
+
+// login with social
+
+
+// Google login
+Route::get('login/google', [App\Http\Controllers\Auth\LoginController::class, 'redirectToGoogle'])->name('login.google');
+Route::get('login/google/callback', [App\Http\Controllers\Auth\LoginController::class, 'handleGoogleCallback']);
+
+// Facebook login
+Route::get('login/facebook', [App\Http\Controllers\Auth\LoginController::class, 'redirectToFacebook'])->name('login.facebook');
+Route::get('login/facebook/callback', [App\Http\Controllers\Auth\LoginController::class, 'handleFacebookCallback']);
+
+// Github login
+Route::get('login/github', [App\Http\Controllers\Auth\LoginController::class, 'redirectToGithub'])->name('login.github');
+Route::get('login/github/callback', [App\Http\Controllers\Auth\LoginController::class, 'handleGithubCallback']);

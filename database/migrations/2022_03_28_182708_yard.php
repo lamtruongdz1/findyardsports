@@ -29,7 +29,7 @@ return new class extends Migration
             $table->string('slug');
             $table->string('price');
             $table->longText('img');
-            $table->string('view')->default('0');
+            $table->integer('view')->default('0');
             $table->string('time_open')->default('08:00');
             $table->string('time_close')->default('23:00');
             $table->string('total_booking')->default('0');

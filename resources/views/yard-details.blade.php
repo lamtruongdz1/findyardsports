@@ -18,13 +18,16 @@
         <i class='bx bx-map' ></i><p>{{$yard->address}}</p>
     </div>
     <div class="yard-detail-type">
-        <i class='bx bx-football' ></i><p>Sân 5 - Sân 7 - sân 11</p>
+        <i class='bx bx-football bx-spin' ></i><p>Sân 5 - Sân 7 - sân 11</p>
     </div>
     <div class="yard-detail-times">
         <i class='bx bx-time-five' ></i><p>{{$yard->time_open}} - {{$yard->time_close}}</p>
     </div>
     <div class="yard-detail-phone">
-        <i class='bx bx-mobile-alt' ></i><p>0936 068 488</p>
+        <i class='bx bx-mobile-alt bx-tada' ></i><p>0936 068 488</p>
+    </div>
+    <div class="yard-detail-phone">
+        <i class='bx bxs-low-vision' ></i><p>{{ $yard->view }}</p>
     </div>
   </div>
   <div class="yard-detail-right">

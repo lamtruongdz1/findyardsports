@@ -11,10 +11,26 @@
             <li><a href="news.html">Tin tức</a></li>
             <li><a href="">Liên hệ</a></li>
         </ul>
-        <div class="login">
-            <a href="login.html">đăng nhập</a>
-            <a href="login.html">đăng ký</a>
-        </div>
+        @guest
+            <div class="login">
+                <a href="{{ route('login') }}">Đăng nhập</a>
+
+                <a href="{{ route('register') }}">Đăng ký</a>
+            </div>
+        @endguest
+        @auth
+            <div class="login">
+               <a href="{{ route('profile.show') }}">{{ Auth::user()->name }}</a>
+                <a href="{{ route('logout') }}"
+                    onclick="event.preventDefault();
+                                document.getElementById('logout-form').submit();">
+                    {{ __('Đăng xuất') }}
+                </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
+            </div>
+        @endauth
         <div id="menuBar" class="icons bx bx-menu"></div>
     </div>
 </header>
