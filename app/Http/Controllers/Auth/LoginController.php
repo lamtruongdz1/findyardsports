@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Laravel\Socialite\Facades\Socialite;
 
 class LoginController extends Controller
@@ -100,7 +101,7 @@ class LoginController extends Controller
 
             if(isset($data->name)) { $user->name = $data->name; }
             $user->email = $data->email;
-            $user->password = bcrypt(str_random(16));
+            $user->password = Hash::make('password');
             // $user->provider_id = $data->id;
             // $user->avatar = $data->avatar;
             $user->save();
