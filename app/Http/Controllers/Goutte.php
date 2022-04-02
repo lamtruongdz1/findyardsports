@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Yard;
 use Goutte\Client;
-use Str;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
 class Goutte extends Controller

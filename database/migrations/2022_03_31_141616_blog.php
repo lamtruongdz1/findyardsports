@@ -13,12 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('districts', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
+        Schema::create('blogs', function (Blueprint $table) {
             $table->id();
             $table->string('name',150)->unique();
-            $table->string('slug',150)->unique();
+            $table->string('author',150)->unique();
+            $table->string('description',150)->unique();
+            $table->string('images',150)->unique();
             $table->timestamps();
+            // $table->foreignId('id')->references('id_districts')->on('yards');
         });
     }
 
@@ -29,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('districts');
+        Schema::dropIfExists('blogs');
     }
 };

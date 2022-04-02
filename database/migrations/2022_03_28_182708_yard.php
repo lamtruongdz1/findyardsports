@@ -13,10 +13,18 @@ return new class extends Migration
      */
     public function up()
     {
+        Schema::create('districts', function (Blueprint $table) {
+            $table->id();
+            $table->string('name',150)->unique();
+            $table->string('slug',150)->unique();
+            $table->timestamps();
+        });
+
         Schema::create('yards', function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->bigIncrements('id');
-            // $table->foreignId('districts_id')->constrained('districts')->onDelete('cascade');
+            $table->id();
+            $table->unsignedBigInteger('id_districts')->default(1);
+            $table->foreign('id_districts')->references('id')->on('districts');
             $table->string('name');
             $table->string('slug');
             $table->string('price');

@@ -78,9 +78,11 @@
         <div class="yard-list">
             @foreach ($yards as $yard)
                 <div class="yard-item">
+                    <a href="san/{{ $yard->slug }}">
                     <div class="yard-image">
                         <img src="{{ $yard->img }}" alt="" class="yard-img">
                     </div>
+                    </a>
                     <div class="yard-text">
                         <div class="yard-type">
                             <span>Sân 5 - sân 7</span>

@@ -31,15 +31,9 @@ class YardController extends Controller
 
     public function yard_district($param)
     {
-        $districts = District::where('id',$param)
-                ->orWhere('slug',$param)
-                ->firstOrFail();
-        // $yards = Yard::whereHas('district', function ($query) use ($param) {
-        //     $query->where('slug','like', $param);
-        // })->get();
-        // dd($yards);
-
-        return view('yard_district',compact('yards','districts'));
+        $districts = District::where('slug', $param)->first();
+        $yards = Yard::where('id_districts', $districts->id)->get();
+        return view('yard_district', compact('yards'));
     }
 
     public function autocomplete(Request $request)
