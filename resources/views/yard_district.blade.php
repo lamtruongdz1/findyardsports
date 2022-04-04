@@ -7,7 +7,7 @@
         @if( $districts->name == 'Thành phố Thủ Đức')
         <h1 class="heading-title">có {{ $total_yard }} sân tại <span>{{ $districts->name }}</span></h1>
         @else
-        <h1 class="heading-title">có {{ $yards->count() }} sân tại quận<span>{{ $districts->name }}</span></h1>
+        <h1 class="heading-title">có {{ $yards->count() }} sân tại <span>{{ $districts->name }}</span></h1>
         @endif
     </div>
     <div class="yard-list">

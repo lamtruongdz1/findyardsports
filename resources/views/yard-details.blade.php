@@ -45,9 +45,12 @@
         <h2>Trạng thái: còn sân</h2>
       </div>
       <div class="yard-detail-item">
-        <a href="pay.html" class="btn">Đặt sân</a>
-      </div>
+        <a href="#" class="btn">Đặt sân</a>
     </div>
+</div>
+@foreach ($slots as $slot)
+    <p>{{  $slot}}</p>
+@endforeach
   </div>
 
 </div>

@@ -1,13 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Support\Facades\Event;
-use Illuminate\Support\Facades\Cookie;
-use Illuminate\Support\Facades\Cookie\CookieJar;
+
 use App\Models\District;
 use Illuminate\Http\Request;
 use App\Models\Yard;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Category;
+use App\Booking\TimeSlotGenerator;
 
 class YardController extends Controller
 {
@@ -80,23 +80,15 @@ class YardController extends Controller
     {
 
         $yard = Yard::where('id', $param)
-        ->orWhere('slug', $param)
-        ->firstOrFail();
-        // update views options
-        if(Cookie::get($yard->id)!='') // update view options with current user
-        {
-            $view = Cookie::get($yard->id);
-            $view = $view + 1;
-            Cookie::queue(Cookie::make($yard->id, $view, 60));
-        }
-        else // update view options with current user
-        {
-            $view = 1;
-            Cookie::queue(Cookie::make($yard->id, $view, 60));
-        }
+            ->orWhere('slug', $param)
+            ->firstOrFail();
+        $slots = (new TimeSlotGenerator($yard))->get();
 
-        // $yard->incrementReadCount(); // update view
-        return view('yard-details', compact('yard'));
+
+        if (Auth::check()) {
+            $yard->incrementReadCount();
+        } // update view}
+        return view('yard-details', compact('yard', 'slots'));
     }
 
     /**

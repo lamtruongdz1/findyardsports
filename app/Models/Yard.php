@@ -21,6 +21,7 @@ class Yard extends Model
         'address',
         'description',
     ];
+
     public function district()
     {
         return $this->belongsToMany(District::class);
@@ -57,4 +58,9 @@ class Yard extends Model
         $this->view++;
         return $this->save();
     }
+
+    protected $casts = [
+        'time_open' => 'datetime',
+        'time_close' => 'datetime',
+    ];
 }
