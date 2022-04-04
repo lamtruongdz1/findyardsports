@@ -102,104 +102,32 @@
 <div class="yard-detail-similar swiper">
   <h1>Sân trong khu vực</h1>
   <div class="swiper-wrapper">
-    <div class="swiper-slide">
+
+@foreach ($yardLike as $item)
+        <div class="swiper-slide">
       <div class="yard-detail-item">
         <div class="yard-detail-image">
-          <img src="{{asset('frontend/images/chaolua.jpg')}}" alt="">
+          <img src="{{ $item->img }}" alt="">
         </div>
         <div class="yard-detail-text">
           <div class="yard-detail-type">
             <span>Sân 5 - sân 7</span>
           </div>
           <div class="yard-detail-price">
-            <p>250.000 VND/giờ</p>
+            <p>{{ $item->price }}.000 VND/giờ</p>
           </div>
         </div>
         <div class="yard-detail-maincontent">
-          <h2 class="yard-detail-title">Sân Chảo lửa</h2>
-          <p class="yard-detail-location">30 Phan Thúc Duyện, P. 4, Quận Tân Bình, Hồ Chí Minh</p>
+          <h2 class="yard-detail-title">{{ $item->name }}</h2>
+          <p class="yard-detail-location">{{ $item->address }}</p>
         </div>
       </div>
     </div>
-    <div class="swiper-slide">
-      <div class="yard-detail-item">
-        <div class="yard-detail-image">
-          <img src="{{asset('frontend/images/chaolua.jpg')}}" alt="">
-        </div>
-        <div class="yard-detail-text">
-          <div class="yard-detail-type">
-            <span>Sân 5 - sân 7</span>
-          </div>
-          <div class="yard-detail-price">
-            <p>250.000 VND/giờ</p>
-          </div>
-        </div>
-        <div class="yard-detail-maincontent">
-          <h2 class="yard-detail-title">Sân Chảo lửa</h2>
-          <p class="yard-detail-location">30 Phan Thúc Duyện, P. 4, Quận Tân Bình, Hồ Chí Minh</p>
-        </div>
-      </div>
-    </div>
-    <div class="swiper-slide">
-      <div class="yard-detail-item">
-        <div class="yard-detail-image">
-          <img src="{{asset('frontend/images/chaolua.jpg')}}" alt="">
-        </div>
-        <div class="yard-detail-text">
-          <div class="yard-detail-type">
-            <span>Sân 5 - sân 7</span>
-          </div>
-          <div class="yard-detail-price">
-            <p>250.000 VND/giờ</p>
-          </div>
-        </div>
-        <div class="yard-detail-maincontent">
-          <h2 class="yard-detail-title">Sân Chảo lửa</h2>
-          <p class="yard-detail-location">30 Phan Thúc Duyện, P. 4, Quận Tân Bình, Hồ Chí Minh</p>
-        </div>
-      </div>
-    </div>
-    <div class="swiper-slide">
-      <div class="yard-detail-item">
-        <div class="yard-detail-image">
-          <img src="{{asset('frontend/images/chaolua.jpg')}}" alt="">
-        </div>
-        <div class="yard-detail-text">
-          <div class="yard-detail-type">
-            <span>Sân 5 - sân 7</span>
-          </div>
-          <div class="yard-detail-price">
-            <p>250.000 VND/giờ</p>
-          </div>
-        </div>
-        <div class="yard-detail-maincontent">
-          <h2 class="yard-detail-title">Sân Chảo lửa</h2>
-          <p class="yard-detail-location">30 Phan Thúc Duyện, P. 4, Quận Tân Bình, Hồ Chí Minh</p>
-        </div>
-      </div>
-    </div>
-    <div class="swiper-slide">
-      <div class="yard-detail-item">
-        <div class="yard-detail-image">
-          <img src="{{asset('frontend/images/chaolua.jpg')}}" alt="">
-        </div>
-        <div class="yard-detail-text">
-          <div class="yard-detail-type">
-            <span>Sân 5 - sân 7</span>
-          </div>
-          <div class="yard-detail-price">
-            <p>250.000 VND/giờ</p>
-          </div>
-        </div>
-        <div class="yard-detail-maincontent">
-          <h2 class="yard-detail-title">Sân Chảo lửa</h2>
-          <p class="yard-detail-location">30 Phan Thúc Duyện, P. 4, Quận Tân Bình, Hồ Chí Minh</p>
-        </div>
-      </div>
-    </div>
+@endforeach
   </div>
   <div class="swiper-button-next"></div>
   <div class="swiper-button-prev"></div>
+  <br>  <br>
   <div class="swiper-pagination"></div>
 </div>
 </section>

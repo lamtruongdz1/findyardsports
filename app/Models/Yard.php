@@ -59,8 +59,8 @@ class Yard extends Model
         return $this->save();
     }
 
-    protected $casts = [
-        'time_open' => 'datetime',
-        'time_close' => 'datetime',
-    ];
+        // protected $casts = [
+        //     'time_open' => 'datetime',
+        //     'time_close' => 'datetime',
+        // ];
 }

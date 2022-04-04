@@ -30,8 +30,8 @@ return new class extends Migration
             $table->string('price');
             $table->longText('img');
             $table->integer('view')->default('0');
-            $table->string('time_open')->default('08:00');
-            $table->string('time_close')->default('23:00');
+            $table->string('time_open')->default('16:00');
+            $table->string('time_close')->default('21:00');
             $table->string('total_booking')->default('0');
             $table->longText('address');
             $table->longText('description')->nullable();

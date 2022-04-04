@@ -80,15 +80,19 @@ class YardController extends Controller
     {
 
         $yard = Yard::where('id', $param)
-            ->orWhere('slug', $param)
-            ->firstOrFail();
+        ->orWhere('slug', $param)
+        ->firstOrFail();
+
+        $yardLike = Yard::where('id_districts', $yard->id_districts)->limit(8)->get();
+
         $slots = (new TimeSlotGenerator($yard))->get();
+
 
 
         if (Auth::check()) {
             $yard->incrementReadCount();
         } // update view}
-        return view('yard-details', compact('yard', 'slots'));
+        return view('yard-details', compact('yard','yardLike', 'slots'));
     }
 
     /**
