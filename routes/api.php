@@ -19,3 +19,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::get('/data',[Goutte::class,'scraper']);
+Route::get('/data/1',[Goutte::class,'scraper_blog']);

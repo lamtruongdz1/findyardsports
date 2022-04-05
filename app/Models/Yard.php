@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Str;
-
+use app\models\booking;
 class Yard extends Model
 {
     use HasFactory;
@@ -25,6 +25,10 @@ class Yard extends Model
     public function district()
     {
         return $this->belongsToMany(District::class);
+    }
+    public function bookings()
+    {
+        return $this->hasMany(Booking::class);
     }
     protected static function boot()
     {

@@ -72,7 +72,7 @@
     <!-- yard section start -->
     <section class="yard" id="yard">
         <div class="heading">
-            <h1 class="heading-title">có 200 sân tại <span>Tp.Hồ chí minh</span></h1>
+            <h1 class="heading-title">có hơn 200 sân tại <span>Tp.Hồ chí minh</span></h1>
         </div>
         </div>
         <div class="yard-list">
@@ -99,13 +99,9 @@
             @endforeach
         </div>
     </section>
-    <div class="container">
         @if ($yards->links()->paginator->hasPages())
-
                 {{ $yards->links() }}
-
         @endif
-    </div>
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>

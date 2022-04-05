@@ -15,10 +15,13 @@ return new class extends Migration
     {
         Schema::create('blogs', function (Blueprint $table) {
             $table->id();
-            $table->string('name',150)->unique();
-            $table->string('author',150)->unique();
-            $table->string('description',150)->unique();
-            $table->string('images',150)->unique();
+            $table->string('title',150);
+            $table->string('source',150);
+            $table->string('time',150);
+            $table->string('slug',150);
+            // $table->string('author',150)->unique();
+            $table->longText('description');
+            $table->string('images',150);
             $table->timestamps();
             // $table->foreignId('id')->references('id_districts')->on('yards');
         });

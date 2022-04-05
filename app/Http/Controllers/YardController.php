@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\District;
 use Illuminate\Http\Request;
 use App\Models\Yard;
+use App\Models\Blog;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Category;
 use App\Booking\TimeSlotGenerator;
@@ -20,7 +21,8 @@ class YardController extends Controller
     {
         $districts = District::all();
         $yards = Yard::orderBy('total_booking', 'desc')->limit(8)->get();
-        return view('index', compact('yards', 'districts'));
+        $blogs = Blog::orderBy('created_at', 'desc')->limit(3)->get();
+        return view('index', compact('yards', 'districts','blogs'));
     }
 
     public function yard()
@@ -47,6 +49,14 @@ class YardController extends Controller
         $districts = District::where('name', 'LIKE', '%' . $request->get('query') . '%')->get();
         $data = $yards->merge($districts);
         return response()->json($data);
+    }
+    public function pay()
+    {
+        return view('pay');
+    }
+    public function pay_details()
+    {
+        return view('pay-detail');
     }
 
     /**
@@ -131,4 +141,6 @@ class YardController extends Controller
     {
         //
     }
+
+
 }

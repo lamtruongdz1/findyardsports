@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\YardController;
+use App\Http\Controllers\BlogController;
 use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
@@ -12,14 +13,19 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+// Home routes
 Route::get('/',[YardController::class,'index'])->name('home');
 Route::get('/home',[YardController::class,'index']);
 Route::get('/san/tim',[YardController::class,'yard']);
 Route::get('/san-bong/{param}',[YardController::class,'yard_district']);
 Route::get('/san/{param}',[YardController::class,'show']);
+Route::get('/datsan',[YardController::class,'pay'])->name('pay');
+Route::get('/tickets',[YardController::class,'pay_details'])->name('pay-detail');
 Route::get('autocomplete', [YardController::class, 'autocomplete'])->name('autocomplete');
 
+// Blog routes
+Route::get('news', [BlogController::class, 'index'])->name('news');
+Route::get('/news/{param}',[BlogController::class,'new_detail']);
 
 Route::middleware([
     'auth:sanctum',

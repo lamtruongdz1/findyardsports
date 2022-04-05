@@ -68,7 +68,7 @@
                     <h1 class="heading-title">Sân nhiều <span>người đặt</span></h1>
                 </div>
                 <div class="heading-title-all">
-                    <h2 class="heading-title-all">xem tất cả</h2>
+                    <a href="san/tim"><h2 class="heading-title-all">xem tất cả</h2></a>
                     <i class='bx bx-chevrons-right'></i>
                 </div>
             </div>
@@ -86,12 +86,12 @@
                                             <span>Sân 5 - sân 7</span>
                                         </div>
                                         <div class="yard-hot-price">
-                                            <p>250.000 VND/giờ</p>
+                                            <p>{{ $yard->price }}.000 VND/giờ</p>
                                         </div>
                                     </div>
                                     <div class="yard-hot-content">
                                         <h2 class="yard-hot-title">{{ $yard->name }}</h2>
-                                        <p class="yard-hot-location">30 Phan Thúc Duyện, P. 4, Quận Tân Bình, Hồ Chí Minh
+                                        <p class="yard-hot-location">{{ $yard->address }}
                                         </p>
                                     </div>
                                 </div>
@@ -234,41 +234,23 @@
                 <h1 class="heading-title">tin tức<span> mới nhất</span></h1>
             </div>
             <div class="news-single-list" data-aos="fade-left" data-aos-duration="1000">
-                <div class="news-single-item">
-                    <div class="news-single-image">
-                        <img src="{{ asset('frontend/images/blog1.jpg') }}" alt="" class="news-single-img">
-                    </div>
-                    <div class="news-single-content">
-                        <span>Thứ Bảy 15/01/2022 15:55</span>
-                        <h2>Bruno Fernandes: Từ người hùng hóa người thừa ở Old Trafford?</h2>
-                        <p>Không còn hình ảnh thăng hoa bùng nổ như hai mùa giải đầu tiên trong màu áo Manchester United,
-                            Bruno Fernandes hiện tại năm nay sa sút phong độ rõ rệt</p>
-                    </div>
-                </div>
-                <div class="news-single-item">
-                    <div class="news-single-image">
-                        <img src="{{ asset('frontend/images/blog2.jpg') }}" alt="" class="news-single-img">
-                    </div>
-                    <div class="news-single-content">
-                        <span>Thứ Bảy 15/01/2022 10:15</span>
-                        <h2>Man City vs Chelsea (19h30 ngày 15/1): Tất cả kỳ vọng vào The Blues</h2>
-                        <p>Ngoài NHM Chelsea thì những CĐV trung lập đều đứng về phía The Blues ở trận đấu với Man City, qua
-                            đó chờ đợi cuộc đua vô địch hấp dẫn hơn trong phần còn lại của mùa giải.</p>
-                    </div>
-                </div>
-                <div class="news-single-item">
-                    <div class="news-single-image">
-                        <img src="{{ asset('frontend/images/blog3.jpg') }}" alt="" class="news-single-img">
-                    </div>
-                    <div class="news-single-content">
-                        <span>Thứ Bảy 15/01/2022 15:55</span>
-                        <h2>Nếu Rüdiger cứ đá thế này, Chelsea sẽ phải xuống nước</h2>
-                        <p>Có một câu chuyện đang xảy ra đều đặn như việc rửa mặt hàng ngày: Chelsea chơi tốt một trận, để
-                            rồi sau đó người hâm mộ lại cầu xin CLB trao cho Antonio Rüdiger một bản hợp đồng mới.</p>
-                    </div>
-                </div>
+               @foreach ($blogs as $blog)
+
+               <div class="news-single-item">
+                   <a href="news/{{ $blog->slug }}">
+                   <div class="news-single-image">
+                       <img src="{{ $blog->images }}" alt="" class="news-single-img">
+                   </div>
+                   <div class="news-single-content">
+                       <span>{{ $blog->time }}</span>
+                       <h2>{{ $blog->title }}</h2>
+                       <p>{{ $blog->description }}</p>
+                   </div>
+                </a>
+               </div>
+               @endforeach
             </div>
-            <a href="" class="btn">xem thêm</a>
+            <a href="{{ route('news') }}" class="btn">xem thêm</a>
         </section>
         <!-- news-single section end -->
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
