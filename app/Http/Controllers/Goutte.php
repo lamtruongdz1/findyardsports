@@ -38,6 +38,13 @@ class Goutte extends Controller
 
             $yard->price = $price;
             $yard->address = $address;
+
+            // $array_district = ['Thủ Đức','Gò Vấp'];
+            // $count_array = count($array_district);
+            // for ($i=1; $i < $count_array ; $i++) {
+            //     $check = Str::conetains($yard->address, $array_district[$i]);
+            // }
+
             $check = Str::contains($yard->address, 'Thủ Đức');
             $check1 =Str::contains($yard->address, 'Bình Chánh');
             $check2 =Str::contains($yard->address, 'Gò Vấp');
