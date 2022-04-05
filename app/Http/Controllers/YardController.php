@@ -31,7 +31,7 @@ class YardController extends Controller
         $category = Category::all();
         $yards = Yard::orderBy('view', 'desc')->simplePaginate(6);
 
-        return view('yard', compact('yards', 'districts', 'category'));
+        return view('yard.yard', compact('yards', 'districts', 'category'));
     }
 
     public function yard_district($param)
@@ -40,7 +40,7 @@ class YardController extends Controller
         $total_yard = Yard::where('id_districts', $districts->id)->count();
         $yards = Yard::where('id_districts', $districts->id)->simplePaginate(6);
         // var_dump($yards);
-        return view('yard_district', compact('yards', 'districts', 'total_yard'));
+        return view('yard.yard_district', compact('yards', 'districts', 'total_yard'));
     }
 
     public function autocomplete(Request $request)
@@ -52,11 +52,11 @@ class YardController extends Controller
     }
     public function pay()
     {
-        return view('pay');
+        return view('payment.pay');
     }
     public function pay_details()
     {
-        return view('pay-detail');
+        return view('payment.pay-detail');
     }
 
     /**
@@ -102,7 +102,7 @@ class YardController extends Controller
         if (Auth::check()) {
             $yard->incrementReadCount();
         } // update view}
-        return view('yard-details', compact('yard','yardLike', 'slots'));
+        return view('yard.yard-details', compact('yard','yardLike', 'slots'));
     }
 
     /**

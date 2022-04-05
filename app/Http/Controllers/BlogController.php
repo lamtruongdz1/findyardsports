@@ -14,14 +14,14 @@ class BlogController extends Controller
     public function index()
     {
         $blogs = Blog::orderBy('created_at', 'desc')->simplePaginate(6);
-        return view('news',compact('blogs'));
+        return view('blog.news',compact('blogs'));
     }
     public function new_detail($param){
         $news = Blog::where('id', $param)
         ->orWhere('slug', $param)
         ->firstOrFail();
         $newsLike = Blog::orderBy('created_at', 'desc')->limit(8)->get();
-        return view('new-detail',compact('news','newsLike'));
+        return view('blog.new-detail',compact('news','newsLike'));
     }
 
     /**
