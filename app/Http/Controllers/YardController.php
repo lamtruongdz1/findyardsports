@@ -22,7 +22,7 @@ class YardController extends Controller
         $districts = District::all();
         $yards = Yard::orderBy('total_booking', 'desc')->limit(8)->get();
         $blogs = Blog::orderBy('created_at', 'desc')->limit(3)->get();
-        return view('index', compact('yards', 'districts','blogs'));
+        return view('content.index', compact('yards', 'districts','blogs'));
     }
 
     public function yard()
