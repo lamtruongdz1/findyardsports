@@ -39,15 +39,9 @@ class Goutte extends Controller
             $yard->price = $price;
             $yard->address = $address;
 
-            // $array_district = ['Thủ Đức','Gò Vấp'];
-            // $count_array = count($array_district);
-            // for ($i=1; $i < $count_array ; $i++) {
-            //     $check = Str::conetains($yard->address, $array_district[$i]);
-            // }
 
             $check = Str::contains($yard->address, 'Thủ Đức');
             $check1 =Str::contains($yard->address, 'Bình Chánh');
-            $check2 =Str::contains($yard->address, 'Gò Vấp');
             $check3 =Str::contains($yard->address, 'Tân Phú');
             $check4 =Str::contains($yard->address, 'Tân Bình');
             $check5 =Str::contains($yard->address, 'Phú Nhuận');
@@ -64,11 +58,11 @@ class Goutte extends Controller
             $check17 =Str::contains($yard->address, 'Cần Giờ');
             if($check==true) $yard->id_districts = 1;
             if($check7==true) $yard->id_districts = 2;
-            if($check6==true) $yard->id_districts = 2;
-            if($check5==true) $yard->id_districts = 2;
+            if($check6==true) $yard->id_districts = 12;
+            if($check5==true) $yard->id_districts = 14;
             if($check4==true) $yard->id_districts = 13;
             if($check3==true) $yard->id_districts = 15;
-            if($check2==true) $yard->id_districts = 12;
+
             if($check1==true) $yard->id_districts = 16;
             if($check7==true) $yard->id_districts = 2;
             if($check9==true) $yard->id_districts = 3;
@@ -82,6 +76,29 @@ class Goutte extends Controller
             if($check17==true) $yard->id_districts = 17;
             $yard->description = $description;
             $yard->save();
+
+            // for ($i=1; $i <  20; $i++) {
+            //     $client = new Client();
+            //     $crawler = $client->request('GET', 'https://laodong.vn/bong-da/?page='.$i);
+            //     $crawler->filter('article.p2c.m002')->each(function ($node) {
+            //         $title = $node->filter('h2.title')->text();
+            //         $time = $node->filter('span.time')->text();
+            //         $noidung = $node->filter('.chapeau')->text();
+            //         $image = $node->filter('img.img-art')->attr('data-src');
+            //         $link = $node->filter('a.link-title')->attr('href');
+
+            //         $blog = new Blog();
+            //         $blog->title = $title;
+            //         $blog->slug = Str::slug($title);
+            //         $blog->images = $image;
+            //         $blog->time = $time;
+            //         $blog->description = $noidung;
+            //         $blog->source = $link;
+            //         $blog->save();
+
+
+                // });
+            // }
         });
     }
     public function scraper_blog()
