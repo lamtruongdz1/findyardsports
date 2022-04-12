@@ -103,7 +103,7 @@ class Goutte extends Controller
     }
     public function scraper_blog()
     {
-        for ($i=1; $i <  100; $i++) {
+        for ($i=1; $i <  15; $i++) {
             $client = new Client();
             $crawler = $client->request('GET', 'https://laodong.vn/bong-da/?page='.$i);
             $crawler->filter('article.p2c.m002')->each(function ($node) {
