@@ -23,7 +23,7 @@ return new class extends Migration
         Schema::create('yards', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->id();
-            $table->unsignedBigInteger('id_districts')->default(1);
+            $table->unsignedBigInteger('id_districts');
             $table->foreign('id_districts')->references('id')->on('districts');
             $table->string('name');
             $table->string('slug');

@@ -9,7 +9,11 @@
             <span>{{ $news->time }}</span>
         </div>
         <div class="news-detail-img">
-            <img src="{{ $news->images }}" alt="" />
+            @if (Storage::disk('public')->exists($news->images))
+                <img src="{{ Storage::url($news->images) }}" alt="">
+            @else
+                <img src="{{ $news->images }}">
+            @endif
         </div>
         <div class="news-detail-content">
             <p>
@@ -46,8 +50,8 @@
                 mới chỉ đá… 172 phút mùa này, và lẽ ra nên nghỉ hưu từ năm 2018.
             </p>
         </div>
-        {{-- <div class="news-detail-img">
-      <img src="images/nd2.webp" alt="" />
+        <div class="news-detail-img">
+      <img src="{{ asset('frontend/images/nd2.webp') }}" alt="" />
     </div>
     <div class="news-detail-content">
       <p>
@@ -109,7 +113,7 @@
           mắn lần sau!
         </p>
       </div>
-    </div> --}}
+    </div>
         <div class="news-detail swiper">
             <h1>Tin tức liên quan</h1>
             <div class="swiper-wrapper">
@@ -118,7 +122,11 @@
                         <a href="/news/{{ $item->slug }}">
                             <div class="news-detail-item">
                                 <div class="news-detail-image">
-                                    <img src="{{ $item->images }}" alt="">
+                                    @if (Storage::disk('public')->exists($item->images))
+                                        <img src="{{ Storage::url($item->images) }}" alt="">
+                                    @else
+                                        <img src="{{ $item->images }}">
+                                    @endif
                                 </div>
                                 <div class="news-detail-maincontent">
                                     <h2 class="news-detail-title">{{ $item->title }}</h2>

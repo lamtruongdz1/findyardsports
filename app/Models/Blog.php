@@ -15,4 +15,8 @@ class Blog extends Model implements HasMedia
     use InteractsWithMedia;
     use HasFactory;
     protected $fillable = ['title', 'source', 'time', 'slug', 'description', 'images'];
+
+    protected $casts = [
+        'images' => 'array',
+    ];
 }
