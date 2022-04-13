@@ -46,11 +46,9 @@ class BlogResource extends Resource
                     'sm' => 2,
                 ])
                     ->required(),
-                    SpatieMediaLibraryFileUpload::make('images')
-                                ->collection('product-images')
-                                ->multiple()
-                                ->minFiles(1)
-                                ->maxFiles(5),
+                    Forms\Components\FileUpload::make('images')
+                    ->directory('blog-images')
+                    ->enableReordering()
             ]);
     }
 

@@ -15,7 +15,11 @@ class DistrictResource extends Resource
 {
     protected static ?string $model = District::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $slug = 'pages/quan';
+    protected static ?string $recordTitleAttribute = 'name';
+    protected static ?string $navigationGroup = 'Pages';
+    protected static ?string $navigationIcon = 'heroicon-o-bookmark-alt';
+    protected static ?int $navigationSort = 2;
 
     public static function form(Form $form): Form
     {
@@ -36,10 +40,7 @@ class DistrictResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('name'),
                 Tables\Columns\TextColumn::make('slug'),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime(),
+
             ])
             ->filters([
                 //

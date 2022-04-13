@@ -68,7 +68,9 @@
                     <h1 class="heading-title">Sân nhiều <span>người đặt</span></h1>
                 </div>
                 <div class="heading-title-all">
-                    <a href="san/tim"><h2 class="heading-title-all">xem tất cả</h2></a>
+                    <a href="san/tim">
+                        <h2 class="heading-title-all">xem tất cả</h2>
+                    </a>
                     <i class='bx bx-chevrons-right'></i>
                 </div>
             </div>
@@ -234,21 +236,25 @@
                 <h1 class="heading-title">tin tức<span> mới nhất</span></h1>
             </div>
             <div class="news-single-list" data-aos="fade-left" data-aos-duration="1000">
-               @foreach ($blogs as $blog)
+                @foreach ($blogs as $blog)
+                    <div class="news-single-item">
+                        <a href="news/{{ $blog->slug }}">
+                            <div class="news-single-image">
+                                @if (Storage::disk('public')->exists($blog->images))
+                                <img src="{{ Storage::url($blog->images) }}" alt="" class="news-single-img">
+                                @else
+                                    <img src="{{ $blog->images }}" class="news-single-img" >
+                                @endif
 
-               <div class="news-single-item">
-                   <a href="news/{{ $blog->slug }}">
-                   <div class="news-single-image">
-                       <img src="{{ $blog->images }}" alt="" class="news-single-img">
-                   </div>
-                   <div class="news-single-content">
-                       <span>{{ $blog->time }}</span>
-                       <h2>{{ $blog->title }}</h2>
-                       <p>{{ $blog->description }}</p>
-                   </div>
-                </a>
-               </div>
-               @endforeach
+                            </div>
+                            <div class="news-single-content">
+                                <span>{{ $blog->time }}</span>
+                                <h2>{{ $blog->title }}</h2>
+                                <p>{{ $blog->description }}</p>
+                            </div>
+                        </a>
+                    </div>
+                @endforeach
             </div>
             <a href="{{ route('news') }}" class="btn">xem thêm</a>
         </section>
