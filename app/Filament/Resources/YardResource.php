@@ -115,7 +115,9 @@ class YardResource extends Resource
                     ->sortable(),
 
             ])
-            ->filters([]);
+            ->filters([
+
+            ]);
     }
 
     public static function getRelations(): array
@@ -133,4 +135,5 @@ class YardResource extends Resource
             'edit' => Pages\EditYard::route('/{record}/edit'),
         ];
     }
+
 }

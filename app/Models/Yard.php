@@ -24,6 +24,7 @@ class Yard extends Model
         'time_open',
         'time_close',
         'id_districts',
+        'status',
     ];
     protected $casts = [
         'img' => 'array',
