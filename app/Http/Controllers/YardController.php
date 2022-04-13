@@ -6,6 +6,9 @@ use App\Models\District;
 use Illuminate\Http\Request;
 use App\Models\Yard;
 use App\Models\Blog;
+use App\Models\Booking;
+use App\Models\typeYards;
+use App\Models\bookingdetail;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Category;
 use App\Booking\TimeSlotGenerator;
@@ -102,9 +105,44 @@ class YardController extends Controller
         if (Auth::check()) {
             $yard->incrementReadCount();
         } // update view}
+        
         return view('content.yard.yard-details', compact('yard','yardLike', 'slots'));
     }
 
+    public function datsan($param, Request $request){
+        $yard = Yard::where('id', $param)
+        ->orWhere('slug', $param)
+        ->firstOrFail();
+
+        $typeyard = typeYards::where('type', $yard->id_districts)->get();
+
+        $slots = (new TimeSlotGenerator($yard))->get();
+        return view('content.payment.pay', compact('yard','slots','typeyard'));
+    }
+
+    public function themtimesan(Request $request){
+        $data = $request->all();
+        $themtime = new bookingdetail();
+        $themtime->yard = $data['time'];
+        $themtime->time = $data['time'];
+        $themtime->save(); 
+
+    }
+
+    public function thanhtoansan(Request $request){
+        // $request->validate([
+        //     'hovaten' => 'required',
+        //     'sodienthoai' => 'required',
+        //     'email' => 'required',
+        // ]);
+        $data = $request->all();
+        $thembookings = new Booking();
+        $thembookings->address = $data['tenaddress'];
+        $thembookings->email = $data['email'];
+        $thembookings->phone = $data['sodienthoai'];
+        $thembookings->total_price = $data['price'] * 1.5;
+        $thembookings->save();
+    }
     /**
      * Show the form for editing the specified resource.
      *
