@@ -10,16 +10,19 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Booking;
+use Filament\Models\Contracts\FilamentUser;
+
 use Spatie\Permission\Traits\HasRoles;
 
 
-class User extends Authenticatable
+class User extends Authenticatable implements FilamentUser
 {
     use HasRoles;
     use HasApiTokens;
     use HasFactory;
     use HasProfilePhoto;
     use Notifiable;
+
     use TwoFactorAuthenticatable;
 
     /**
@@ -65,5 +68,9 @@ class User extends Authenticatable
     public function bookings()
     {
         return $this->hasMany(Booking::class);
+    }
+    public function canAccessFilament(): bool
+    {
+        return true;// Your Logic to Allow Access;
     }
 }

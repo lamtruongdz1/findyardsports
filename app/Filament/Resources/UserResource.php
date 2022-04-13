@@ -31,17 +31,22 @@ class UserResource extends Resource
                     ->email()
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('password')
-                    ->password()
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\Textarea::make('two_factor_secret')
-                    ->maxLength(65535),
-                Forms\Components\Textarea::make('two_factor_recovery_codes')
-                    ->maxLength(65535),
-                Forms\Components\TextInput::make('current_team_id'),
+                // Forms\Components\TextInput::make('password')
+                //     ->password()
+                //     ->required()
+                //     ->maxLength(255),
+                // Forms\Components\Textarea::make('two_factor_secret')
+                //     ->maxLength(65535),
+                // Forms\Components\Textarea::make('two_factor_recovery_codes')
+                //     ->maxLength(65535),
+                // Forms\Components\TextInput::make('current_team_id'),
                 Forms\Components\TextInput::make('profile_photo_path')
                     ->maxLength(2048),
+
+                Forms\Components\Select::make('roles')
+                    ->options(\Spatie\Permission\Models\Role::pluck('name', 'id'))
+                    ->searchable()
+
             ]);
     }
 
@@ -53,16 +58,16 @@ class UserResource extends Resource
                 Tables\Columns\TextColumn::make('email'),
                 Tables\Columns\TextColumn::make('email_verified_at')
                     ->dateTime(),
-                Tables\Columns\TextColumn::make('two_factor_secret'),
-                Tables\Columns\TextColumn::make('two_factor_recovery_codes'),
-                Tables\Columns\TextColumn::make('two_factor_confirmed_at')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('current_team_id'),
-                Tables\Columns\TextColumn::make('profile_photo_path'),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime(),
+                // Tables\Columns\TextColumn::make('two_factor_secret'),
+                // Tables\Columns\TextColumn::make('two_factor_recovery_codes'),
+                // Tables\Columns\TextColumn::make('two_factor_confirmed_at')
+                //     ->dateTime(),
+                // Tables\Columns\TextColumn::make('current_team_id'),
+                // Tables\Columns\TextColumn::make('profile_photo_path'),
+                // Tables\Columns\TextColumn::make('created_at')
+                //     ->dateTime(),
+                // Tables\Columns\TextColumn::make('updated_at')
+                //     ->dateTime(),
             ])
             ->filters([
                 //

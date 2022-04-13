@@ -20,9 +20,12 @@ return [
 
     'filament_user' => [
         'role_name' => 'filament_user',
-        'enabled' => false
+        'enabled' => true
     ],
-
+    'blogger' => [
+        'role_name' => 'blogger',
+        'enabled' => true
+    ],
     /*
     |--------------------------------------------------------------------------
     | Default Prefixes
