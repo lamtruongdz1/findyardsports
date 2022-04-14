@@ -4,28 +4,28 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Defualt Roles
+    | Default Roles
     |--------------------------------------------------------------------------
     |
-    | The default is `super_admin` but you can change it to whatever works best for you.
+    | Permissions' generated will be assigned automatically to the following roles when enabled.
     | `filament_user` if enabled will help smoothly provide access to filament users
-    | in production when implementing `FilamentUser`
+    | in production when implementing `FilamentUser` interface.
     */
 
 
     'super_admin' => [
-        'enabled'   => true,
+        'enabled' => false,
         'role_name' => 'super_admin'
     ],
 
     'filament_user' => [
-        'enabled'   => true,
         'role_name' => 'filament_user',
+        'enabled' => true
     ],
 
     'blogger' => [
-        'enabled'   => true,
         'role_name' => 'blogger',
+        'enabled' => false
     ],
 
     /*
@@ -42,7 +42,15 @@ return [
     */
 
     'prefixes' => [
-        'resource' => ["view","view_any","create","delete","delete_any","update","export"],
+        'resource' => [
+            'view',
+            'view_any',
+            'create',
+            'delete',
+            'delete_any',
+            'update',
+            'export', // custom resource permission
+        ],
         'page'  =>  'view',
         'widget' => 'view'
     ],
@@ -80,17 +88,19 @@ return [
     |--------------------------------------------------------------------------
     | Exclude
     |--------------------------------------------------------------------------
-    | Generate permissions or permissions with policies for all the entities
-    | except listed here.
-    | Generated Permission name will be formatted as:
-    | Page: `view_page_name` i.e, `SettingsPage` => `view_settings_page`
-    | Widget: `view_widget_name` i.e, `IncomeWidget` => `view_income_widget`
+    | When enabled Exclude entites listed here during permission generation.
+    |
     */
 
     'exclude' => [
         'enabled' => true,
-        'pages' => ["Dashboard"],
-        'widgets' => ["AccountWidget","FilamentInfoWidget"],
+        'pages' => [
+            'Dashboard'
+        ],
+        'widgets' => [
+            'AccountWidget',
+            'FilamentInfoWidget'
+        ],
         'resources' => [],
     ],
 

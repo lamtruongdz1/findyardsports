@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name',150)->unique();
             $table->string('slug',150)->unique();
-            $table->string('type',150)->unique();
+            $table->string('type',150);
             $table->timestamps();
             // $table->foreignId('id')->references('id_districts')->on('yards');
         });
