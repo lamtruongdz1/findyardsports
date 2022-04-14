@@ -9724,7 +9724,6 @@
             "time": "2021-10-19T17:43:47+00:00"
         },
         {
-<<<<<<< HEAD
             "name": "phpdocumentor/type-resolver",
             "version": "1.6.1",
             "source": {
@@ -9775,8 +9774,6 @@
             "time": "2022-03-15T21:29:03+00:00"
         },
         {
-=======
->>>>>>> 2da167a7f52b743af943a7c2d37d0e24ba1c2f86
             "name": "phpspec/prophecy",
             "version": "v1.15.0",
             "source": {
