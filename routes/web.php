@@ -27,6 +27,11 @@ Route::post('/themtimesan',[YardController::class,'themtimesan'])->name('themtim
 
 Route::post('/thanh-toan-san',[YardController::class,'thanhtoansan'])->name('thanhtoansan');
 
+Route::post('/themtimesan',[YardController::class,'themtimesan'])->name('themtimesan');
+
+Route::post('/thanh-toan-san',[YardController::class,'thanhtoansan'])->name('thanhtoansan');
+
+
 // Blog routes
 Route::get('news', [BlogController::class, 'index'])->name('news');
 Route::get('/news/{param}',[BlogController::class,'new_detail']);

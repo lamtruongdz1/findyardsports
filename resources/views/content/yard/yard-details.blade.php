@@ -1,7 +1,7 @@
 @extends('layout.client.master')
 @section('content')
     <div class="yard-detail-image">
-        <img src="{{ $yard->img }}" alt="">
+        <img src="{{asset('frontend/images')}}/{{ $yard->img }}" alt="">
     </div>
     <section class="yard-detail">
         <div class="yard-detail-heading">
@@ -50,19 +50,19 @@
                 <div class="yard-detail-list">
                     <h2>Sân còn trống vào các khoảng thời gian sau
                     </h2>
-                    <div class="yard-detail-item">
+                    <!-- <div class="yard-detail-item">
                         @foreach ($slots as $slot)
                             <button
                                 style="font-size: small; letter-spacing: .1em; text-transform: none; font-weight: normal;"
                                 class="button-time" type="submit">
-                                <strong>{{ $slot }}</strong>
+                                <strong data-slot="{{$slot}}" id="strongslot">{{ $slot }}</strong>
                             </button>
                         @endforeach
-                    </div>
+                    </div> -->
                 </div>
                 <div class="yard-detail-list">
                     <div class="yard-detail-item">
-                        <a href="{{ route('pay') }}" class="btn">Đặt sân</a>
+                        <a href="{{ route('datsan',$yard->slug) }}" class="btn">Đặt sân</a>
                     </div>
                 </div>
 
@@ -72,13 +72,13 @@
                 <h1>Hình ảnh sân bóng</h1>
                 <div class="yard-detail-list">
                     <div class="yard-detail-item">
-                        <img src="{{ $yard->img }}" alt="">
+                        <img src="{{asset('frontend/images')}}/{{ $yard->img }}" alt="">
                     </div>
                     <div class="yard-detail-item">
-                        <img src="{{ $yard->img }}" alt="">
+                        <img src="{{asset('frontend/images')}}/{{ $yard->img }}" alt="">
                     </div>
                     <div class="yard-detail-item">
-                        <img src="{{ $yard->img }}" alt="">
+                        <img src="{{asset('frontend/images')}}/{{ $yard->img }}" alt="">
                     </div>
                 </div>
             </div>
@@ -152,4 +152,26 @@
                 <div class="swiper-pagination"></div>
             </div>
     </section>
+@endsection
+@section('js')
+<script>
+    jQuery(document).ready(function($){
+    $(document).on('click', '#strongslot', function(){
+        var time = $(this).data('slot');
+        var _token = $('input[name="_token"]').val();
+        // $.ajax({
+        //         url:'{{route("themtimesan")}}',
+        //         type:"post",
+        //         data:{
+        //             time:time,_token:_token
+        //         },
+        //         success:function(data){
+        //             if(data = 'done'){
+        //                 alert('themthanhcong');
+        //             }
+        //         }
+        // });
+    });
+});
+</script>
 @endsection
