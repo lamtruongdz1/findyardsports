@@ -22,11 +22,7 @@
         "laravel/tinker": "^2.7",
         "laravel/ui": "^3.4",
         "livewire/livewire": "^2.5",
-<<<<<<< HEAD
         "spatie/laravel-medialibrary": "^10.3"
-=======
-        "pxlrbt/filament-spotlight": "^0.3.2"
->>>>>>> eca2f0b588ea754d593c8064dba0bff40090f32b
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.6",
