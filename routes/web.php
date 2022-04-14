@@ -23,6 +23,9 @@ Route::get('/datsan',[YardController::class,'pay'])->name('pay');
 Route::get('/dat-san/{param}',[YardController::class,'datsan'])->name('datsan');
 Route::get('/tickets',[YardController::class,'pay_details'])->name('pay-detail');
 Route::get('autocomplete', [YardController::class, 'autocomplete'])->name('autocomplete');
+Route::post('/themtimesan',[YardController::class,'themtimesan'])->name('themtimesan');
+
+Route::post('/thanh-toan-san',[YardController::class,'thanhtoansan'])->name('thanhtoansan');
 
 Route::post('/themtimesan',[YardController::class,'themtimesan'])->name('themtimesan');
 

@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\District;
 use Illuminate\Http\Request;
 use App\Models\Yard;
@@ -120,27 +119,23 @@ class YardController extends Controller
         return view('content.payment.pay', compact('yard','slots','typeyard'));
     }
 
-    public function themtimesan(Request $request){
-        $data = $request->all();
-        $themtime = new bookingdetail();
-        $themtime->yard = $data['time'];
-        $themtime->time = $data['time'];
-        $themtime->save(); 
+    // public function themtimesan(Request $request){
+    //     $data = $request->all();
+    //     $themtime = new bookingdetail();
+    //     $themtime->yard = $data['time'];
+    //     $themtime->time = $data['time'];
+    //     $themtime->save(); 
 
-    }
+    // }
 
     public function thanhtoansan(Request $request){
-        // $request->validate([
-        //     'hovaten' => 'required',
-        //     'sodienthoai' => 'required',
-        //     'email' => 'required',
-        // ]);
+  
         $data = $request->all();
         $thembookings = new Booking();
         $thembookings->address = $data['tenaddress'];
         $thembookings->email = $data['email'];
         $thembookings->phone = $data['sodienthoai'];
-        $thembookings->total_price = $data['price'] * 1.5;
+        $thembookings->total_price = $data['price'] * 2;
         $thembookings->save();
     }
     /**
