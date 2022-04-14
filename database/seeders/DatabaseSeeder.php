@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             Districts::class,
             CategorySeeder::class,
+            types_yard::class,
         ]);
     }
 }

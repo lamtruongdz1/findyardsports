@@ -27,7 +27,7 @@
               </select>
                 </div>
                 <div class="pay-price">
-                  <p id="tien" data-tien="{{$yard->price}}">{{$yard->price}}đ/giờ</p>
+                  <p id="tien" data-tien="{{$yard->price}}000">{{$yard->price}}.000đ/giờ</p>
                 </div>
                   <h2 class="pay-title" >{{$yard->name}}</h2>
                   <p class="pay-location">{{$yard->address}}</p>
@@ -54,6 +54,15 @@
 @endsection
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+<!-- CSS -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+<!-- Default theme -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
+<!-- Semantic UI theme -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css"/>
+<!-- Bootstrap theme -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css"/>
 <script>
           jQuery(document).ready(function($){
             $('#btnclick').on('click', function(){
@@ -73,9 +82,10 @@
                     data:{idsan:idsan,datesan:datesan,price:price,tenname:tenname,hovaten:hovaten,sodienthoai:sodienthoai,email:email,tenaddress:tenaddress,_token:_token},
                     success:function(data)
                     {
-                      if(data = 'done'){
-                        alert('thành công');
-                      }
+                      if(data == 'done')
+                        {
+                            alertify.success('đặt hàng thành công');
+                        }
                     }
                 });
             });
