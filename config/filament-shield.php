@@ -14,24 +14,17 @@ return [
 
 
     'super_admin' => [
-<<<<<<< HEAD
         'enabled' => false,
-=======
-        'enabled' => true,
->>>>>>> 13432e8d20034af0b1b8b7cd417b8e17c8fc07b3
         'role_name' => 'super_admin'
     ],
 
     'filament_user' => [
         'role_name' => 'filament_user',
-<<<<<<< HEAD
         'enabled' => true
     ],
 
     'blogger' => [
         'role_name' => 'blogger',
-=======
->>>>>>> 13432e8d20034af0b1b8b7cd417b8e17c8fc07b3
         'enabled' => false
     ],
 
