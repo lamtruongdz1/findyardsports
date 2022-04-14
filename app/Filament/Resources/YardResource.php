@@ -10,46 +10,81 @@ use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
+use Str;
 
 class YardResource extends Resource
 {
     protected static ?string $model = Yard::class;
+    protected static ?string $slug = 'pages/san';
+    protected static ?string $recordTitleAttribute = 'name';
+    protected static ?string $navigationGroup = 'Pages';
+    protected static ?string $navigationIcon = 'heroicon-o-bookmark-alt';
+    protected static ?int $navigationSort = 0;
 
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
+
+
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('id_districts')
+                Forms\Components\BelongsToSelect::make('id_districts')
+                    ->relationship('district', 'name')
+                    ->searchable()
                     ->required(),
                 Forms\Components\TextInput::make('name')
-                    ->required()
-                    ->maxLength(255),
+                    ->reactive()
+                    ->afterStateUpdated(fn ($state, callable $set) => $set('slug', Str::slug($state))),
                 Forms\Components\TextInput::make('slug')
+                    ->disabled()
                     ->required()
-                    ->maxLength(255),
+                    ->unique(Yard::class, 'slug', fn ($record) => $record),
                 Forms\Components\TextInput::make('price')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\Textarea::make('img')
+                    ->numeric()
+                    ->rules(['regex:/^\d{1,6}(\.\d{0,2})?$/'])
                     ->required(),
+                Forms\Components\FileUpload::make('img')
+                    ->directory('yard-images')
+                    ->enableReordering(),
                 Forms\Components\TextInput::make('view')
+                    ->numeric()
+                    ->rules(['regex:/^\d{1,6}(\.\d{0,2})?$/'])
                     ->required(),
-                Forms\Components\TextInput::make('time_open')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('time_close')
-                    ->required()
-                    ->maxLength(255),
+                Forms\Components\TimePicker::make('time_open')
+                    ->withoutSeconds()
+                    ->default(now())
+                    ->required(),
+                Forms\Components\TimePicker::make('time_close')
+                    ->withoutSeconds()
+                    ->default(now())
+
+                    ->required(),
                 Forms\Components\TextInput::make('total_booking')
+                    ->disabled()
                     ->required()
-                    ->maxLength(255),
-                Forms\Components\Textarea::make('address')
-                    ->required(),
-                Forms\Components\Textarea::make('description'),
+                    ->rules(['regex:/^\d{1,6}(\.\d{0,2})?$/'])
+                    ->default(0),
                 Forms\Components\Toggle::make('status')
+                    ->helperText('This product will be hidden from all sales channels.')
+                    ->default(true)
                     ->required(),
+                Forms\Components\MarkdownEditor::make('address')
+                    ->disableAllToolbarButtons()
+                    ->enableToolbarButtons([
+                        'bold',
+                        'italic',
+                        'strike',
+                    ])
+
+                    ->required(),
+                Forms\Components\MarkdownEditor::make('description')
+                    ->disableToolbarButtons([
+
+                        'codeBlock',
+                    ]),
+
             ]);
     }
 
@@ -57,25 +92,31 @@ class YardResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('id_districts'),
-                Tables\Columns\TextColumn::make('name'),
+                Tables\Columns\TextColumn::make('id_districts')
+                    ->searchable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('name')->searchable()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('slug'),
-                Tables\Columns\TextColumn::make('price'),
+                Tables\Columns\TextColumn::make('price')->searchable()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('img'),
-                Tables\Columns\TextColumn::make('view'),
-                Tables\Columns\TextColumn::make('time_open'),
-                Tables\Columns\TextColumn::make('time_close'),
-                Tables\Columns\TextColumn::make('total_booking'),
+                Tables\Columns\TextColumn::make('view')->searchable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('time_open')->searchable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('time_close')->searchable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('total_booking')->searchable()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('address'),
                 Tables\Columns\TextColumn::make('description'),
-                Tables\Columns\BooleanColumn::make('status'),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime(),
+                Tables\Columns\BooleanColumn::make('status')->searchable()
+                    ->sortable(),
+
             ])
             ->filters([
-                //
+
             ]);
     }
 
@@ -94,4 +135,5 @@ class YardResource extends Resource
             'edit' => Pages\EditYard::route('/{record}/edit'),
         ];
     }
+
 }

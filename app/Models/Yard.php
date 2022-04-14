@@ -15,16 +15,25 @@ class Yard extends Model
     protected $fillable = [
         'name',
         'price',
+        'slug',
         'img',
         'view',
         'total_booking',
         'address',
         'description',
+        'time_open',
+        'time_close',
+        'id_districts',
+        'status',
+    ];
+    protected $casts = [
+        'img' => 'array',
+        'status' => 'boolean',
     ];
 
     public function district()
     {
-        return $this->belongsToMany(District::class);
+        return $this->belongsTo(District::class,'id');
     }
     public function bookings()
     {
