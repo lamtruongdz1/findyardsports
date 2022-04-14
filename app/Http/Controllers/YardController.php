@@ -11,6 +11,7 @@ use App\Models\bookingdetail;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Category;
 use App\Booking\TimeSlotGenerator;
+use Nette\Utils\Random;
 
 class YardController extends Controller
 {
@@ -113,7 +114,7 @@ class YardController extends Controller
         ->orWhere('slug', $param)
         ->firstOrFail();
 
-        $typeyard = typeYards::where('type', $yard->id_districts)->get();
+        $typeyard = typeYards::all();
 
         $slots = (new TimeSlotGenerator($yard))->get();
         return view('content.payment.pay', compact('yard','slots','typeyard'));
@@ -129,14 +130,23 @@ class YardController extends Controller
     // }
 
     public function thanhtoansan(Request $request){
-  
         $data = $request->all();
         $thembookings = new Booking();
+        $thembookings->user_id = \Auth::user()->id;
         $thembookings->address = $data['tenaddress'];
         $thembookings->email = $data['email'];
         $thembookings->phone = $data['sodienthoai'];
-        $thembookings->total_price = $data['price'] * 2;
-        $thembookings->save();
+        $thembookings->total_price = $data['price'] * 1.5;
+        $thembookings->pay_booblean = '1';   
+        if($thembookings->save()){
+            $updatebk = new bookingdetail();
+            $updatebk->booking_id = $thembookings->id;
+            $updatebk->yard_id = $data['idsan'];
+            $updatebk->price = $data['price'] * 1.5;
+            $updatebk->quanlity = '1';
+            $updatebk->save();
+        }
+        echo'done';
     }
     /**
      * Show the form for editing the specified resource.
