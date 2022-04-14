@@ -137,7 +137,7 @@ section {
 }
 .booking-bar .booking-list {
     position: absolute;
-    top: 40%;
+    top: 35%;
     left: 0;
     transform: translateY(-50%);
     margin: 0 auto;
@@ -1534,7 +1534,27 @@ ul.pagination .page-item .page-link:hover{
 .blog .blog-list .blog-item .blog-youtube {
     width: 100%;
 }
-
+.typeahead{
+    top: 60px;
+    left: 10px!important;
+    padding: 0 1rem;
+    /* display: none; */
+    position: absolute;
+    width: 90%;
+    background-color: var(--black);
+    z-index: 100;
+    border-radius: 2rem;
+}
+.typeahead li{
+    padding: .5rem 0;
+}
+.typeahead li a{
+    color: var(--white);
+    font-size: 1.5rem;
+}
+.typeahead li a:hover{
+    color: var(--yellow);
+}
 /* responsive */
 @media (max-width: 1200px) {
 }
