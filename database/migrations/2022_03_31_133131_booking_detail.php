@@ -16,7 +16,8 @@ return new class extends Migration
         Schema::create('booking_details', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('booking_id');
-            $table->foreign('booking_id')->references('id')->on('bookings');
+            $table->foreign('
+            ')->references('id')->on('bookings');
             $table->unsignedBigInteger('yard_id');
             $table->foreign('yard_id')->references('id')->on('yards');
             $table->string('price',150)->unique();
