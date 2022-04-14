@@ -58,6 +58,8 @@ class UserResource extends Resource
                 Tables\Columns\TextColumn::make('email'),
                 Tables\Columns\TextColumn::make('email_verified_at')
                     ->dateTime(),
+                    Tables\Columns\TextColumn::make('roles')->label('Roles'),
+
                 // Tables\Columns\TextColumn::make('two_factor_secret'),
                 // Tables\Columns\TextColumn::make('two_factor_recovery_codes'),
                 // Tables\Columns\TextColumn::make('two_factor_confirmed_at')
