@@ -18,7 +18,10 @@ class DatabaseSeeder extends Seeder
         $this->call([
             Districts::class,
             CategorySeeder::class,
+<<<<<<< HEAD
             PermissionSeeder::class,
+=======
+>>>>>>> 13432e8d20034af0b1b8b7cd417b8e17c8fc07b3
             types_yard::class,
         ]);
     }

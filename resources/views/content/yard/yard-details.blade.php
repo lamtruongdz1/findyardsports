@@ -1,7 +1,7 @@
 @extends('layout.client.master')
 @section('content')
     <div class="yard-detail-image">
-        <img src="{{asset('frontend/images')}}/{{ $yard->img }}" alt="">
+        <img src="{{ $yard->img }}" alt="">
     </div>
     <section class="yard-detail">
         <div class="yard-detail-heading">
@@ -72,13 +72,13 @@
                 <h1>Hình ảnh sân bóng</h1>
                 <div class="yard-detail-list">
                     <div class="yard-detail-item">
-                        <img src="{{asset('frontend/images')}}/{{ $yard->img }}" alt="">
+                        <img src="{{ $yard->img }}" alt="">
                     </div>
                     <div class="yard-detail-item">
-                        <img src="{{asset('frontend/images')}}/{{ $yard->img }}" alt="">
+                        <img src="{{ $yard->img }}" alt="">
                     </div>
                     <div class="yard-detail-item">
-                        <img src="{{asset('frontend/images')}}/{{ $yard->img }}" alt="">
+                        <img src="{{ $yard->img }}" alt="">
                     </div>
                 </div>
             </div>

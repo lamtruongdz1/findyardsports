@@ -15,12 +15,14 @@ return new class extends Migration
     {
         Schema::create('bookings', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->string('address',150)->unique();
-            $table->string('phone',150)->unique();
-            $table->string('total_price',150)->unique();
-            $table->string('pay_booblean',150)->unique();
+            // $table->unsignedBigInteger('user_id');
+            // $table->foreign('user_id')->references('id')->on('users');
+            $table->BigInteger('user_id');
+            $table->string('address',150);
+            $table->string('email',150);
+            $table->string('phone',150);
+            $table->string('total_price',150);
+            $table->string('pay_booblean',150);
             $table->timestamps();
             // $table->foreignId('id')->references('id_districts')->on('yards');
         });

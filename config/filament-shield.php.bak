@@ -14,7 +14,11 @@ return [
 
 
     'super_admin' => [
+<<<<<<< HEAD
         'enabled'   => false,
+=======
+        'enabled'   => true,
+>>>>>>> 13432e8d20034af0b1b8b7cd417b8e17c8fc07b3
         'role_name' => 'super_admin'
     ],
 
@@ -24,7 +28,11 @@ return [
     ],
 
     'blogger' => [
+<<<<<<< HEAD
         'enabled'   => false,
+=======
+        'enabled'   => true,
+>>>>>>> 13432e8d20034af0b1b8b7cd417b8e17c8fc07b3
         'role_name' => 'blogger',
     ],
 
