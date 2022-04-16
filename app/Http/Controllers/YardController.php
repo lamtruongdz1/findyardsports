@@ -68,7 +68,7 @@ class YardController extends Controller
             $search_text = $_GET['name'];
             $yards = Yard::where('name','LIKE','%'.$search_text.'%')->get();
             $total_yard = $yards->count();
-            
+
             return view('content.yard.yard-search',compact('yards','total_yard'));
         }else{
             return view('content.index');
@@ -119,7 +119,7 @@ class YardController extends Controller
         if (Auth::check()) {
             $yard->incrementReadCount();
         } // update view}
-        
+
         return view('content.yard.yard-details', compact('yard','yardLike', 'slots'));
     }
 
@@ -130,16 +130,33 @@ class YardController extends Controller
 
         $typeyard = typeYards::where('type', $yard->id_districts)->get();
 
+        $typeyard = typeYards::all();
+
+        $services_cost = $yard->price * 0.1;
+        $total_cost = $yard->price + $services_cost;
+        $now = (new TimeSlotGenerator($yard))->getNow();
+
         $slots = (new TimeSlotGenerator($yard))->get();
-        return view('content.payment.pay', compact('yard','slots','typeyard'));
+        return view(
+            'content.payment.pay',
+            compact(
+                'yard',
+                'now',
+                'services_cost',
+                'slots',
+                'typeyard',
+                'total_cost'
+            )
+        );
     }
+
 
     public function themtimesan(Request $request){
         $data = $request->all();
         $themtime = new bookingdetail();
         $themtime->yard = $data['time'];
         $themtime->time = $data['time'];
-        $themtime->save(); 
+        $themtime->save();
 
     }
 
