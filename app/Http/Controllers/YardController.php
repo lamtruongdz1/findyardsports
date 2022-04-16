@@ -70,10 +70,6 @@ class YardController extends Controller
             $total_yard = $yards->count();
             
             return view('content.yard.yard-search',compact('yards','total_yard'));
-        }elseif(isset($_GET['date'])){
-            $search_date = $_GET['date'];
-            $date = Yard::where('date','LIKE','%'.$search_date.'%')->get();
-            return view('content.yard.yard-search',compact('date'));
         }else{
             return view('content.index');
 

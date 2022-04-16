@@ -14,12 +14,6 @@
                             <input type="text" name="name" id="name" placeholder="tên sân bóng"
                                 class="form-control" autocomplete="off" />
                         </div>
-                        <div class="input-date form-group">
-                            <input type="date" name="" id="" placeholder="11/01/2022" class="form-control" />
-                        </div>
-                        <div class="input-time form-group">
-                            <input type="time" name="" id="" placeholder="10:30" class="form-control" />
-                        </div>
                         <div class="input-btn">
                             <input type="submit" class="btn" value="tìm kiếm" />
                         </div>
