@@ -1,8 +1,87 @@
 @extends('layout.client.master')
 @section('content')
 @csrf
+<section class="pay" id="pay">
+    <h1>Thanh toán</h1>
+    <div class="pay-list">
+      <div class="pay-item-info">
+        <div class="pay-info">
+          <h2>Thông tin người đặt</h2>
+        </div>
+        <form action="">
+          <div class="form-group">
+            <label for="name">tên</label>
+            <input type="text" id="name" required >
+          </div>
+          <div class="form-group">
+            <label for="phone">Số điện thoại</label>
+            <input type="text" id="phone" required >
+          </div>
+        </form>
+        <div class="pay-meth">
+          <h2>Phương thức thanh toán</h2>
+        </div>
+        <div class="pay-check">
+          <input type="radio" id="cash" name="payment-check" value="online" checked>
+          <label for="" id="cash">Thanh toán online</label>
+          <p>Được đảm bảo hoàn toàn bởi Find Yard Sports</p>
+        </div>
+      </div>
+      <div class="pay-item-yard">
+        <div class="pay-yard">
+          <div class="pay-info-yard">
+            <h2>{{$yard->name}}</h2>
+            <p>{{$yard->address}}</p>
+            <div class="stars">
+              <i class='bx bxs-star' ></i>
+              <i class='bx bxs-star' ></i>
+              <i class='bx bxs-star' ></i>
+              <i class='bx bxs-star' ></i>
+              <i class='bx bxs-star-half' ></i>
+            </div>
+            <div class="pay-type">
+                <label for="type">Loại sân:</label>
+                <select name="type" id="type">
+                @foreach($typeyard as $tyya)
+                  <option value="{{$tyya->type}}">{{$tyya->name}}</option>
+                @endforeach
+                </select>
+            </div>
+            <div class="pay-time">
+                <label for="type">Thời gian:</label>
+                <select name="type" id="datsan">
+                @foreach ($slots as $slot)
+                <option  value="{{ $slot }}">{{ $slot }}</option>
+                @endforeach
+            </select>
+            </div>
+            </div>
+            <table>
+              <tr>
+                <th class="pay-mon">Giá thuê sân</th>
+                <th class="pay-price">{{ $yard->price }}.000 VNĐ/h</th>
+              </tr>
+              <tr>
+                <th class="pay-mon">Phí dịch vụ (10%)</th>
+                <th class="pay-price">{{ $services_cost }}00 VNĐ</th>
+              </tr>
+            </table>
+            <table>
+              <tr>
+                <th class="pay-total">Tổng cộng:</th>
+                <th class="pay-total-price">190.000 VNĐ</th>
+              </tr>
+            </table>
+        </div>
+        </div>
+
+     </div>
+     <a href="" class="btn">Đặt sân</a>
+    </div>
+
+</section>
       <!-- pay -->
-      <section class="pay" id="pay">
+      {{-- <section class="pay" id="pay">
         <h1>Thanh toán</h1>
         <div class="pay-list">
           <div class="pay-item">
@@ -50,7 +129,7 @@
         </div>
 
 
-      </section>
+      </section> --}}
 @endsection
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
@@ -68,12 +147,12 @@
             $('#btnclick').on('click', function(){
                 var datesan = $('#datsan').val();
                 var idsan = $('#type').val();
-                var price = $('#tien').data('tien');    
-                var tenname = $('.pay-title').text();    
-                var tenaddress = $('.pay-location').text();    
-                var hovaten = $('#hovaten').val();    
-                var sodienthoai = $('#sodienthoai').val();    
-                var email = $('#email').val();    
+                var price = $('#tien').data('tien');
+                var tenname = $('.pay-title').text();
+                var tenaddress = $('.pay-location').text();
+                var hovaten = $('#hovaten').val();
+                var sodienthoai = $('#sodienthoai').val();
+                var email = $('#email').val();
                 var _token = $('input[name="_token"]').val();
                 $.ajax({
                     url:'{{url("/thanh-toan-san")}}',

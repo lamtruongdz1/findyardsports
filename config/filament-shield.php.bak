@@ -14,26 +14,13 @@ return [
 
 
     'super_admin' => [
-<<<<<<< HEAD
         'enabled'   => false,
-=======
-        'enabled'   => true,
->>>>>>> 13432e8d20034af0b1b8b7cd417b8e17c8fc07b3
         'role_name' => 'super_admin'
     ],
 
     'filament_user' => [
         'enabled'   => true,
         'role_name' => 'filament_user',
-    ],
-
-    'blogger' => [
-<<<<<<< HEAD
-        'enabled'   => false,
-=======
-        'enabled'   => true,
->>>>>>> 13432e8d20034af0b1b8b7cd417b8e17c8fc07b3
-        'role_name' => 'blogger',
     ],
 
     /*
@@ -97,8 +84,8 @@ return [
 
     'exclude' => [
         'enabled' => true,
-        'pages' => ["Dashboard"],
-        'widgets' => ["AccountWidget","FilamentInfoWidget"],
+        'pages' => [],
+        'widgets' => ["AccountWidget"],
         'resources' => [],
     ],
 

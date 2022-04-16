@@ -6,7 +6,7 @@ use Carbon\CarbonInterval;
 use App\Models\Yard;
 class TimeSlotGenerator
 {
-    protected $interval;
+    protected $interval,$now;
 
     public function __construct(Yard $yard)
     {
@@ -16,8 +16,12 @@ class TimeSlotGenerator
                 $yard->time_open,
                 $yard->time_close
             );
+        $this->now = Carbon::now();
     }
     public function get(){
         return $this->interval;
+    }
+    public function getNow(){
+        return $this->now;
     }
 }

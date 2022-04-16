@@ -1292,111 +1292,153 @@ ul.pagination .page-item .page-link:hover{
 .yard-login #register {
     left: 45rem;
 }
-.pay {
+/* pay */
+.pay{
     padding-top: 15rem;
     text-align: center;
 }
-.pay h1 {
+.pay h1{
     font-size: 2.5rem;
     color: var(--yellow);
     margin-bottom: 1rem;
 }
-.pay .btn {
-    padding: 1rem 4rem;
-    border-radius: 0.4rem;
-    font-size: 1.6rem;
-    color: var(--white);
-    margin-top: 1.5rem;
-}
-.pay .pay-list {
+.pay .pay-list{
     display: flex;
     gap: 2rem;
     margin-top: 5rem;
-}
-.pay .pay-list .pay-item {
-    flex: 1 1 30%;
-}
-.pay .pay-list .pay-item .pay-text {
     text-align: left;
 }
-.pay .pay-list .pay-item .pay-text .pay-type span {
+.pay .pay-list .pay-item-info{
+    flex: 60%;
+}
+.pay .pay-list .pay-item-yard{
+    flex: 30%;
+}
+.pay .pay-list .pay-item-info .pay-info{
     font-size: 1.5rem;
     font-weight: 500;
     color: var(--yellow);
+    margin-bottom: 2rem;
 }
-.pay .pay-list .pay-item .pay-text .pay-price p {
-    font-size: 1.6rem;
-    font-weight: 500;
-    color: var(--black);
+.pay .pay-list .pay-item form{
+    display: flex;
 }
-.pay .pay-list .pay-item .pay-text .pay-title {
-    font-size: 2.5rem;
-    font-weight: 500;
-    color: var(--black);
-}
-.pay .pay-list .pay-item .pay-text .pay-location {
-    font-size: 1.6rem;
-    font-weight: 500;
-    color: var(--black);
-}
-.pay .pay-list .pay-item img {
-    width: 100%;
-    border-radius: 1rem;
-}
-.pay .pay-form {
-    max-width: 50rem;
-    margin: 0 auto;
-}
-.pay .pay-form .pay-control {
-    width: 100%;
-    padding: 1rem 0;
-    margin: 0.5rem 0;
-    border-left: 0;
-    border-right: 0;
-    border-top: 0;
-    border-bottom: 0.1rem solid #999;
-    outline: none;
-    background: transparent;
-}
-.pay .pay-form .btn {
-    padding: 1rem 4rem;
+.pay .pay-list .pay-item-info form input{
+    display: block;
+    width: 90%;
+    padding: 1rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.6;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
     border-radius: 0.4rem;
-    font-size: 1.6rem;
-    color: var(--white);
-    margin-top: 1.5rem;
+    margin-bottom: 2rem;
 }
-.pay .pay-list .pay-item .pay-text .pay-type {
-    margin: 1rem 0;
-}
-.pay .pay-list .pay-item .pay-text .pay-type label {
-    font-size: 1.6rem;
+
+.pay .pay-list .pay-item-info label{
+    display: inline-block;
+    font-size: 1.5rem;
     font-weight: 500;
     color: var(--black2);
+    margin-bottom: .5rem;
 }
-.pay .pay-list .pay-item .pay-text .pay-type #type {
+.pay .pay-list .pay-item-info .pay-meth{
     font-size: 1.5rem;
-    padding: 0.5rem 1rem;
-}
-.pay .pay-list .pay-item .pay-text .pay-price {
-    margin-top: 0.5rem;
-}
-.pay .pay-list .pay-item .pay-text .pay-total {
-    font-size: 1.6rem;
     font-weight: 500;
     color: var(--yellow);
+    margin-bottom: .5rem;
 }
-.pay .pay-list .pay-item .pay-text .pay-time {
-    margin: 1rem 0;
-}
-.pay .pay-list .pay-item .pay-text .pay-time label {
+.pay .pay-list .pay-item-info .pay-check label{
     font-size: 1.6rem;
     font-weight: 500;
     color: var(--black2);
 }
-.pay .pay-list .pay-item .pay-text .pay-time #times {
+.pay .pay-list .pay-item-info .pay-check p{
     font-size: 1.5rem;
-    padding: 0.5rem 1rem;
+    font-weight: 500;
+    color: var(--black2);
 }
+.pay .pay-list .pay-item-yard .pay-yard{
+    padding: 2rem;
+    background-color: var(--white);
+    box-shadow: 0 0 2rem 0 #7f7f7f3d;;
+}
+.pay .pay-list .pay-item-yard .pay-info-yard h2{
+    font-size: 2rem;
+    font-weight: 500;
+    color: var(--yellow);
+    margin-bottom: 1rem;
+}
+.pay .pay-list .pay-item-yard .pay-info-yard p{
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--black2);
+}
+.pay .pay-list .pay-item-yard .pay-info-yard .stars{
+    font-size: 1.5rem;
+    color: var(--yellow);
+    margin: .5rem 0;
+}
+.pay .pay-list .pay-item-yard .pay-info-yard .pay-type{
+    display: flex;
+    align-items: center;
+    font-size: 1.6rem;
+    color: var(--black2);
+    margin: 1rem 0;
+}
+.pay .pay-list .pay-item-yard .pay-info-yard .pay-type i{
+    font-size: 2rem;
+    color: var(--black2);
+    margin-right: .5rem;
+}
+.pay .pay-list .pay-item-yard .pay-info-yard .pay-time{
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+.pay .pay-list .pay-item-yard .pay-info-yard .pay-time i{
+    font-size: 1.6rem;
+    color: var(--black2);
+    margin-right: .5rem;
+}
+.pay .pay-list .pay-item-yard .pay-info-yard .pay-time p{
+    font-size: 1.6rem;
+    color: var(--black2);
+}
+.pay .pay-list .pay-item-yard table{
+    width: 100%;
+}
+.pay .pay-list .pay-item-yard .pay-mon{
+    font-size: 1.5rem;
+    line-height: 2;
+}
+.pay .pay-list .pay-item-yard .pay-price{
+    text-align: right;
+    font-size: 1.5rem;
+}
+.pay .pay-list .pay-item-yard .pay-total{
+    font-size: 1.6rem;
+    line-height: 2;
+    color: var(--yellow);
+}
+.pay .pay-list .pay-item-yard .pay-total-price{
+    font-size: 1.6rem;
+    line-height: 2;
+    color: var(--yellow);
+    text-align: right;
+}
+.pay .btn{
+    font-size: 1.5rem;
+    border-radius: .5rem;
+    color: var(--white);
+    font-weight: 500;
+    padding: 1rem 2.5rem;
+
+}
+/* news */
 /* news */
 .news {
     padding-top: 15rem;

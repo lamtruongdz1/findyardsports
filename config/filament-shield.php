@@ -23,11 +23,6 @@ return [
         'enabled' => true
     ],
 
-    'blogger' => [
-        'role_name' => 'blogger',
-        'enabled' => false
-    ],
-
     /*
     |--------------------------------------------------------------------------
     | Default Prefixes

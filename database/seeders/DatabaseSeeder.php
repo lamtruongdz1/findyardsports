@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-
+use App\Models\Discount;
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -21,5 +21,7 @@ class DatabaseSeeder extends Seeder
             PermissionSeeder::class,
             types_yard::class,
         ]);
+        Discount::factory()->count(20)->create();
+        $this->command->info('Shop discounts created.');
     }
 }

@@ -17,11 +17,11 @@ class types_yard extends Seeder
     {
         DB::table('types_yard')->insert([
             ['name' => 'sân 5', 'slug' =>'san-5','type' =>'1'],
-            ['name' => 'sân 7', 'slug' =>'san-7','type' =>'2'],
-            ['name' => 'sân 11', 'slug' =>'san-11','type' =>'3'],
+            ['name' => 'sân 7', 'slug' =>'san-7','type' =>'1.5'],
+            ['name' => 'sân 11', 'slug' =>'san-11','type' =>'2'],
             ]);
-            
 
-          
+
+
     }
 }
