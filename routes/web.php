@@ -36,6 +36,8 @@ Route::post('/thanh-toan-san',[YardController::class,'thanhtoansan'])->name('tha
 Route::get('news', [BlogController::class, 'index'])->name('news');
 Route::get('/news/{param}',[BlogController::class,'new_detail']);
 
+Route::get('/search',[YardController::class,'search']);
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),

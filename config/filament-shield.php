@@ -14,13 +14,13 @@ return [
 
 
     'super_admin' => [
-        'enabled' => false,
+        'enabled' => true,
         'role_name' => 'super_admin'
     ],
 
     'filament_user' => [
         'role_name' => 'filament_user',
-        'enabled' => true
+        'enabled' => false
     ],
 
     /*

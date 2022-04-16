@@ -11612,6 +11612,18 @@
         },
         {
             "name": "spatie/laravel-ignition",
+<<<<<<< HEAD
+            "version": "1.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/laravel-ignition.git",
+                "reference": "9ad1d32acf8c855d711964bc19092b0bc9792273"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/laravel-ignition/zipball/9ad1d32acf8c855d711964bc19092b0bc9792273",
+                "reference": "9ad1d32acf8c855d711964bc19092b0bc9792273",
+=======
             "version": "1.2.2",
             "source": {
                 "type": "git",
@@ -11622,6 +11634,7 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/spatie/laravel-ignition/zipball/924d1ae878874ad0bb49f63b69a9af759a34ee78",
                 "reference": "924d1ae878874ad0bb49f63b69a9af759a34ee78",
+>>>>>>> 1768f5ad3793038cfd461687400c99440da2a734
                 "shasum": ""
             },
             "require": {
@@ -11698,7 +11711,11 @@
                     "type": "github"
                 }
             ],
+<<<<<<< HEAD
+            "time": "2022-04-13T08:06:05+00:00"
+=======
             "time": "2022-04-14T18:04:51+00:00"
+>>>>>>> 1768f5ad3793038cfd461687400c99440da2a734
         },
         {
             "name": "symfony/debug",
