@@ -12,7 +12,6 @@ use App\Models\bookingdetail;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Category;
 use App\Booking\TimeSlotGenerator;
-use DB;
 
 class YardController extends Controller
 {
@@ -26,7 +25,7 @@ class YardController extends Controller
         $districts = District::all();
         $yards = Yard::orderBy('total_booking', 'desc')->limit(8)->get();
         $blogs = Blog::orderBy('created_at', 'desc')->limit(3)->get();
-        return view('content.index', compact('yards', 'districts','blogs'));
+        return view('content.index', compact('yards', 'districts', 'blogs'));
     }
 
     public function yard()
@@ -109,8 +108,8 @@ class YardController extends Controller
     {
 
         $yard = Yard::where('id', $param)
-        ->orWhere('slug', $param)
-        ->firstOrFail();
+            ->orWhere('slug', $param)
+            ->firstOrFail();
 
         $yardLike = Yard::where('id_districts', $yard->id_districts)->limit(8)->get();
 
@@ -121,43 +120,64 @@ class YardController extends Controller
         if (Auth::check()) {
             $yard->incrementReadCount();
         } // update view}
-        
-        return view('content.yard.yard-details', compact('yard','yardLike', 'slots'));
+
+        return view('content.yard.yard-details', compact('yard', 'yardLike', 'slots'));
     }
 
-    public function datsan($param, Request $request){
+    public function datsan($param, Request $request)
+    {
         $yard = Yard::where('id', $param)
-        ->orWhere('slug', $param)
-        ->firstOrFail();
+            ->orWhere('slug', $param)
+            ->firstOrFail();
 
-        $typeyard = typeYards::where('type', $yard->id_districts)->get();
+        $typeyard = typeYards::all();
+
+        $services_cost = $yard->price * 0.1;
+        $total_cost = $yard->price + $services_cost;
+        $now = (new TimeSlotGenerator($yard))->getNow();
 
         $slots = (new TimeSlotGenerator($yard))->get();
-        return view('content.payment.pay', compact('yard','slots','typeyard'));
+        return view(
+            'content.payment.pay',
+            compact(
+                'yard',
+                'now',
+                'services_cost',
+                'slots',
+                'typeyard',
+                'total_cost'
+            )
+        );
     }
 
-    public function themtimesan(Request $request){
-        $data = $request->all();
-        $themtime = new bookingdetail();
-        $themtime->yard = $data['time'];
-        $themtime->time = $data['time'];
-        $themtime->save(); 
+    // public function themtimesan(Request $request){
+    //     $data = $request->all();
+    //     $themtime = new bookingdetail();
+    //     $themtime->yard = $data['time'];
+    //     $themtime->time = $data['time'];
+    //     $themtime->save();
 
-    }
+    // }
 
-    public function thanhtoansan(Request $request){
-        // $request->validate([
-        //     'hovaten' => 'required',
-        //     'sodienthoai' => 'required',
-        //     'email' => 'required',
-        // ]);
+    public function thanhtoansan(Request $request)
+    {
         $data = $request->all();
         $thembookings = new Booking();
+        $thembookings->user_id = \Auth::user()->id;
         $thembookings->address = $data['tenaddress'];
         $thembookings->email = $data['email'];
         $thembookings->phone = $data['sodienthoai'];
         $thembookings->total_price = $data['price'] * 1.5;
-        $thembookings->save();
+        $thembookings->pay_booblean = '1';
+        if ($thembookings->save()) {
+            $updatebk = new bookingdetail();
+            $updatebk->booking_id = $thembookings->id;
+            $updatebk->yard_id = $data['idsan'];
+            $updatebk->price = $data['price'] * 1.5;
+            $updatebk->quanlity = '1';
+            $updatebk->save();
+        }
+        echo 'done';
     }
     /**
      * Show the form for editing the specified resource.
@@ -195,6 +215,4 @@ class YardController extends Controller
     {
         //
     }
-
-
 }
