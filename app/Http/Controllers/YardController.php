@@ -12,6 +12,7 @@ use App\Models\bookingdetail;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Category;
 use App\Booking\TimeSlotGenerator;
+use DB;
 
 class YardController extends Controller
 {
@@ -48,9 +49,9 @@ class YardController extends Controller
 
     public function autocomplete(Request $request)
     {
-        $yards = Yard::where('name', 'LIKE', '%' . $request->get('query') . '%')->get();
-        $districts = District::where('name', 'LIKE', '%' . $request->get('query') . '%')->get();
-        $data = $yards->merge($districts);
+        $data = Yard::where('name', 'LIKE', '%' . $request->get('query') . '%')->get();
+        // $districts = District::where('name', 'LIKE', '%' . $request->get('query') . '%')->get();
+        // $data = $yards->merge($districts);
         return response()->json($data);
     }
     public function pay()
@@ -60,6 +61,21 @@ class YardController extends Controller
     public function pay_details()
     {
         return view('content.payment.pay-detail');
+    }
+
+    public function search(Request $request){
+        if(isset($_GET['name'])){
+            $search_text = $_GET['name'];
+            $yards = Yard::where('name','LIKE','%'.$search_text.'%')->get();
+            $total_yard = $yards->count();
+            
+            return view('content.yard.yard-search',compact('yards','total_yard'));
+        }elseif(isset($_GET['date'])){
+            
+        }else{
+            return view('content.index');
+
+        }
     }
 
     /**

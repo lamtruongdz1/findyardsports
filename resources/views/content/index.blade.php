@@ -8,9 +8,10 @@
                         <h3>Tìm đối thủ nhanh chóng - <span>Uy tín - Chất lượng</span></h3>
                         <p class="btn">cáp kèo ngay</p>
                     </div>
-                    <div class="booking-bar-form">
+                    <form action="/search" method="GET">
+                        <div class="booking-bar-form">
                         <div class="input-name form-group">
-                            <input type="text" name="name" id="name" placeholder="tên quận hoặc tên sân bóng"
+                            <input type="text" name="name" id="name" placeholder="tên sân bóng"
                                 class="form-control" autocomplete="off" />
                         </div>
                         <div class="input-date form-group">
@@ -20,8 +21,9 @@
                             <input type="time" name="" id="" placeholder="10:30" class="form-control" />
                         </div>
                         <div class="input-btn">
-                            <a href="yard.html"><input type="submit" class="btn" value="tìm kiếm" /></a>
+                            <input type="submit" class="btn" value="tìm kiếm" />
                         </div>
+                    </form>
                     </div>
                 </div>
             </div>
