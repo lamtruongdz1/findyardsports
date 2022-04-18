@@ -63,6 +63,7 @@
               </tr>
               <tr>
                 <th class="pay-mon">Phí dịch vụ (10%)</th>
+                
                 <th class="pay-price">{{ $services_cost }}00 VNĐ</th>
               </tr>
             </table>
@@ -144,7 +145,8 @@
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css"/>
 <script>
           jQuery(document).ready(function($){
-            $('#btnclick').on('click', function(){
+            $('#btnclick').on('click', function(e){
+              e.preventDefault();
                 var datesan = $('#datsan').val();
                 var idsan = $('#type').val();
                 var price = $('#tien').data('tien');

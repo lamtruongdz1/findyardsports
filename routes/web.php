@@ -24,12 +24,8 @@ Route::get('/dat-san/{param}',[YardController::class,'datsan'])->name('datsan');
 Route::get('/tickets',[YardController::class,'pay_details'])->name('pay-detail');
 Route::get('autocomplete', [YardController::class, 'autocomplete'])->name('autocomplete');
 Route::post('/themtimesan',[YardController::class,'themtimesan'])->name('themtimesan');
-
-Route::post('/thanh-toan-san',[YardController::class,'thanhtoansan'])->name('thanhtoansan');
-
-Route::post('/themtimesan',[YardController::class,'themtimesan'])->name('themtimesan');
-
-Route::post('/thanh-toan-san',[YardController::class,'thanhtoansan'])->name('thanhtoansan');
+Route::post('/thanhtoansan',[YardController::class,'thanhtoansan'])->name('thanhtoansan');
+Route::get('/vnpay_return', [YardController::class, 'return']);
 
 
 // Blog routes
@@ -63,3 +59,8 @@ Route::get('login/facebook/callback', [App\Http\Controllers\Auth\LoginController
 // Github login
 Route::get('login/github', [App\Http\Controllers\Auth\LoginController::class, 'redirectToGithub'])->name('login.github');
 Route::get('login/github/callback', [App\Http\Controllers\Auth\LoginController::class, 'handleGithubCallback']);
+
+
+//congthanhtoan
+
+// Route::post('/vnpay',[YardController::class,'vnpay']);

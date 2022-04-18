@@ -18,11 +18,14 @@ return new class extends Migration
             // $table->unsignedBigInteger('user_id');
             // $table->foreign('user_id')->references('id')->on('users');
             $table->BigInteger('user_id');
-            $table->string('address',150);
-            $table->string('email',150);
+            $table->string('name',150);
+            $table->date('date');
+            $table->time('time');
+            $table->BigInteger('time_da');
             $table->string('phone',150);
             $table->string('total_price',150);
             $table->string('pay_booblean',150);
+            $table->string('address',150);
             $table->timestamps();
             // $table->foreignId('id')->references('id_districts')->on('yards');
         });
