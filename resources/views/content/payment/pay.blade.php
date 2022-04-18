@@ -70,7 +70,7 @@
             <table>
               <tr>
                 <th class="pay-total">Tổng cộng:</th>
-                <th class="pay-total-price">190.000 VNĐ</th>
+                <th class="pay-total-price">{{ $yard->price }}.000 VNĐ</th>
               </tr>
             </table>
         </div>
