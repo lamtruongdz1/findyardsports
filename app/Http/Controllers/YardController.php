@@ -205,14 +205,21 @@ class YardController extends Controller
         // tổng tiền = giá sân * thời gian đặt sân * loại sân
         $thembookings->total_price = $data['price'] * $data['time_da'] * $data['yard_type'] ;
         // dd($thembookings->total_price);
-        if ($thembookings->save()) {
-            $updatebk = new bookingdetail();
-            $updatebk->booking_id = $thembookings->id;
-            $updatebk->yard_id = $data['yard_id'];
-            $updatebk->price = $data['price'];
-            $updatebk->quanlity = 1;
-            $updatebk->save();
+        if(Booking::where('date', '=' , $data['date'])->exists() && Booking::where('time', '=' , $data['time'])->exists()){
+            echo '<script>';
+               echo ' alert("thời gian đã được đặt");';
+            echo '</script>';
+        }else{
+            if ($thembookings->save()) {
+                $updatebk = new bookingdetail();
+                $updatebk->booking_id = $thembookings->id;
+                $updatebk->yard_id = $data['yard_id'];
+                $updatebk->price = $data['price'];
+                $updatebk->quanlity = 1;
+                $updatebk->save();
+            }
         }
+    
 
         echo 'done';
 
