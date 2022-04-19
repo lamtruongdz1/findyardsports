@@ -78,7 +78,7 @@
         <div class="yard-list">
             @foreach ($yards as $yard)
                 <div class="yard-item">
-                    <a href="{{ $yard->slug }}">
+                    <a href="san/{{ $yard->slug }}">
                     <div class="yard-image">
                         <img src="{{ $yard->img }}" alt="" class="yard-img">
                     </div>
