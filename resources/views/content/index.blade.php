@@ -8,7 +8,7 @@
                         <h3>Tìm đối thủ nhanh chóng - <span>Uy tín - Chất lượng</span></h3>
                         <p class="btn">cáp kèo ngay</p>
                     </div>
-                    <form action="/search" method="POST" class="booking-bar-form">
+                    <form action="/search" method="GET" class="booking-bar-form">
                         <div class="input-name form-group">
                         <input type="text" name="name" id="name" placeholder="tên sân bóng"
                                 class="form-control" autocomplete="off" />
