@@ -193,13 +193,14 @@ class YardController extends Controller
         $thembookings->time = $data['time'];
 
        // tính toán sau khi chọn time
-        $plus_time = strtotime($data['time']) + $data['time_da']*60*60;
+        $change_format = strtotime($data['time']) ;
+        $plus_time = $change_format + $data['time_da'] * (60 * 60);
         $thembookings->end_time = date('H:i', $plus_time);
-
-        $thembookings->pay_booblean = 1;
+        // thời gian đặt sân
         $thembookings->time_da = $data['time_da'];
-        $phidichvu = (float)$data['price'] * (float)$data['time_da'] * $data['yard_type'] * 0.1;
-        $thembookings->total_price = (float)$data['price'] * (int)$data['time_da'] + (float)$phidichvu;
+        // trạng thái đặt sâan
+        $thembookings->status = 1;
+        $thembookings->total_price = (float)$data['price'] * $data['time_da'] ;
         if ($thembookings->save()) {
             $updatebk = new bookingdetail();
             $updatebk->booking_id = $thembookings->id;

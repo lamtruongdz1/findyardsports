@@ -23,7 +23,7 @@ return new class extends Migration
             $table->date('date');
             $table->time('time');
             $table->time('end_time');
-            $table->double('time_da');
+            $table->float('time_da');
             $table->string('phone',150);
             $table->integer('total_price');
             $table->string('status');
