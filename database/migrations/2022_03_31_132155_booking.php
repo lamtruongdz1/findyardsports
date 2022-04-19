@@ -19,12 +19,14 @@ return new class extends Migration
             // $table->foreign('user_id')->references('id')->on('users');
             $table->BigInteger('user_id');
             $table->string('name',150);
+            $table->integer('type_yard');
             $table->date('date');
             $table->time('time');
-            $table->BigInteger('time_da');
+            $table->time('end_time');
+            $table->double('time_da');
             $table->string('phone',150);
-            $table->string('total_price',150);
-            $table->string('pay_booblean',150);
+            $table->integer('total_price');
+            $table->string('status');
             $table->string('address',150);
             $table->timestamps();
             // $table->foreignId('id')->references('id_districts')->on('yards');

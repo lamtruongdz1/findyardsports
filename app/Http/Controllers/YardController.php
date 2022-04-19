@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Category;
 use App\Booking\TimeSlotGenerator;
 use DB;
+use Carbon\Carbon;
 
 class YardController extends Controller
 {
@@ -26,7 +27,7 @@ class YardController extends Controller
         $districts = District::all();
         $yards = Yard::orderBy('total_booking', 'desc')->limit(8)->get();
         $blogs = Blog::orderBy('created_at', 'desc')->limit(3)->get();
-        return view('content.index', compact('yards', 'districts','blogs'));
+        return view('content.index', compact('yards', 'districts', 'blogs'));
     }
 
     public function yard()
@@ -63,16 +64,16 @@ class YardController extends Controller
         return view('content.payment.pay-detail');
     }
 
-    public function search(Request $request){
-        if(isset($_GET['name'])){
+    public function search(Request $request)
+    {
+        if (isset($_GET['name'])) {
             $search_text = $_GET['name'];
-            $yards = Yard::where('name','LIKE','%'.$search_text.'%')->get();
+            $yards = Yard::where('name', 'LIKE', '%' . $search_text . '%')->get();
             $total_yard = $yards->count();
 
-            return view('content.yard.yard-search',compact('yards','total_yard'));
-        }else{
+            return view('content.yard.yard-search', compact('yards', 'total_yard'));
+        } else {
             return view('content.index');
-
         }
     }
 
@@ -107,8 +108,8 @@ class YardController extends Controller
     {
 
         $yard = Yard::where('id', $param)
-        ->orWhere('slug', $param)
-        ->firstOrFail();
+            ->orWhere('slug', $param)
+            ->firstOrFail();
 
         $yardLike = Yard::where('id_districts', $yard->id_districts)->limit(8)->get();
 
@@ -120,10 +121,11 @@ class YardController extends Controller
             $yard->incrementReadCount();
         } // update view}
 
-        return view('content.yard.yard-details', compact('yard','yardLike', 'slots'));
+        return view('content.yard.yard-details', compact('yard', 'yardLike', 'slots'));
     }
 
-    public function datsan($param, Request $request){
+    public function datsan($param, Request $request)
+    {
         // $yard = Yard::where('id', $param)
         // ->orWhere('slug', $param)
         // ->firstOrFail();
@@ -135,8 +137,8 @@ class YardController extends Controller
 
 
         $yard = Yard::where('id', $param)
-        ->orWhere('slug', $param)
-        ->firstOrFail();
+            ->orWhere('slug', $param)
+            ->firstOrFail();
 
         $typeyard = typeYards::where('type', $yard->id_districts)->get();
 
@@ -161,34 +163,44 @@ class YardController extends Controller
     }
 
 
-    public function themtimesan(Request $request){
+    public function themtimesan(Request $request)
+    {
         $data = $request->all();
         $themtime = new bookingdetail();
         $themtime->yard = $data['time'];
         $themtime->time = $data['time'];
         $themtime->save();
-
     }
 
-    public function thanhtoansan(Request $request){
+    public function thanhtoansan(Request $request)
+    {
         // $request->validate([
         //     'hovaten' => 'required',
         //     'sodienthoai' => 'required',
         //     'email' => 'required',
         // ]);
+
         $data = $request->all();
+
         $thembookings = new Booking();
+
         $thembookings->user_id = \Auth::user()->id;
         $thembookings->name = $data['name'];
+        $thembookings->type_yard = $data['yard_type'];
         $thembookings->address = $data['address'];
         $thembookings->phone = $data['phone'];
         $thembookings->date = $data['date'];
         $thembookings->time = $data['time'];
+
+       // tính toán sau khi chọn time
+        $plus_time = strtotime($data['time']) + $data['time_da']*60*60;
+        $thembookings->end_time = date('H:i', $plus_time);
+
         $thembookings->pay_booblean = 1;
         $thembookings->time_da = $data['time_da'];
-        $phidichvu = $data['price'] * $data['time_da'] * 0.1;
-        $thembookings->total_price = $data['price'] * $data['time_da'] + $phidichvu;
-        if($thembookings->save()){
+        $phidichvu = (float)$data['price'] * (float)$data['time_da'] * $data['yard_type'] * 0.1;
+        $thembookings->total_price = (float)$data['price'] * (int)$data['time_da'] + (float)$phidichvu;
+        if ($thembookings->save()) {
             $updatebk = new bookingdetail();
             $updatebk->booking_id = $thembookings->id;
             $updatebk->yard_id = $data['yard_id'];
@@ -198,82 +210,82 @@ class YardController extends Controller
         }
 
         echo 'done';
-        
-
-$vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
-$vnp_Returnurl = "http://localhost:8000/vnpay_return";
-$vnp_TmnCode = "2EHUOKRV";//Mã website tại VNPAY 
-$vnp_HashSecret = "KBRZDIHERPCFNIKVPQTOVZWPJOXCSYPP"; //Chuỗi bí mật
-
-$vnp_TxnRef = $thembookings->id; //Mã đơn hàng. Trong thực tế Merchant cần insert đơn hàng vào DB và gửi mã này sang VNPAY
-$vnp_OrderInfo = 'thanh toan hoa don web';
-$vnp_OrderType = 'billpayment';
-$vnp_Amount = $thembookings->total_price * 100;
-$vnp_Locale = 'vn';
-$vnp_BankCode = 'NCB';
-$vnp_IpAddr = $_SERVER['REMOTE_ADDR'];
-//Add Params of 2.0.1 Version
-
-//Billing
 
 
-$inputData = array(
-    "vnp_Version" => "2.1.0",
-    "vnp_TmnCode" => $vnp_TmnCode,
-    "vnp_Amount" => $vnp_Amount,
-    "vnp_Command" => "pay",
-    "vnp_CreateDate" => date('YmdHis'),
-    "vnp_CurrCode" => "VND",
-    "vnp_IpAddr" => $vnp_IpAddr,
-    "vnp_Locale" => $vnp_Locale,
-    "vnp_OrderInfo" => $vnp_OrderInfo,
-    "vnp_OrderType" => $vnp_OrderType,
-    "vnp_ReturnUrl" => $vnp_Returnurl,
-    "vnp_TxnRef" => $vnp_TxnRef,
-    
-  
-);
+        $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
+        $vnp_Returnurl = "http://localhost:8000/vnpay_return";
+        $vnp_TmnCode = "2EHUOKRV"; //Mã website tại VNPAY
+        $vnp_HashSecret = "KBRZDIHERPCFNIKVPQTOVZWPJOXCSYPP"; //Chuỗi bí mật
 
-if (isset($vnp_BankCode) && $vnp_BankCode != "") {
-    $inputData['vnp_BankCode'] = $vnp_BankCode;
-}
-if (isset($vnp_Bill_State) && $vnp_Bill_State != "") {
-    $inputData['vnp_Bill_State'] = $vnp_Bill_State;
-}
+        $vnp_TxnRef = $thembookings->id; //Mã đơn hàng. Trong thực tế Merchant cần insert đơn hàng vào DB và gửi mã này sang VNPAY
+        $vnp_OrderInfo = 'thanh toan hoa don web';
+        $vnp_OrderType = 'billpayment';
+        $vnp_Amount = $thembookings->total_price * 100;
+        $vnp_Locale = 'vn';
+        $vnp_BankCode = 'NCB';
+        $vnp_IpAddr = $_SERVER['REMOTE_ADDR'];
+        //Add Params of 2.0.1 Version
 
-//var_dump($inputData);
-ksort($inputData);
-$query = "";
-$i = 0;
-$hashdata = "";
-foreach ($inputData as $key => $value) {
-    if ($i == 1) {
-        $hashdata .= '&' . urlencode($key) . "=" . urlencode($value);
-    } else {
-        $hashdata .= urlencode($key) . "=" . urlencode($value);
-        $i = 1;
+        //Billing
+
+
+        $inputData = array(
+            "vnp_Version" => "2.1.0",
+            "vnp_TmnCode" => $vnp_TmnCode,
+            "vnp_Amount" => $vnp_Amount,
+            "vnp_Command" => "pay",
+            "vnp_CreateDate" => date('YmdHis'),
+            "vnp_CurrCode" => "VND",
+            "vnp_IpAddr" => $vnp_IpAddr,
+            "vnp_Locale" => $vnp_Locale,
+            "vnp_OrderInfo" => $vnp_OrderInfo,
+            "vnp_OrderType" => $vnp_OrderType,
+            "vnp_ReturnUrl" => $vnp_Returnurl,
+            "vnp_TxnRef" => $vnp_TxnRef,
+
+
+        );
+
+        if (isset($vnp_BankCode) && $vnp_BankCode != "") {
+            $inputData['vnp_BankCode'] = $vnp_BankCode;
+        }
+        if (isset($vnp_Bill_State) && $vnp_Bill_State != "") {
+            $inputData['vnp_Bill_State'] = $vnp_Bill_State;
+        }
+
+        //var_dump($inputData);
+        ksort($inputData);
+        $query = "";
+        $i = 0;
+        $hashdata = "";
+        foreach ($inputData as $key => $value) {
+            if ($i == 1) {
+                $hashdata .= '&' . urlencode($key) . "=" . urlencode($value);
+            } else {
+                $hashdata .= urlencode($key) . "=" . urlencode($value);
+                $i = 1;
+            }
+            $query .= urlencode($key) . "=" . urlencode($value) . '&';
+        }
+
+        $vnp_Url = $vnp_Url . "?" . $query;
+        if (isset($vnp_HashSecret)) {
+            $vnpSecureHash =   hash_hmac('sha512', $hashdata, $vnp_HashSecret); //
+            $vnp_Url .= 'vnp_SecureHash=' . $vnpSecureHash;
+        }
+        $returnData = array(
+            'code' => '00', 'message' => 'success', 'data' => $vnp_Url
+        );
+        if (isset($_POST['redirect'])) {
+            header('Location: ' . $vnp_Url);
+            die();
+        } else {
+            echo json_encode($returnData);
+        }
+        // vui lòng tham khảo thêm tại code demo
     }
-    $query .= urlencode($key) . "=" . urlencode($value) . '&';
-}
 
-$vnp_Url = $vnp_Url . "?" . $query;
-if (isset($vnp_HashSecret)) {
-    $vnpSecureHash =   hash_hmac('sha512', $hashdata, $vnp_HashSecret);//  
-    $vnp_Url .= 'vnp_SecureHash=' . $vnpSecureHash;
-}
-$returnData = array('code' => '00'
-    , 'message' => 'success'
-    , 'data' => $vnp_Url);
-    if (isset($_POST['redirect'])) {
-        header('Location: ' . $vnp_Url);
-        die();
-    } else {
-        echo json_encode($returnData);
-    }
-	// vui lòng tham khảo thêm tại code demo
-    }
 
-    
     /**
      * Show the form for editing the specified resource.
      *
@@ -311,8 +323,8 @@ $returnData = array('code' => '00'
         //
     }
 
-    public function return(){
+    public function return()
+    {
         return view('vnpay.vnpay_return');
     }
-
 }

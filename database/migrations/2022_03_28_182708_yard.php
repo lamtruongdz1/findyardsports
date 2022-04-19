@@ -27,7 +27,7 @@ return new class extends Migration
             $table->foreign('id_districts')->references('id')->on('districts');
             $table->string('name');
             $table->string('slug');
-            $table->string('price');
+            $table->BigInteger('price');
             $table->longText('img');
             $table->integer('view')->default('0');
             $table->string('time_open')->default('16:00');
