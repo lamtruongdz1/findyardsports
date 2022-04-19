@@ -4,11 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+
 use Str;
 use app\models\booking;
 class Yard extends Model
 {
+
     use HasFactory;
+
     protected $table = 'yards';
     protected $primaryKey = 'id';
     public $timestamps = false;
@@ -38,6 +41,14 @@ class Yard extends Model
     public function bookings()
     {
         return $this->hasMany(Booking::class);
+    }
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+    public function comments()
+    {
+        return $this->hasMany(Comment::class)->whereNull('parent_id');
     }
     protected static function boot()
     {
@@ -71,6 +82,7 @@ class Yard extends Model
         $this->view++;
         return $this->save();
     }
+
 
         // protected $casts = [
         //     'time_open' => 'datetime',

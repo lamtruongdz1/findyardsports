@@ -17,8 +17,9 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->string('description',150)->unique();
-            $table->string('date',150)->unique();
+            $table->integer('yards_id')->unsigned();
+            $table->integer('parent_id')->unsigned()->nullable();
+            $table->text('description');
             $table->timestamps();
             // $table->foreignId('id')->references('id_districts')->on('yards');
         });

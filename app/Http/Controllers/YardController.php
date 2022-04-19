@@ -112,6 +112,7 @@ class YardController extends Controller
             ->firstOrFail();
 
         $yardLike = Yard::where('id_districts', $yard->id_districts)->limit(8)->get();
+        $comments = $yard->comments()->orderBy('created_at', 'desc')->get();
 
         $slots = (new TimeSlotGenerator($yard))->get();
 
@@ -121,7 +122,7 @@ class YardController extends Controller
             $yard->incrementReadCount();
         } // update view}
 
-        return view('content.yard.yard-details', compact('yard', 'yardLike', 'slots'));
+        return view('content.yard.yard-details', compact('yard','comments', 'yardLike', 'slots'));
     }
 
     public function datsan($param, Request $request)

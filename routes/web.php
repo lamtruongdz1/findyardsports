@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\YardController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\CommentController;
 use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
@@ -21,11 +22,15 @@ Route::get('/san-bong/{param}',[YardController::class,'yard_district']);
 Route::get('/san/{param}',[YardController::class,'show']);
 Route::get('/datsan',[YardController::class,'pay'])->name('pay');
 Route::get('/dat-san/{param}',[YardController::class,'datsan'])->name('datsan');
+// thanh toán
 Route::get('/tickets',[YardController::class,'pay_details'])->name('pay-detail');
 Route::get('autocomplete', [YardController::class, 'autocomplete'])->name('autocomplete');
 Route::post('/themtimesan',[YardController::class,'themtimesan'])->name('themtimesan');
 Route::post('/thanhtoansan',[YardController::class,'thanhtoansan'])->name('thanhtoansan');
 Route::get('/vnpay_return', [YardController::class, 'return']);
+// comment
+Route::post('/comment', [CommentController::class,'store'])->name('comment.add');
+
 
 
 // Blog routes
