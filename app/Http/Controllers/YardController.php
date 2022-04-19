@@ -198,7 +198,7 @@ class YardController extends Controller
 
        // tính toán sau khi chọn time
         $change_format = strtotime($data['time_da']) ;
-        $plus_time = (int)$change_format + $data['time_da'] * (60 * 60);
+        $plus_time = $change_format + $data['time_da'] * (60 * 60);
         $thembookings->end_time = date('H:i', $plus_time);
         // trạng thái đặt sâan
         $thembookings->status = 1; // 1 là đã đặt sân
