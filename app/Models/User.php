@@ -71,6 +71,6 @@ class User extends Authenticatable implements FilamentUser
     }
     public function canAccessFilament(): bool
     {
-        return true;// Your Logic to Allow Access;
+        return str_ends_with($this->email, '@test.dev') && $this->hasVerifiedEmail();
     }
 }

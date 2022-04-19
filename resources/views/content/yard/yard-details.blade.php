@@ -214,8 +214,8 @@
                             <div class="col-md-12 mb-12">
                                 <select class="form-select" name="time_da" id="time_da"
                                     style="font-size:1.7rem; margin-bottom:15px">
-                                    <option selected>Thời gian </option>
-                                    <option value="1">1 giờ</option>
+                                    {{-- <option value="1">selected>Thời gian </option> --}}
+                                    <option value="1" selected>1 giờ</option>
                                     <option value="1.5">1,5 giờ</option>
                                     <option value="2">2 giờ</option>
                                 </select>

@@ -3,9 +3,12 @@
 namespace App\Filament\Widgets;
 
 use Filament\Widgets\LineChartWidget;
+use BezhanSalleh\FilamentShield\Traits\HasWidgetShield;
 
 class BlogPostsChart extends LineChartWidget
 {
+    use HasWidgetShield;
+
     protected static ?string $heading = 'Chart';
 
     protected function getData(): array

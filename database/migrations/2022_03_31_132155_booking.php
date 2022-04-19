@@ -19,7 +19,7 @@ return new class extends Migration
             // $table->foreign('user_id')->references('id')->on('users');
             $table->BigInteger('user_id');
             $table->string('name',150);
-            $table->integer('type_yard');
+            $table->float('type_yard');
             $table->date('date');
             $table->time('time');
             $table->time('end_time');
