@@ -19,4 +19,8 @@ class Blog extends Model implements HasMedia
     protected $casts = [
         'images' => 'array',
     ];
+     public function comments()
+    {
+        return $this->hasMany(Comment::class)->whereNull('parent_id');
+    }
 }

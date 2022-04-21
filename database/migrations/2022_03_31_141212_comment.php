@@ -17,7 +17,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->integer('yard_id')->unsigned();
+            $table->integer('yard_id')->unsigned()->nullable();
+            $table->integer('blog_id')->unsigned()->nullable();
             $table->integer('parent_id')->unsigned()->nullable();
             $table->text('description');
             $table->timestamps();

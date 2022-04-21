@@ -21,4 +21,20 @@ class CommentController extends Controller
 
         return back();
     }
+
+    public function blog(Request $request)
+    {
+        $request->validate([
+            'description'=>'required',
+        ]);
+        $comment_blog = new Comment();
+        $comment_blog->description = $request->description;
+        $comment_blog->blog_id = $request->blog_id;
+        $comment_blog['user_id'] = \Auth::user()->id;
+
+        $comment_blog->save();
+        // dd($comment);
+
+        return back();
+    }
 }

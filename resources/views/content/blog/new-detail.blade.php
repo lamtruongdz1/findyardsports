@@ -114,6 +114,33 @@
         </p>
       </div>
     </div>
+    <div class="yard-detail-comments">
+            <h1>Đánh giá</h1>
+            @foreach ($comments as $comment)
+                <div class="yard-detail-comment">
+                    <div class="yard-detail-comment-left">
+                        <p>{{ $comment->user->name }}
+                    </div>
+                    <div class="yard-detail-comment-right">
+                        <p>{{ $comment->description }}</p> <span>{{ $comment->created_at }}</span>
+                    </div>
+                </div>
+
+
+            @endforeach
+            <form method="post" action="{{ route('comment_blog.add') }}">
+                @csrf
+
+
+                <div class="form-group">
+                    <input type="text" name="description" class="form-control" />
+                    <input type="hidden" name="blog_id" value="{{ $news->id }}" />
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-primary" value="Add Comment" />
+                </div>
+            </form>
+        </div>
         <div class="news-detail swiper">
             <h1>Tin tức liên quan</h1>
             <div class="swiper-wrapper">
