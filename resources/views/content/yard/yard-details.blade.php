@@ -63,7 +63,7 @@
                     </div>
                 </div>
                 <div class="yard-detail-list">
-                    <h2>Thời gian sân còn trống trong ngày {{ date('d/m/Y') }}</h2>
+                    <h4>Thời gian sân còn trống trong ngày hôm nay {{ date('d/m/Y') }}</h4>
                     </h2>
                     <div class="yard-detail-item">
                         @foreach ($slots as $slot)

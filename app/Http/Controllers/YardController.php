@@ -23,6 +23,7 @@ class YardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
         $districts = District::all();
