@@ -16,5 +16,6 @@
     </head>
     <body>
         @include('sweetalert::alert')
+        // sửa file này để hiện ra thông tin thanh toán 
     </body>
 </html>

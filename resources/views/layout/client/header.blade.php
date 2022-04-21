@@ -10,9 +10,11 @@
             <li><a href="">Sân hot</a></li>
             <li><a href="news.html">Tin tức</a></li>
             <li><a href="">Liên hệ</a></li>
+            
         </ul>
         @guest
             <div class="login">
+            <a href="">Lịch sử đặt sân</a>
                 <a href="{{ route('login') }}">Đăng nhập</a>
 
                 <a href="{{ route('register') }}">Đăng ký</a>
@@ -20,6 +22,7 @@
         @endguest
         @auth
             <div class="login">
+            <a href="">Lịch sử đặt sân</a>
                <a href="{{ route('profile.show') }}">{{ Auth::user()->name }}</a>
                 <a href="{{ route('logout') }}"
                     onclick="event.preventDefault();
