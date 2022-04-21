@@ -12,7 +12,7 @@ use App\Models\bookingdetail;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Category;
 use App\Booking\TimeSlotGenerator;
-use DB;
+use RealRashid\SweetAlert\Facades\Alert;
 use Carbon\Carbon;
 use Carbon\CarbonPeriod;
 
@@ -219,9 +219,7 @@ class YardController extends Controller
         $thembookings->total_price = $data['price'] * $data['time_da'] * $data['yard_type'];
         // dd($thembookings->total_price);
         if (Booking::where('date', '=', $data['date'])->exists() && Booking::where('time', '=', $data['time'])->exists()) {
-            echo '<script>';
-            echo ' alert("thời gian đã được đặt");';
-            echo '</script>';
+            return redirect()->back()->with('loi', 'Đã có người đặt sân trong thời gian này');
         } else {
             if ($thembookings->save()) {
                 $updatebk = new bookingdetail();
@@ -230,11 +228,11 @@ class YardController extends Controller
                 $updatebk->price = $data['price'];
                 $updatebk->quanlity = 1;
                 $updatebk->save();
+
+
             }
         }
 
-
-        echo 'done';
 
 
         $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";

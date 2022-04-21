@@ -13,6 +13,8 @@
 <body>
         @include('layout.client.header')
         @yield('content')
+        @include('sweetalert::alert')
+
     @include('layout.client.footer')
     @include('layout.client.script')
 </body>

@@ -11,10 +11,10 @@
         <!-- Bootstrap core CSS -->
         <link href="/vnpay_php/assets/bootstrap.min.css" rel="stylesheet"/>
         <!-- Custom styles for this template -->
-        <link href="/vnpay_php/assets/jumbotron-narrow.css" rel="stylesheet">         
+        <link href="/vnpay_php/assets/jumbotron-narrow.css" rel="stylesheet">
         <script src="/vnpay_php/assets/jquery-1.11.3.min.js"></script>
     </head>
     <body>
-       thành công
+        @include('sweetalert::alert')
     </body>
 </html>

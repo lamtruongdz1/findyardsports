@@ -70,7 +70,8 @@
                             <button
                                 style="font-size: small; letter-spacing: .1em; text-transform: none; font-weight: normal;"
                                 class="button-time" type="submit">
-                                <strong data-slot="{{ $slot }}" id="strongslot">{{ $slot->format('H:i') }}</strong>
+                                <strong data-slot="{{ $slot }}"
+                                    id="strongslot">{{ $slot->format('H:i') }}</strong>
                             </button>
                         @endforeach
                     </div>
@@ -145,8 +146,6 @@
                         <p>{{ $comment->description }}</p> <span>{{ $comment->created_at }}</span>
                     </div>
                 </div>
-
-
             @endforeach
             <form method="post" action="{{ route('comment.add') }}">
                 @csrf
@@ -264,18 +263,18 @@
                                 <select class="form-select" name="date" id="date"
                                     style="font-size:1.7rem; margin-bottom:15px">
                                     @foreach ($period as $date)
-                                    <option value="{{ $date->format('Y-m-d') }}" selected>{{ $date->format('d-m-Y') }}</option>
-
+                                        <option value="{{ $date->format('Y-m-d') }}" selected>
+                                            {{ $date->format('d-m-Y') }}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="col-md-6 col-12 mb-4">
                                 <label for="">Giờ đặt</label>
-                                    <select class="form-select" name="time" id="time"
+                                <select class="form-select" name="time" id="time"
                                     style="font-size:1.7rem; margin-bottom:15px">
                                     @foreach ($slots as $slot)
-                                    <option value="{{ $slot->format('H:i') }}" selected>{{ $slot->format('H:i') }}</option>
-
+                                        <option value="{{ $slot->format('H:i') }}" selected>{{ $slot->format('H:i') }}
+                                        </option>
                                     @endforeach
                                 </select>
 
@@ -287,6 +286,7 @@
                         </div>
                 </div>
                 <div class="modal-footer">
+
                     <button type="button" class="btn btn-primary" style="padding:1rem 3rem; font-size:1.5rem"
                         id="btnclick">Đặt sân</button>
                     <form action="{{ url('/vnpay') }}" method="POST">
@@ -296,6 +296,30 @@
                     </form>
 
                 </div>
+                @if (Session::has('thanhcong'))
+                        <script type="text/javascript">
+                            swal({
+                                title:'Success!',
+                                text:"{{Session::get('success')}}",
+                                timer:5000,
+                                type:'success'
+                            }).then((value) => {
+                              //location.reload();
+                            }).catch(swal.noop);
+                        </script>
+                @endif
+                @if (Session::has('loi'))
+                        <script type="text/javascript">
+                            swal({
+                                title:'loi!',
+                                text:"{{Session::get('loi')}}",
+                                timer:5000,
+                                type:'error'
+                            }).then((value) => {
+                              //location.reload();
+                            }).catch(swal.noop);
+                        </script>
+                @endif
 
                 </form>
             </div>
@@ -339,13 +363,13 @@
 <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
 <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
 <!-- CSS -->
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" />
 <!-- Default theme -->
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css" />
 <!-- Semantic UI theme -->
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css"/>
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css" />
 <!-- Bootstrap theme -->
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css"/>
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css" />
 <!-- Bootstrap theme -->
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css" />
 <script>
@@ -363,7 +387,7 @@
             var phone = $('#phone').val();
             var _token = $('input[name="_token"]').val();
             $.ajax({
-                url: '{{ route("thanhtoansan") }}',
+                url: '{{ route('thanhtoansan') }}',
                 method: "post",
                 dataType: "JSON",
                 data: {
