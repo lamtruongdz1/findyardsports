@@ -115,7 +115,7 @@
       </div>
     </div>
     <div class="yard-detail-comments">
-            <h1>Đánh giá</h1>
+            <h1>Bình luận</h1>
             @foreach ($comments as $comment)
                 <div class="yard-detail-comment">
                     <div class="yard-detail-comment-left">
@@ -125,10 +125,9 @@
                         <p>{{ $comment->description }}</p> <span>{{ $comment->created_at }}</span>
                     </div>
                 </div>
-
-
             @endforeach
-            <form method="post" action="{{ route('comment_blog.add') }}">
+
+            <form method="post" action="{{ route('comment.add') }}">
                 @csrf
 
 

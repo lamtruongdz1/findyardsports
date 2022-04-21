@@ -296,30 +296,7 @@
                     </form>
 
                 </div>
-                @if (Session::has('thanhcong'))
-                        <script type="text/javascript">
-                            swal({
-                                title:'Success!',
-                                text:"{{Session::get('success')}}",
-                                timer:5000,
-                                type:'success'
-                            }).then((value) => {
-                              //location.reload();
-                            }).catch(swal.noop);
-                        </script>
-                @endif
-                @if (Session::has('loi'))
-                        <script type="text/javascript">
-                            swal({
-                                title:'loi!',
-                                text:"{{Session::get('loi')}}",
-                                timer:5000,
-                                type:'error'
-                            }).then((value) => {
-                              //location.reload();
-                            }).catch(swal.noop);
-                        </script>
-                @endif
+
 
                 </form>
             </div>

@@ -119,10 +119,6 @@ class YardController extends Controller
         $period = CarbonPeriod::since((now()))->days()->until(now()->addWeek())->toArray();
 
 
-
-
-
-
         if (Auth::check()) {
             $yard->incrementReadCount();
         } // update view}
@@ -141,15 +137,6 @@ class YardController extends Controller
 
     public function datsan($param, Request $request)
     {
-        // $yard = Yard::where('id', $param)
-        // ->orWhere('slug', $param)
-        // ->firstOrFail();
-
-        // $typeyard = typeYards::where('type', $yard->id_districts)->get();
-
-        // $slots = (new TimeSlotGenerator($yard))->get();
-        // return view('content.payment.pay', compact('yard','slots','typeyard'));
-
 
         $yard = Yard::where('id', $param)
             ->orWhere('slug', $param)

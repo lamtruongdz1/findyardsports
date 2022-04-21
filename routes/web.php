@@ -4,6 +4,8 @@ use App\Http\Controllers\YardController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CommentController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\checklogin;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,22 +23,22 @@ Route::get('/san/tim',[YardController::class,'yard']);
 Route::get('/san-bong/{param}',[YardController::class,'yard_district']);
 Route::get('/san/{param}',[YardController::class,'show']);
 Route::get('/datsan',[YardController::class,'pay'])->name('pay');
-Route::get('/dat-san/{param}',[YardController::class,'datsan'])->name('datsan');
+Route::get('/dat-san/{param}',[YardController::class,'datsan'])->name('datsan')->middleware('checklogin');
 // thanh toán
 Route::get('/tickets',[YardController::class,'pay_details'])->name('pay-detail');
 Route::get('autocomplete', [YardController::class, 'autocomplete'])->name('autocomplete');
 Route::post('/themtimesan',[YardController::class,'themtimesan'])->name('themtimesan');
-Route::post('/thanhtoansan',[YardController::class,'thanhtoansan'])->name('thanhtoansan');
+Route::post('/thanhtoansan',[YardController::class,'thanhtoansan'])->name('thanhtoansan')->middleware('checklogin');
 Route::get('/vnpay_return', [YardController::class, 'return']);
 // comment
-Route::post('/comment', [CommentController::class,'store'])->name('comment.add');
+Route::post('/comment', [CommentController::class,'store'])->name('comment.add')->middleware('checklogin');
 
-
+Auth::routes();
 
 // Blog routes
 Route::get('news', [BlogController::class, 'index'])->name('news');
 Route::get('/news/{param}',[BlogController::class,'new_detail']);
-Route::post('/comment_blog',[CommentController::class,'blog'])->name('comment_blog.add');
+Route::post('/comment_blog',[CommentController::class,'store'])->name('comment_blog.add')->middleware('checklogin');
 
 Route::get('/search',[YardController::class,'search']);
 
