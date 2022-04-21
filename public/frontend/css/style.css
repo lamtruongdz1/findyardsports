@@ -960,6 +960,7 @@ ul.pagination .page-item .page-link:hover{
     .yard-detail-item
     .button-time {
     height: 7rem;
+    width : 10rem;
     align-items: center;
     color: #3d348b;
     border-radius: 0.5rem;

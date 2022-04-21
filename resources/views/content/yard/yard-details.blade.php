@@ -63,14 +63,14 @@
                     </div>
                 </div>
                 <div class="yard-detail-list">
-                    <h2>Sân còn trống vào các khoảng thời gian sau
+                    <h2>Thời gian sân còn trống trong ngày {{ date('d/m/Y') }}</h2>
                     </h2>
                     <div class="yard-detail-item">
                         @foreach ($slots as $slot)
                             <button
                                 style="font-size: small; letter-spacing: .1em; text-transform: none; font-weight: normal;"
                                 class="button-time" type="submit">
-                                <strong data-slot="{{ $slot }}" id="strongslot">{{ $slot }}</strong>
+                                <strong data-slot="{{ $slot }}" id="strongslot">{{ $slot->format('H:i') }}</strong>
                             </button>
                         @endforeach
                     </div>
@@ -236,6 +236,7 @@
 
                         <div class="row">
                             <div class="col-md-12 mb-12">
+                                <label> Thời gian đặt</label>
                                 <select class="form-select" name="time_da" id="time_da"
                                     style="font-size:1.7rem; margin-bottom:15px">
                                     {{-- <option value="1">selected>Thời gian </option> --}}
@@ -259,16 +260,25 @@
                         </div>
                         <div class="row">
                             <div class="col-md-6 col-12 mb-4">
-                                <div class="form-control d-flex flex-column">
-                                    <p class="h-blue">Ngày Đặt</p> <input class="inputbox textmuted" type="date"
-                                        name="date" id="date">
-                                </div>
+                                <label for="">Ngày đặt</label>
+                                <select class="form-select" name="date" id="date"
+                                    style="font-size:1.7rem; margin-bottom:15px">
+                                    @foreach ($period as $date)
+                                    <option value="{{ $date->format('Y-m-d') }}" selected>{{ $date->format('d-m-Y') }}</option>
+
+                                    @endforeach
+                                </select>
                             </div>
                             <div class="col-md-6 col-12 mb-4">
-                                <div class="form-control d-flex flex-column">
-                                    <p class="h-blue">Thời Gian Đặt</p> <input class="inputbox textmuted " id="time"
-                                        name="time" type="time" min="8:00:00" max="22:00:00">
-                                </div>
+                                <label for="">Giờ đặt</label>
+                                    <select class="form-select" name="time" id="time"
+                                    style="font-size:1.7rem; margin-bottom:15px">
+                                    @foreach ($slots as $slot)
+                                    <option value="{{ $slot->format('H:i') }}" selected>{{ $slot->format('H:i') }}</option>
+
+                                    @endforeach
+                                </select>
+
                             </div>
                             <input class="inputbox textmuted" type="hidden" name="address" value="{{ $yard->address }}"
                                 name="address" id="address">

@@ -14,6 +14,7 @@ use App\Models\Category;
 use App\Booking\TimeSlotGenerator;
 use DB;
 use Carbon\Carbon;
+use Carbon\CarbonPeriod;
 
 class YardController extends Controller
 {
@@ -115,6 +116,10 @@ class YardController extends Controller
         $comments = $yard->comments()->orderBy('created_at', 'desc')->get();
 
         $slots = (new TimeSlotGenerator($yard))->get();
+        $period = CarbonPeriod::since((now()))->days()->until(now()->addWeek())->toArray();
+
+
+
 
 
 
@@ -122,7 +127,16 @@ class YardController extends Controller
             $yard->incrementReadCount();
         } // update view}
 
-        return view('content.yard.yard-details', compact('yard','comments', 'yardLike', 'slots'));
+        return view(
+            'content.yard.yard-details',
+            compact(
+                'yard',
+                'comments',
+                'yardLike',
+                'slots',
+                'period'
+            )
+        );
     }
 
     public function datsan($param, Request $request)
@@ -196,20 +210,19 @@ class YardController extends Controller
         // thời gian đặt sân
         $thembookings->time_da = $data['time_da'];
 
-       // tính toán sau khi chọn time
-        $change_format = strtotime($data['time_da']) ;
-        $plus_time = $change_format + $data['time_da'] * (60 * 60);
-        $thembookings->end_time = date('H:i', $plus_time);
+        // tính toán sau khi chọn time
+        $minutes = $data['time_da'] * 60;
+        $thembookings->end_time = Carbon::parse($data['time'])->addMinutes($minutes)->format('H:i');
         // trạng thái đặt sâan
         $thembookings->status = 1; // 1 là đã đặt sân
         // tổng tiền = giá sân * thời gian đặt sân * loại sân
-        $thembookings->total_price = $data['price'] * $data['time_da'] * $data['yard_type'] ;
+        $thembookings->total_price = $data['price'] * $data['time_da'] * $data['yard_type'];
         // dd($thembookings->total_price);
-        if(Booking::where('date', '=' , $data['date'])->exists() && Booking::where('time', '=' , $data['time'])->exists()){
+        if (Booking::where('date', '=', $data['date'])->exists() && Booking::where('time', '=', $data['time'])->exists()) {
             echo '<script>';
-               echo ' alert("thời gian đã được đặt");';
+            echo ' alert("thời gian đã được đặt");';
             echo '</script>';
-        }else{
+        } else {
             if ($thembookings->save()) {
                 $updatebk = new bookingdetail();
                 $updatebk->booking_id = $thembookings->id;
@@ -219,7 +232,7 @@ class YardController extends Controller
                 $updatebk->save();
             }
         }
-    
+
 
         echo 'done';
 
