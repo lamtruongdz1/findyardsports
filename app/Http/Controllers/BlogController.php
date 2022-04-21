@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Blog;
+
 class BlogController extends Controller
 {
     /**
@@ -21,7 +22,8 @@ class BlogController extends Controller
         ->orWhere('slug', $param)
         ->firstOrFail();
         $newsLike = Blog::orderBy('created_at', 'desc')->limit(8)->get();
-        return view('content.blog.new-detail',compact('news','newsLike'));
+        $comments = $news->comments()->orderBy('created_at', 'desc')->get();
+        return view('content.blog.new-detail',compact('news','newsLike','comments'));
     }
 
     /**

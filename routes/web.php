@@ -36,6 +36,7 @@ Route::post('/comment', [CommentController::class,'store'])->name('comment.add')
 // Blog routes
 Route::get('news', [BlogController::class, 'index'])->name('news');
 Route::get('/news/{param}',[BlogController::class,'new_detail']);
+Route::post('/comment_blog',[CommentController::class,'blog'])->name('comment_blog.add');
 
 Route::get('/search',[YardController::class,'search']);
 
