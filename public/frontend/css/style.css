@@ -3,7 +3,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: "Nunito", sans-serif;
-    text-decoration: none!important;
+    text-decoration: none !important;
     outline: none;
     border: none;
     list-style: none;
@@ -550,10 +550,9 @@ ul.pagination {
     padding-left: 0;
     list-style: none;
     border-radius: 0.25rem;
-    text-align:center;
-    margin:0 auto;
-    width:15%;
-
+    text-align: center;
+    margin: 0 auto;
+    width: 15%;
 }
 ul.pagination .page-item {
     display: -webkit-box;
@@ -563,7 +562,7 @@ ul.pagination .page-item {
     display: list-item;
     font-size: 2rem;
 }
-ul.pagination .page-item .page-link{
+ul.pagination .page-item .page-link {
     position: relative;
     display: block;
     padding: 0.5rem 0.75rem;
@@ -574,7 +573,7 @@ ul.pagination .page-item .page-link{
     border: 1px solid #dee2e6;
     border-radius: 0.5rem;
 }
-ul.pagination .page-item .page-link:hover{
+ul.pagination .page-item .page-link:hover {
     color: #0056b3;
     text-decoration: none;
     background-color: #e9ecef;
@@ -868,7 +867,7 @@ ul.pagination .page-item .page-link:hover{
     transform: translateY(-0.5rem);
     box-shadow: 0 0 1rem rgb(0 0 0 / 30%);
     height: 40rem;
-    border-radius: .5rem;
+    border-radius: 0.5rem;
     overflow: hidden;
 }
 .yard .yard-list .yard-item .yard-text .yard-price p {
@@ -961,7 +960,7 @@ ul.pagination .page-item .page-link:hover{
     .yard-detail-item
     .button-time {
     height: 7rem;
-    width : 10rem;
+    width: 10rem;
     align-items: center;
     color: var(--yellow);
     border-radius: 0.5rem;
@@ -1193,23 +1192,23 @@ ul.pagination .page-item .page-link:hover{
     color: var(--black2);
     margin-top: 0.5rem;
 }
-.yard-detail-list h4{
+.yard-detail-list h4 {
     font-size: 2rem;
     color: var(--yellow);
 }
-.row label{
+.row label {
     font-size: 1.6rem;
     color: var(--black2);
 }
-.modal-title{
+.modal-title {
     font-size: 2rem;
     color: var(--yellow);
 }
-.h-blue{
+.h-blue {
     font-size: 1.2rem;
     color: var(--gray-dark);
 }
-.inputBox{
+.inputBox {
     font-size: 1.5rem;
 }
 /* login */
@@ -1313,38 +1312,39 @@ ul.pagination .page-item .page-link:hover{
 .yard-login #register {
     left: 45rem;
 }
+
 /* pay */
-.pay{
+.pay {
     padding-top: 15rem;
     text-align: center;
 }
-.pay h1{
+.pay h1 {
     font-size: 2.5rem;
     color: var(--yellow);
     margin-bottom: 1rem;
 }
-.pay .pay-list{
+.pay .pay-list {
     display: flex;
     gap: 2rem;
     margin-top: 5rem;
     text-align: left;
 }
-.pay .pay-list .pay-item-info{
+.pay .pay-list .pay-item-info {
     flex: 60%;
 }
-.pay .pay-list .pay-item-yard{
+.pay .pay-list .pay-item-yard {
     flex: 30%;
 }
-.pay .pay-list .pay-item-info .pay-info{
+.pay .pay-list .pay-item-info .pay-info {
     font-size: 1.5rem;
     font-weight: 500;
     color: var(--yellow);
     margin-bottom: 2rem;
 }
-.pay .pay-list .pay-item form{
+.pay .pay-list .pay-item form {
     display: flex;
 }
-.pay .pay-list .pay-item-info form input{
+.pay .pay-list .pay-item-info form input {
     display: block;
     width: 90%;
     padding: 1rem;
@@ -1359,105 +1359,104 @@ ul.pagination .page-item .page-link:hover{
     margin-bottom: 2rem;
 }
 
-.pay .pay-list .pay-item-info label{
+.pay .pay-list .pay-item-info label {
     display: inline-block;
     font-size: 1.5rem;
     font-weight: 500;
     color: var(--black2);
-    margin-bottom: .5rem;
+    margin-bottom: 0.5rem;
 }
-.pay .pay-list .pay-item-info .pay-meth{
+.pay .pay-list .pay-item-info .pay-meth {
     font-size: 1.5rem;
     font-weight: 500;
     color: var(--yellow);
-    margin-bottom: .5rem;
+    margin-bottom: 0.5rem;
 }
-.pay .pay-list .pay-item-info .pay-check label{
+.pay .pay-list .pay-item-info .pay-check label {
     font-size: 1.6rem;
     font-weight: 500;
     color: var(--black2);
 }
-.pay .pay-list .pay-item-info .pay-check p{
+.pay .pay-list .pay-item-info .pay-check p {
     font-size: 1.5rem;
     font-weight: 500;
     color: var(--black2);
 }
-.pay .pay-list .pay-item-yard .pay-yard{
+.pay .pay-list .pay-item-yard .pay-yard {
     padding: 2rem;
     background-color: var(--white);
-    box-shadow: 0 0 2rem 0 #7f7f7f3d;;
+    box-shadow: 0 0 2rem 0 #7f7f7f3d;
 }
-.pay .pay-list .pay-item-yard .pay-info-yard h2{
+.pay .pay-list .pay-item-yard .pay-info-yard h2 {
     font-size: 2rem;
     font-weight: 500;
     color: var(--yellow);
     margin-bottom: 1rem;
 }
-.pay .pay-list .pay-item-yard .pay-info-yard p{
+.pay .pay-list .pay-item-yard .pay-info-yard p {
     font-size: 1.5rem;
     font-weight: 500;
     color: var(--black2);
 }
-.pay .pay-list .pay-item-yard .pay-info-yard .stars{
+.pay .pay-list .pay-item-yard .pay-info-yard .stars {
     font-size: 1.5rem;
     color: var(--yellow);
-    margin: .5rem 0;
+    margin: 0.5rem 0;
 }
-.pay .pay-list .pay-item-yard .pay-info-yard .pay-type{
+.pay .pay-list .pay-item-yard .pay-info-yard .pay-type {
     display: flex;
     align-items: center;
     font-size: 1.6rem;
     color: var(--black2);
     margin: 1rem 0;
 }
-.pay .pay-list .pay-item-yard .pay-info-yard .pay-type i{
+.pay .pay-list .pay-item-yard .pay-info-yard .pay-type i {
     font-size: 2rem;
     color: var(--black2);
-    margin-right: .5rem;
+    margin-right: 0.5rem;
 }
-.pay .pay-list .pay-item-yard .pay-info-yard .pay-time{
+.pay .pay-list .pay-item-yard .pay-info-yard .pay-time {
     display: flex;
     align-items: center;
     margin-bottom: 1rem;
 }
-.pay .pay-list .pay-item-yard .pay-info-yard .pay-time i{
+.pay .pay-list .pay-item-yard .pay-info-yard .pay-time i {
     font-size: 1.6rem;
     color: var(--black2);
-    margin-right: .5rem;
+    margin-right: 0.5rem;
 }
-.pay .pay-list .pay-item-yard .pay-info-yard .pay-time p{
+.pay .pay-list .pay-item-yard .pay-info-yard .pay-time p {
     font-size: 1.6rem;
     color: var(--black2);
 }
-.pay .pay-list .pay-item-yard table{
+.pay .pay-list .pay-item-yard table {
     width: 100%;
 }
-.pay .pay-list .pay-item-yard .pay-mon{
+.pay .pay-list .pay-item-yard .pay-mon {
     font-size: 1.5rem;
     line-height: 2;
 }
-.pay .pay-list .pay-item-yard .pay-price{
+.pay .pay-list .pay-item-yard .pay-price {
     text-align: right;
     font-size: 1.5rem;
 }
-.pay .pay-list .pay-item-yard .pay-total{
+.pay .pay-list .pay-item-yard .pay-total {
     font-size: 1.6rem;
     line-height: 2;
     color: var(--yellow);
 }
-.pay .pay-list .pay-item-yard .pay-total-price{
+.pay .pay-list .pay-item-yard .pay-total-price {
     font-size: 1.6rem;
     line-height: 2;
     color: var(--yellow);
     text-align: right;
 }
-.pay .btn{
+.pay .btn {
     font-size: 1.5rem;
-    border-radius: .5rem;
+    border-radius: 0.5rem;
     color: var(--white);
     font-weight: 500;
     padding: 1rem 2.5rem;
-
 }
 /* news */
 /* news */
@@ -1536,6 +1535,152 @@ ul.pagination .page-item .page-link:hover{
     font-size: 1.6rem;
     color: var(--yellow);
 }
+/* end new */
+/* manage-yard */
+.manage-yard {
+    padding-top: 15rem;
+    background: linear-gradient(to bottom, #ffcc99 0%, #99ccff 100%);
+    position: relative;
+}
+.manage-list {
+    display: flex;
+    justify-content: space-between;
+}
+.manage-yard h1 {
+    font-size: 2.5rem;
+    color: var(--white);
+    text-align: center;
+    margin-bottom: 4rem;
+}
+.manage-content img {
+    margin: 2rem 0;
+}
+.manage-yard .manage-item .manage-content p {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--black2);
+    line-height: 2;
+}
+.manage-yard .manage-item h2 {
+    font-size: 2rem;
+    color: var(--yellow);
+    line-height: 2;
+    margin-bottom: 1rem;
+}
+.manage-yard .manage-list.manage-item-left {
+    width: 60%;
+}
+.manage-yard .manage-list .manage-item-right {
+    width: 50%;
+}
+.manage-yard .manage-list .manage-item .manage-content .btn {
+    padding: 1.5rem 2.5rem;
+    color: var(--white);
+    font-size: 1.2rem;
+    border-radius: 1rem;
+    margin-top: 2rem;
+    cursor: pointer;
+}
+.manage-yard .manage-list .manage-item .manage-content .btn:hover {
+    opacity: 0.6;
+}
+.manage-item img {
+    width: 100%;
+    border-radius: 1rem;
+    box-shadow: 0 0 2rem rgba(0, 0, 0, 0.3);
+}
+/* end manage-yard */
+/* modal */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+    width: 100%;
+    display: none;
+}
+.modal.open {
+    display: flex;
+}
+.modal-container {
+    position: absolute;
+    top: 12%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--white);
+    border: 0.1rem solid rgba(0, 0, 0, 0);
+    border-radius: 0.2rem;
+    padding: 1rem;
+    overflow: auto;
+    overflow: hidden;
+}
+.modal .modal-container .modal-close {
+    display: inline-block;
+    font-size: 2rem;
+    color: var(--black2);
+    cursor: pointer;
+}
+.modal .modal-container .modal-header {
+    font-size: 2rem;
+    color: var(--yellow);
+    margin-bottom: 1rem;
+}
+.modal-body {
+    display: flex;
+    flex-wrap: wrap;
+}
+.modal-body .manage-form-group {
+    flex: 0 0 50%;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+.modal-body .manage-form-group label {
+    font-size: 1.5rem;
+    color: var(--black2);
+    line-height: 2;
+}
+.modal-body .manage-form-group input {
+    display: block;
+    width: 100%;
+    height: calc(1.6em + 0.75rem + 2px);
+    padding: 1.5rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 2;
+    color: #495057;
+    background-color: #fff;
+    border: 1px solid #ced4da;
+    border-radius: 0.4rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+.modal-footer {
+    padding: 0 2rem;
+}
+.modal-footer .btn {
+    padding: 1.5rem 2rem;
+    color: var(--white);
+    font-size: 1.2rem;
+    border-radius: 2.5rem;
+}
+/* end modal */
+/* error */
+
+.error-message {
+    font-size: medium;
+    background-color: #ffbaba;
+}
+.error-message .icon{
+    width:20px;
+    height:20px;
+}
+
+/* end error */
 /* blog */
 .blog {
     padding-top: 10rem;
@@ -1597,9 +1742,9 @@ ul.pagination .page-item .page-link:hover{
 .blog .blog-list .blog-item .blog-youtube {
     width: 100%;
 }
-.typeahead{
+.typeahead {
     top: 60px;
-    left: 10px!important;
+    left: 10px !important;
     padding: 0 1rem;
     /* display: none; */
     position: absolute;
@@ -1608,14 +1753,14 @@ ul.pagination .page-item .page-link:hover{
     z-index: 100;
     border-radius: 2rem;
 }
-.typeahead li{
-    padding: .5rem 0;
+.typeahead li {
+    padding: 0.5rem 0;
 }
-.typeahead li a{
+.typeahead li a {
     color: var(--white);
     font-size: 1.5rem;
 }
-.typeahead li a:hover{
+.typeahead li a:hover {
     color: var(--yellow);
 }
 .be-comment-block {
@@ -1623,14 +1768,14 @@ ul.pagination .page-item .page-link:hover{
     border: 1px solid #edeff2;
     border-radius: 2px;
     padding: 50px 70px;
-    border:1px solid #ffffff;
+    border: 1px solid #ffffff;
 }
 
 .comments-title {
     font-size: 16px;
     color: #262626;
     margin-bottom: 15px;
-    font-family: 'Conv_helveticaneuecyr-bold';
+    font-family: "Conv_helveticaneuecyr-bold";
 }
 
 .be-img-comment {
@@ -1658,7 +1803,7 @@ ul.pagination .page-item .page-link:hover{
 
 .be-comment-name {
     font-size: 13px;
-    font-family: 'Conv_helveticaneuecyr-bold';
+    font-family: "Conv_helveticaneuecyr-bold";
 }
 
 .be-comment-content a {
@@ -1727,24 +1872,26 @@ ul.pagination .page-item .page-link:hover{
 .form-group textarea.form-input {
     height: 150px;
 }
-.form-group textarea.form-input{
+.form-group textarea.form-input {
     margin-top: 1rem;
 }
 
-.row>*{
+.row > * {
     padding: 0;
 }
-.row .btn{
+.row .btn {
     width: 10rem;
-    border-radius: .5rem;
+    border-radius: 0.5rem;
     margin-top: 1rem;
     padding: 1rem;
     font-size: 1.5rem;
 }
-.dl, ol, ul{
+.dl,
+ol,
+ul {
     margin: 0;
 }
-.modal-body form{
+.modal-body form {
     padding: 2rem;
 }
 /* responsive */

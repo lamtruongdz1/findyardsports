@@ -50,6 +50,11 @@ class Yard extends Model
     {
         return $this->hasMany(Comment::class)->whereNull('parent_id');
     }
+
+    public function partner()
+    {
+        return $this->hasOne(Partner::class);
+    }
     protected static function boot()
     {
         parent::boot();
@@ -83,9 +88,4 @@ class Yard extends Model
         return $this->save();
     }
 
-
-        // protected $casts = [
-        //     'time_open' => 'datetime',
-        //     'time_close' => 'datetime',
-        // ];
 }

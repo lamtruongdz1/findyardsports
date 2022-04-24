@@ -7,6 +7,7 @@
     "require": {
         "php": "^8.0.2",
         "bezhansalleh/filament-shield": "^1.1",
+        "blade-ui-kit/blade-icons": "^1.2",
         "doctrine/dbal": "^3.3",
         "fabpot/goutte": "^4.0",
         "filament/filament": "^2.10",
@@ -23,6 +24,7 @@
         "laravel/ui": "^3.4",
         "laravolt/avatar": "^4.1",
         "livewire/livewire": "^2.5",
+        "mallardduck/blade-boxicons": "^2.2",
         "realrashid/sweet-alert": "^5.0",
         "spatie/laravel-medialibrary": "^10.3",
         "spatie/laravel-settings": "^2.4",

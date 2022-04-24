@@ -3,8 +3,9 @@
 use App\Http\Controllers\YardController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\PartnerController;
+
 use Illuminate\Support\Facades\Route;
-use App\Http\Middleware\checklogin;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +34,8 @@ Route::get('/vnpay_return', [YardController::class, 'return']);
 // comment
 Route::post('/comment', [CommentController::class,'store'])->name('comment.add');
 
+// partner routes
+Route::get('/partner',[PartnerController::class,'index'])->name('partner');
 Auth::routes();
 
 // Blog routes

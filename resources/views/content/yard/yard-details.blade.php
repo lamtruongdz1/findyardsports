@@ -19,7 +19,7 @@
                 </div>
                 <div class="yard-detail-location">
                     <i class='bx bx-map'></i>
-                    <p>{{ $yard->address }}</p>
+                    <p><a href="https://www.google.com/maps/search/{{ $yard->address }}">{{ $yard->address }}</a></p>
                 </div>
                 <div class="yard-detail-type">
                     <i class='bx bx-football bx-spin'></i>
@@ -129,50 +129,50 @@
                 </div>
             </div>
         </div>
-        <div class="yard-detail-map">
+        {{-- <div class="yard-detail-map">
             <h1>Bản đồ</h1>
             <iframe class="map"
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.946620096234!2d106.69966154993976!3d10.815397092257287!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3175297f9c9a6a6f%3A0x31237a1f7815c8c!2zU8OibiBiw7NuZyDEkcOhIEFyZW5h!5e0!3m2!1svi!2s!4v1642425895302!5m2!1svi!2s"
                 width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-        </div>
+        </div> --}}
         <div class="yard-detail-comments">
             <div class="be-comment-block">
                 <h1 class="comments-title">Comments ({{ $total_comment }})</h1>
                 @foreach ($comments as $comment)
-                <div class="be-comment">
-                    <div class="be-img-comment">
-                <a href="blog-detail-2.html">
-                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" class="be-ava-comment">
-                </a>
+                    <div class="be-comment">
+                        <div class="be-img-comment">
+                            <a href="blog-detail-2.html">
+                                <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" class="be-ava-comment">
+                            </a>
+                        </div>
+                        <div class="be-comment-content">
+
+                            <span class="be-comment-name">
+                                <a href="">{{ $comment->user->name }}</a>
+                            </span>
+                            <span class="be-comment-time">
+
+                                {{ $comment->created_at->format('d-m-Y H:i') }}
+                            </span>
+
+                            <p class="be-comment-text">
+                                {{ $comment->description }}
+                            </p>
+                        </div>
+                @endforeach
             </div>
-            <div class="be-comment-content">
-
-                    <span class="be-comment-name">
-                        <a href="">{{ $comment->user->name }}</a>
-                        </span>
-                    <span class="be-comment-time">
-
-                        {{ $comment->created_at }}
-                    </span>
-
-                <p class="be-comment-text">
-                    {{ $comment->description }}
-                </p>
-            </div>
-            @endforeach
-        </div>
-        <form class="form-block" method="post" action="{{ route('comment.add') }}">
-            @csrf
-            <input type="hidden" name="yard_id" value="{{ $yard->id }}" />
-            <div class="row">
-                <div class="col-xs-12">
-                    <div class="form-group">
-                        <textarea class="form-input" name="description" required="" placeholder="Viết bình luận tại đây ..."></textarea>
+            <form class="form-block" method="post" action="{{ route('comment.add') }}">
+                @csrf
+                <input type="hidden" name="yard_id" value="{{ $yard->id }}" />
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="form-group">
+                            <textarea class="form-input" name="description" required="" placeholder="Viết bình luận tại đây ..."></textarea>
+                        </div>
                     </div>
+                    <input type="submit" class="btn btn-primary" value="Gửi" />
                 </div>
-                <input type="submit" class="btn btn-primary" value="Gửi" />
-            </div>
-        </form>
+            </form>
         </div>
         <div class="yard-detail-similar swiper">
             <h1>Sân trong khu vực</h1>
@@ -224,7 +224,7 @@
                 <div class="modal-body">
 
 
-                    <form action="{{ route('thanhtoansan') }}" method="POST" role="form">
+                    <form action="{{ route('thanhtoansan') }}" method="POST" role="form" style="min-width: 100%;">
                         @csrf
                         <input class="inputbox textmuted" type="hidden" value="{{ $yard->id }}" name="yard_id"
                             id="yard_id">

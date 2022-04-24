@@ -13,11 +13,12 @@ use App\Models\bookingdetail;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Category;
 use App\Booking\TimeSlotGenerator;
+use App\Booking\TimeFilter;
 use RealRashid\SweetAlert\Facades\Alert;
 use Carbon\Carbon;
 use Carbon\CarbonPeriod;
-use COM;
-use FFI\CData;
+use DB;
+use Session;
 
 class YardController extends Controller
 {
@@ -29,10 +30,27 @@ class YardController extends Controller
 
     public function index()
     {
-        $districts = District::all();
+
+        $slots = (new TimeFilter())->get();
+
         $yards = Yard::orderBy('total_booking', 'desc')->limit(8)->get();
+        $period = CarbonPeriod::since((now()))->days()->until(now()->addWeek())->toArray();
+        $districts = District::all();
+        $count = DB::table('yards')
+            ->select('districts.name AS name', DB::raw("COUNT(`yards`.`id_districts`) AS count"))
+            ->join('districts', 'districts.id', '=', 'yards.id_districts')
+            ->groupBy('districts.id')
+            ->get();
+
         $blogs = Blog::orderBy('created_at', 'desc')->limit(3)->get();
-        return view('content.index', compact('yards', 'districts', 'blogs'));
+        return view('content.index', compact(
+            'yards',
+            'districts',
+            'blogs',
+            'count',
+            'period',
+            'slots'
+        ));
     }
 
     public function yard()
@@ -55,9 +73,8 @@ class YardController extends Controller
 
     public function autocomplete(Request $request)
     {
-        $data = Yard::where('name', 'LIKE', '%' . $request->get('query') . '%')->get();
-        // $districts = District::where('name', 'LIKE', '%' . $request->get('query') . '%')->get();
-        // $data = $yards->merge($districts);
+        $data = Yard::where('name', 'LIKE', '%' . $request->get('query') . '%')
+            ->orWhere('address', 'LIKE', '%' . $request->get('query') . '%')->get();
         return response()->json($data);
     }
     public function pay()
@@ -71,14 +88,34 @@ class YardController extends Controller
 
     public function search(Request $request)
     {
-        if (isset($_GET['name'])) {
-            $search_text = $_GET['name'];
-            $yards = Yard::where('name', 'LIKE', '%' . $search_text . '%')->get();
-            $total_yard = $yards->count();
+        $messages = [
+            'time.required' => 'Vui lòng chọn giờ đặt sân',
+            'date.required' => 'Vui lòng chọn ngày cần đặt sân'
+        ];
+        $request->validate([
+            'time' => 'required',
+            'date' => 'required',
 
+        ], $messages);
+
+
+
+        if (isset($search_text, $time)) {
+            $search_text = $_GET['name'];
+            $time = $_GET['time'];
+            $yards = Yard::where('name', 'LIKE', '%' . $search_text . '%')
+                ->orWhere("address", "like", "%" . $search_text . "%")
+                ->where('time_open', '<=', $time)
+                ->get();
+            $total_yard = $yards->count();
             return view('content.yard.yard-search', compact('yards', 'total_yard'));
         } else {
-            return view('content.index');
+
+            $time = $_GET['time'];
+            $yards = Yard::where('time_open', '<=', $time)->get();
+
+            $total_yard = $yards->count();
+            return view('content.yard.yard-search', compact('yards', 'total_yard'));
         }
     }
 
@@ -117,17 +154,20 @@ class YardController extends Controller
             ->firstOrFail();
 
         $yardLike = Yard::where('id_districts', $yard->id_districts)->limit(8)->get();
-        $comments = $yard->comments()->orderBy('created_at', 'desc')->get();
+        $comments = $yard->comments()->orderBy('created_at', 'asc')->get();
         $total_comment = $yard->comments()->count();
 
 
         $slots = (new TimeSlotGenerator($yard))->get();
         $period = CarbonPeriod::since((now()))->days()->until(now()->addWeek())->toArray();
 
+        // use Session anti spam reload page to increase views
+        $yardKey = 'blog_' . $param;
+        if (!Session::has($yardKey)) {
+            $yard->increment('view');
+            Session::put($yardKey, 1);
+        }
 
-        if (Auth::check()) {
-            $yard->incrementReadCount();
-        } // update view}
 
         return view(
             'content.yard.yard-details',
@@ -190,13 +230,11 @@ class YardController extends Controller
         // ]);
 
         $data = $request->all();
-
         $thembookings = new Booking();
 
         $thembookings->user_id = \Auth::user()->id;
         $thembookings->name = $data['name'];
         $thembookings->type_yard = $data['yard_type'];
-        // dd($data['yard_type']);
         $thembookings->address = $data['address'];
         $thembookings->phone = $data['phone'];
         $thembookings->date = $data['date'];
@@ -216,12 +254,19 @@ class YardController extends Controller
             return redirect()->back()->with('loi', 'Đã có người đặt sân trong thời gian này');
         } else {
             if ($thembookings->save()) {
+                // add info booking_detail
+
                 $updatebk = new bookingdetail();
                 $updatebk->booking_id = $thembookings->id;
                 $updatebk->yard_id = $data['yard_id'];
                 $updatebk->price = $data['price'];
                 $updatebk->quanlity = 1;
                 $updatebk->save();
+
+                // update total_booking after booking
+                $update_yard = Yard::find($data['yard_id']);
+                $update_yard->total_booking = $update_yard->total_booking + 1;
+                $update_yard->save();
             }
         }
 
@@ -297,7 +342,6 @@ class YardController extends Controller
         } else {
             echo json_encode($returnData);
         }
-
     }
 
 

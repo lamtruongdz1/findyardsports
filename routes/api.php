@@ -1,9 +1,9 @@
 <?php
 
 use App\Http\Controllers\Goutte;
+use App\Http\Controllers\YardApi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -20,3 +20,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 Route::get('/data',[Goutte::class,'scraper']);
 Route::get('/data/1',[Goutte::class,'scraper_blog']);
+Route::get('yard/{id}',[YardApi::class,'get_One']);
+Route::get('yard/',[YardApi::class,'index']);

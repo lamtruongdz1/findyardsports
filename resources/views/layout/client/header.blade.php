@@ -7,26 +7,23 @@
         <ul class="menu">
             <li><a href="/">trang chủ</a></li>
             <li><a href="/san/tim">Đặt sân</a></li>
-            <li><a href="">Sân hot</a></li>
-            <li><a href="news.html">Tin tức</a></li>
             <li><a href="">Liên hệ</a></li>
-            
+
         </ul>
         @guest
-            <div class="login">
-            <a href="">Lịch sử đặt sân</a>
-                <a href="{{ route('login') }}">Đăng nhập</a>
 
+            <div class="login">
+                <a href="{{ route('partner') }}">Dành cho chủ sân</a>
+                <a href="{{ route('login') }}">Đăng nhập</a>
                 <a href="{{ route('register') }}">Đăng ký</a>
             </div>
         @endguest
         @auth
             <div class="login">
-            <a href="">Lịch sử đặt sân</a>
-               <a href="{{ route('profile.show') }}">{{ Auth::user()->name }}</a>
-                <a href="{{ route('logout') }}"
-                    onclick="event.preventDefault();
-                                document.getElementById('logout-form').submit();">
+                <a href="">Lịch sử đặt sân</a>
+                <a href="{{ route('profile.show') }}">{{ Auth::user()->name }}</a>
+                <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();">
                     {{ __('Đăng xuất') }}
                 </a>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

@@ -10,21 +10,47 @@
                     </div>
                     <form action="/search" method="GET" class="booking-bar-form">
                         <div class="input-name form-group">
-                        <input type="text" name="name" id="name" placeholder="tên sân bóng"
-                                class="form-control" autocomplete="off" />
+                            <input type="text" name="name" id="name" placeholder="tên sân bóng" class="form-control"
+                                autocomplete="off" />
                         </div>
                         <div class="input-date form-group">
-                            <input type="date" name="" id="" placeholder="11/01/2022" class="form-control" />
+                            @if ($errors->first('date'))
+                                <span class="error-message">
+                                    <x-bx-error class='icon' />
+                                    {{ $errors->first('date') }}
+                                </span>
+                            @endif
+
+                            <select class="form-select" name="date" id="date">
+                                <option value="" selected>Chọn Ngày</option>
+                                @foreach ($period as $date)
+                                    <option value="{{ $date->format('Y-m-d') }}">
+                                        {{ $date->format('d-m-Y') }}</option>
+                                @endforeach
+                            </select>
+
                         </div>
                         <div class="input-time form-group">
-                            <input type="time" name="" id="" placeholder="10:30" class="form-control" />
+                            @if ($errors->first('date'))
+                                <span class="error-message">
+                                    <x-bx-error class='icon' />
+                                    {{ $errors->first('time') }}
+                                </span>
+                            @endif
+                            <select class="form-select" name="time" id="time">
+                                <option value="" selected>Chọn thời gian</option>
+                                @foreach ($slots as $slot)
+                                    <option value="{{ $slot->format('H:i') }}">
+                                        {{ $slot->format('H:i') }}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="input-btn">
                             <input type="submit" class="btn" value="tìm kiếm" />
                         </div>
                     </form>
-                    </div>
                 </div>
+            </div>
             </div>
         </section>
         <!-- about section end -->
@@ -50,7 +76,13 @@
                                     <img src="{{ asset('frontend/images/san1.jpg') }}" alt="" class="category-img">
                                     <div class="category-text">
                                         <h2 class="category-title">{{ $district->name }}</h2>
-                                        <p class="count">2 sân</p>
+                                        @foreach ($count as $item)
+                                            @if ($district->name === $item->name)
+                                                @isset($item->count)
+                                                    <p class="count">{{ $item->count }} sân</p>
+                                                @endisset
+                                            @endif
+                                        @endforeach
                                     </div>
                                 </div>
                             </a>
@@ -242,9 +274,9 @@
                         <a href="news/{{ $blog->slug }}">
                             <div class="news-single-image">
                                 @if (Storage::disk('public')->exists($blog->images))
-                                <img src="{{ Storage::url($blog->images) }}" alt="" class="news-single-img">
+                                    <img src="{{ Storage::url($blog->images) }}" alt="" class="news-single-img">
                                 @else
-                                    <img src="{{ $blog->images }}" class="news-single-img" >
+                                    <img src="{{ $blog->images }}" class="news-single-img">
                                 @endif
 
                             </div>
@@ -260,7 +292,7 @@
             <a href="{{ route('news') }}" class="btn">xem thêm</a>
         </section>
         <!-- news-single section end -->
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
         <script type="text/javascript">
             var path = "{{ route('autocomplete') }}";

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "251a870159815d4c179a754c84008b64",
+    "content-hash": "28b91c0ffed1a8e69db02b77a29832bf",
     "packages": [
         {
             "name": "akaunting/laravel-money",
@@ -3729,6 +3729,84 @@
                 }
             ],
             "time": "2020-05-30T13:11:16+00:00"
+        },
+        {
+            "name": "mallardduck/blade-boxicons",
+            "version": "2.2.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mallardduck/blade-boxicons.git",
+                "reference": "c353e007575ae954f7b132cad9e4f13036d59c28"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mallardduck/blade-boxicons/zipball/c353e007575ae954f7b132cad9e4f13036d59c28",
+                "reference": "c353e007575ae954f7b132cad9e4f13036d59c28",
+                "shasum": ""
+            },
+            "require": {
+                "blade-ui-kit/blade-icons": "^1.2.0",
+                "illuminate/support": "^8.74 || ^9.0",
+                "php": "^7.4 || ^8.0"
+            },
+            "replace": {
+                "jfvoliveira/blade-boxicons": "1.1.2"
+            },
+            "require-dev": {
+                "ext-dom": "*",
+                "orchestra/testbench": "^6.24 || ^7.0",
+                "phpunit/phpunit": "^8.5.14 || ^9.0",
+                "spatie/phpunit-snapshot-assertions": "^4.2",
+                "symfony/console": "^5.3 || ^6.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "MallardDuck\\BladeBoxicons\\BladeBoxiconsServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "MallardDuck\\BladeBoxicons\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dan Pock",
+                    "homepage": "https://danpock.me",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "João Oliveira",
+                    "email": "joao@joliveira.pt",
+                    "homepage": "https://joliveira.pt",
+                    "role": "Original Developer"
+                }
+            ],
+            "description": "A package to easily make use of Boxicons in your Laravel Blade views.",
+            "homepage": "https://github.com/mallardduck/blade-boxicons",
+            "keywords": [
+                "Blade UI Kit",
+                "Boxicons",
+                "laravel"
+            ],
+            "support": {
+                "issues": "https://github.com/mallardduck/blade-boxicons/issues",
+                "source": "https://github.com/mallardduck/blade-boxicons/tree/2.2.2"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/mallardduck",
+                    "type": "github"
+                }
+            ],
+            "time": "2022-03-05T18:38:47+00:00"
         },
         {
             "name": "mobiledetect/mobiledetectlib",
