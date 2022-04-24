@@ -5,6 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\District;
 use App\Models\Partner;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\LoginRequest;
+
+use Illuminate\Auth\AuthenticationException;
+use Hash;
+
 class PartnerController extends Controller
 {
     /**
@@ -15,7 +21,7 @@ class PartnerController extends Controller
     public function index()
     {
         $districts = District::all();
-        return view('content.partner.index',compact('districts'));
+        return view('content.partner.index', compact('districts'));
     }
 
     /**
@@ -36,8 +42,38 @@ class PartnerController extends Controller
      */
     public function store(Request $request)
     {
-        Partner::create($request->all());
-        return redirect()->back();
+
+        $input = $request->all();
+        $input['password'] = Hash::make($input['password']);
+        $partner = Partner::create($input);
+        return redirect()->route('partner.login');
+    }
+    public function login()
+    {
+        return view('content.partner.login');
+    }
+    public function manage()
+    {
+        return view('content.partner.manage');
+    }
+    public function getLogin(LoginRequest  $request)
+    {
+        $credentials = $request->getCredentials();
+
+        if(!Auth::validate($credentials)):
+            return redirect()->to('partner/login')
+                ->withErrors(trans('auth.failed'));
+        endif;
+
+        $user = Auth::getProvider()->retrieveByCredentials($credentials);
+
+        Auth::login($user);
+
+        return $this->authenticated($request, $user);
+    }
+    protected function authenticated(Request $request, $user)
+    {
+        return redirect()->intended();
     }
 
     /**

@@ -53,39 +53,39 @@
                     <div class="modal-body">
                         <div class="manage-form-group">
                             <label for="">Họ và tên</label>
-                            <input type="text" name='name' required="required" class="manage-form-control">
+                            <input type="text" name='name'  class="manage-form-control">
                         </div>
                         <div class="manage-form-group">
                             <label for="">Địa chỉ Email</label>
-                            <input type="email" name='email' required="required" class="manage-form-control">
+                            <input type="email" name='email'  class="manage-form-control">
                         </div>
                         <div class="manage-form-group">
                             <label for="">Mật khẩu</label>
-                            <input type="password" name='password' required="required" class="manage-form-control">
+                            <input type="password" name='password'  class="manage-form-control">
                         </div>
                         <div class="manage-form-group">
                             <label for="">Nhập lại mật khẩu</label>
-                            <input type="password" name='re_password' required="required" class="manage-form-control">
+                            <input type="password" name='re_password'  class="manage-form-control">
                         </div>
                     </div>
                     <div class="modal-body">
                         <div class="manage-form-group">
                             <label for="">Tên sân</label>
-                            <input type="text" name="yard_name" required="required" class="manage-form-control">
+                            <input type="text" name="yard_name"  class="manage-form-control">
                         </div>
                         <div class="manage-form-group">
                             <label for="">Số điện thoại</label>
-                            <input type="text" name="phone" required="required" class="manage-form-control">
+                            <input type="text" name="phone"  class="manage-form-control">
                         </div>
                     </div>
                     <div class="modal-body">
                         <div class="manage-form-group">
                             <label for="">Giờ mở cửa</label>
-                            <input type="time" required="required" class="manage-form-control">
+                            <input type="time"  class="manage-form-control">
                         </div>
                         <div class="manage-form-group">
                             <label for="">Giờ đóng cửa</label>
-                            <input type="time" required="required" class="manage-form-control">
+                            <input type="time"  class="manage-form-control">
                         </div>
                         <div class="modal-body">
                             <div class="manage-form-group">
@@ -105,7 +105,7 @@
                             </div>
                             <div class="manage-form-group">
                                 <label for="">Địa chỉ</label>
-                                <input type="text" required="required" class="manage-form-control">
+                                <input type="text"  class="manage-form-control">
                             </div>
                         </div>
                     </div>

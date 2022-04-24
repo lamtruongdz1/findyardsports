@@ -1213,7 +1213,7 @@ ul.pagination .page-item .page-link:hover {
 }
 /* login */
 .yard-login {
-    background-image: url(/images/login1.jpg);
+    background-image: url("../images/login2.jpg");
     background-position: center;
     background-size: cover;
     padding-top: 20rem;
@@ -1233,8 +1233,15 @@ ul.pagination .page-item .page-link:hover {
     width: 22rem;
     margin: 3.5rem auto;
     position: relative;
-    box-shadow: 0 0 2rem 0.9rem #ff61241f;
+    /* box-shadow: 0 0 2rem 0.9rem #ff61241f; */
     border-radius: 3rem;
+}
+.yard-login .form-box .button-box .heading-title {
+    font-size: 2rem;
+    color: var(--yellow);
+    border: 1px solid var(--black);
+    border-radius: 3rem;
+    margin-bottom: 2rem;
 }
 .yard-login .form-box .button-box .toggle-btn {
     padding: 1rem 2rem;
@@ -1255,6 +1262,17 @@ ul.pagination .page-item .page-link:hover {
     background: linear-gradient(to right, #dc3545, #ffad06);
     border-radius: 3rem;
     transition: 0.5s;
+}
+.yard-login .form-box .logo {
+    margin: 3rem auto;
+    text-align: center;
+}
+.yard-login .form-box .logo img {
+    width: 10rem;
+    margin: 0 1.2rem;
+    box-shadow: 0 0 2rem 0 #7f7f7f3d;
+    cursor: pointer;
+    border-radius: 50%;
 }
 .yard-login .form-box .social-icons {
     margin: 3rem auto;
@@ -1669,15 +1687,90 @@ ul.pagination .page-item .page-link:hover {
     border-radius: 2.5rem;
 }
 /* end modal */
+/* history-yard */
+.history-yard {
+    padding: 15rem 1rem;
+}
+.history-yard h1 {
+    font-size: 2.5rem;
+    color: var(--yellow);
+    line-height: 2;
+}
+.title-h {
+    font-size: 2rem;
+    color: var(--yellow);
+}
+.content-h {
+    font-size: 1.6rem;
+}
+/* .col-md-8 {
+    background-image: url(../images/login2.jpg);
+} */
+.history-yard .dropdown img {
+    width: 10rem;
+    height: 10rem;
+}
+.border-light {
+    border: 0.1rem solid #fafafa;
+    background-image: url(../images/login2.jpg);
+}
+.form-history {
+    padding: 2rem;
+}
+.row h2 {
+    font-size: 2.5rem;
+    color: var(--yellow);
+}
+.row label {
+    font-size: 1.6rem;
+    color: var(--black2);
+}
+.row img {
+    width: 10rem;
+}
+.title-col {
+    padding: 2rem;
+}
+.form-control {
+    font-size: 1.4rem !important;
+}
+.btn-history {
+    padding: 1rem 2rem;
+    border-radius: 1rem;
+    font-size: 1.5rem;
+    background-color: var(--yellow) !important;
+    margin-top: 2rem;
+}
+.active {
+    background-color: var(--yellow) !important;
+}
+.hs-icon {
+    font-size: 1.5rem;
+    font-weight: 300;
+}
+/* sidebar */
+.nav-link:hover {
+    background-color: #525252 !important;
+}
+
+.nav-link .hs-icon {
+    transition: all 1s;
+}
+
+.nav-link:hover .hs-icon {
+    transform: rotate(360deg);
+}
+/* end sidebar */
+/* end history-yard */
 /* error */
 
 .error-message {
     font-size: medium;
     background-color: #ffbaba;
 }
-.error-message .icon{
-    width:20px;
-    height:20px;
+.error-message .icon {
+    width: 20px;
+    height: 20px;
 }
 
 /* end error */

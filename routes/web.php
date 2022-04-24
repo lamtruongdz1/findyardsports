@@ -36,6 +36,9 @@ Route::post('/comment', [CommentController::class,'store'])->name('comment.add')
 
 // partner routes
 // Route::get('/partner',[PartnerController::class,'index'])->name('partner');
+Route::get('/partner/login',[PartnerController::class,'login'])->name('partner.login');
+Route::post('/partner/getLogin',[PartnerController::class,'getLogin'])->name('partner.getLogin');
+Route::get('/partner/quan-ly-san-bong',[PartnerController::class,'manage'])->name('partner.manage');
 Route::resource('partner', PartnerController::class);
 
 

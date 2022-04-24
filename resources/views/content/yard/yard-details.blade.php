@@ -137,7 +137,7 @@
         </div> --}}
         <div class="yard-detail-comments">
             <div class="be-comment-block">
-                <h1 class="comments-title">Comments ({{ $total_comment }})</h1>
+                <h1 class="comments-title">Bình luận :  ({{ $total_comment }})</h1>
                 @foreach ($comments as $comment)
                     <div class="be-comment">
                         <div class="be-img-comment">
