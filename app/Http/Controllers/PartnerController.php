@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\District;
+use App\Models\Partner;
 class PartnerController extends Controller
 {
     /**
@@ -13,7 +14,8 @@ class PartnerController extends Controller
      */
     public function index()
     {
-        return view('content.partner.index');
+        $districts = District::all();
+        return view('content.partner.index',compact('districts'));
     }
 
     /**
@@ -34,7 +36,8 @@ class PartnerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Partner::create($request->all());
+        return redirect()->back();
     }
 
     /**

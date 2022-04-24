@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Partner extends Model
 {
+    protected $table = 'partners';
+    protected $fillable = ['name', 'email', 'password', 'phone', 'yard_name', 'time_open', 'time_close', 'address', 'active'];
     use HasFactory;
     public function yard()
     {

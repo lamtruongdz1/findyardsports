@@ -35,7 +35,12 @@ Route::get('/vnpay_return', [YardController::class, 'return']);
 Route::post('/comment', [CommentController::class,'store'])->name('comment.add');
 
 // partner routes
-Route::get('/partner',[PartnerController::class,'index'])->name('partner');
+// Route::get('/partner',[PartnerController::class,'index'])->name('partner');
+Route::resource('partner', PartnerController::class);
+
+
+
+
 Auth::routes();
 
 // Blog routes

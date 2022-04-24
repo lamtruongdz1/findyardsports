@@ -47,7 +47,8 @@
             <header class="modal-header">
                 <h2>Đăng ký dành cho chủ sân</h2>
             </header>
-            <form action="" class="manage-form">
+            <form action="{{ route('partner.store') }}" method="POST" class="manage-form">
+                @csrf
                 <div class="modal-list">
                     <div class="modal-body">
                         <div class="manage-form-group">
@@ -88,39 +89,17 @@
                         </div>
                         <div class="modal-body">
                             <div class="manage-form-group">
-                                <label for="">Thành phố/ Tỉnh</label>
+                                <label for="">Thành phố/ Tỉnh: </label>
                                 <select name="city" id="city">
                                     <option value="50" selected="selected">Hồ Chí Minh</option>
                                 </select>
                             </div>
                             <div class="manage-form-group">
-                                <label for="">Quận / Huyện</label>
+                                <label for="">Quận / Huyện: </label>
                                 <select name="district" id="district">
-                                    <option value="50" selected="selected">Quận 1</option>
-                                    <option>Huyện Bình Chánh</option>
-                                    <option>Huyện Cần Giờ</option>
-                                    <option>Huyện Củ Chi</option>
-                                    <option>Huyện Hóc Môn</option>
-                                    <option>Huyện Nhà Bè</option>
-                                    <option>Quận 1</option>
-                                    <option>Quận 2</option>
-                                    <option>Quận 3</option>
-                                    <option>Quận 4</option>
-                                    <option>Quận 5</option>
-                                    <option>Quận 6</option>
-                                    <option>Quận 7</option>
-                                    <option>Quận 8</option>
-                                    <option>Quận 9</option>
-                                    <option>Quận 10</option>
-                                    <option>Quận 11</option>
-                                    <option>Quận 12</option>
-                                    <option>Quận Bình Tân</option>
-                                    <option>Quận Bình Thạnh</option>
-                                    <option>Quận Gò Vấp</option>
-                                    <option>Quận Phú Nhuận</option>
-                                    <option>Quận Tân Bình</option>
-                                    <option>Quận Tân Phú</option>
-                                    <option>Quận Thủ Đức</option>
+                                   @foreach ($districts as $district)
+                                       <option value="{{ $district->id }}">{{ $district->name }}</option>
+                                   @endforeach
                                 </select>
 
                             </div>
@@ -130,11 +109,11 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <footer class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </footer>
             </form>
-        </div>
-        <footer class="modal-footer">
-            <a href="" class="btn">Đăng ký</a>
-        </footer>
     </div>
     </div>
 @endsection

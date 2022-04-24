@@ -13,7 +13,7 @@
         @guest
 
             <div class="login">
-                <a href="{{ route('partner') }}">Dành cho chủ sân</a>
+                <a href="{{ route('partner.index') }}">Dành cho chủ sân</a>
                 <a href="{{ route('login') }}">Đăng nhập</a>
                 <a href="{{ route('register') }}">Đăng ký</a>
             </div>
