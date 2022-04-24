@@ -6,7 +6,7 @@
         </div>
         <ul class="menu">
             <li><a href="/">trang chủ</a></li>
-            <li><a href="/san/tim">Đặt sân</a></li>
+            <li><a href="/san">Đặt sân</a></li>
             <li><a href="">Liên hệ</a></li>
 
         </ul>

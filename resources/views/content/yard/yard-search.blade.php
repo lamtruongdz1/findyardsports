@@ -3,69 +3,48 @@
     <section class="booking-options">
         <div class="booking-form-options">
             <div class="booking-search-form">
+
                 <div class="input-name form-group">
-                    <input type="text" name="name" id="name" placeholder="tên quận hoặc tên sân bóng" class="form-control"
+                    <input type="text" name="name" id="name" placeholder="tên sân bóng" class="form-control"
                         autocomplete="off" />
                 </div>
                 <div class="input-date form-group">
-                    <input type="date" name="" id="" placeholder="11/01/2022" class="form-control" />
+                    @if ($errors->first('date'))
+                    <span class="error-message">
+                        <x-bx-error class='icon' />
+                        {{ $errors->first('date') }}
+                    </span>
+                @endif
+
+                <select class="form-select" name="date" id="date">
+                    <option value="" selected>Chọn Ngày</option>
+                    @foreach ($period as $date)
+                        <option value="{{ $date->format('Y-m-d') }}">
+                            {{ $date->format('d-m-Y') }}</option>
+                    @endforeach
+                </select>
                 </div>
                 <div class="input-time form-group">
-                    <input type="time" name="" id="" placeholder="10:30" class="form-control" />
-                </div>
-                <div class="input-btn">
-                    <input type="submit" class="btn" value="tìm kiếm" />
-                </div>
-            </div>
-            <div class="booking-filter-form">
-                <ul class="filter-list">
-                    <li class="filter-item filter-half">
-                        <button onclick="showDropdown()" type="button" class="dropdown-filter">
-                            <h2>Quận / Huyện</h2>
-                            <span>Tp. Hồ Chí Minh</span>
-                            <i class='bx bxs-down-arrow'></i>
-                        {{-- </button>
-                        <div class="dropdown-content" id="dropMenu">
-                            <div class="dropdown-content-left">
-                                @foreach ($districts as $district)
-                                    <div class="location-content">
-                                        <input type="checkbox" id="{{ $district->name }}">
-                                        <label for="{{ $district->name }}">{{ $district->name }}</label>
-                                    </div>
+                    @if ($errors->first('date'))
+                                <span class="error-message">
+                                    <x-bx-error class='icon' />
+                                    {{ $errors->first('time') }}
+                                </span>
+                            @endif
+                            <select class="form-select" name="time" id="time">
+                                <option value="" selected>Chọn thời gian</option>
+                                @foreach ($slots as $slot)
+                                    <option value="{{ $slot->format('H:i') }}">
+                                        {{ $slot->format('H:i') }}</option>
                                 @endforeach
-                            </div>
-                        </div> --}}
-                    </li>
-                    <li class="filter-item">
-                        <button onclick="showDropDownType()" type="button" class="dropdown-filter">
-                            <h2>Loại sân</h2>
-                            <span>sân 5</span>
-                            <i class='bx bxs-down-arrow'></i>
-                        </button>
-                        {{-- <div class="dropdown-type">
-                            <ul class="dropdown-type-list" id="dropDownType">
-                                @foreach ($category as $item)
-                                    <li class="dropdown-type-item">{{ $item->name }}</li>
-                                @endforeach
+                            </select>
+                </div>
 
-                            </ul>
-                        </div> --}}
-                    </li>
-                    <li class="filter-item">
-                        <button onclick="showDropDownTime()" type="button" class="dropdown-filter">
-                            <h2>Thời gian</h2>
-                            <span>1 tiếng</span>
-                            <i class='bx bxs-down-arrow'></i>
-                        </button>
-                        <div class="dropdown-time">
-                            <ul class="dropdown-time-list" id="dropDownTime">
-                                <li class="dropdown-time-item">1 tiếng</li>
-                                <li class="dropdown-time-item">1.5 tiếng</li>
-                                <li class="dropdown-time-item">2 tiếng</li>
-                            </ul>
-                        </div>
-                    </li>
-                </ul>
+                <form action="/search" method="GET" class="booking-bar-form">
+                    <div class="input-btn">
+                        <input type="submit" class="btn" value="tìm kiếm" />
+                    </div>
+                </form>
             </div>
         </div>
     </section>
@@ -99,9 +78,9 @@
             @endforeach
         </div>
     </section>
-        {{-- @if ($yards->links()->paginator->hasPages())
+        @if ($yards->links()->paginator->hasPages())
                 {{ $yards->links() }}
-        @endif --}}
+        @endif
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>

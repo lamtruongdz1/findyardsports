@@ -62,7 +62,7 @@
                 </div>
                 <div class="heading-title-all">
                     <a href="/san/tim">
-                        <h2 class="heading-title-all">xem tất cả</h2>
+                        <h2 class="heading-title-all">xem tất cả sân</h2>
                     </a>
                     <i class='bx bx-chevrons-right'></i>
                 </div>

@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 // Home routes
 Route::get('/',[YardController::class,'index'])->name('home');
 Route::get('/home',[YardController::class,'index']);
-Route::get('/san/tim',[YardController::class,'yard']);
+Route::get('/san',[YardController::class,'yard']);
 Route::get('/san-bong/{param}',[YardController::class,'yard_district']);
 Route::get('/san/{param}',[YardController::class,'show']);
 Route::get('/datsan',[YardController::class,'pay'])->name('pay');

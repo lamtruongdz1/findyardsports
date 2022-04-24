@@ -88,6 +88,9 @@ class YardController extends Controller
 
     public function search(Request $request)
     {
+        $slots = (new TimeFilter())->get();
+        $period = CarbonPeriod::since((now()))->days()->until(now()->addWeek())->toArray();
+
         $messages = [
             'time.required' => 'Vui lòng chọn giờ đặt sân',
             'date.required' => 'Vui lòng chọn ngày cần đặt sân'
@@ -106,16 +109,22 @@ class YardController extends Controller
             $yards = Yard::where('name', 'LIKE', '%' . $search_text . '%')
                 ->orWhere("address", "like", "%" . $search_text . "%")
                 ->where('time_open', '<=', $time)
+                ->paginate(6);
+            $data = Yard::where('name', 'LIKE', '%' . $search_text . '%')
+                ->orWhere("address", "like", "%" . $search_text . "%")
+                ->where('time_open', '<=', $time)
                 ->get();
-            $total_yard = $yards->count();
+            $total_yard = $data->count();
             return view('content.yard.yard-search', compact('yards', 'total_yard'));
         } else {
 
             $time = $_GET['time'];
-            $yards = Yard::where('time_open', '<=', $time)->get();
+            $yards = Yard::where('time_open', '<=', $time)->paginate(6);
+            $data = Yard::where('time_open', '<=', $time)->get();
 
-            $total_yard = $yards->count();
-            return view('content.yard.yard-search', compact('yards', 'total_yard'));
+            $total_yard = $data->count();
+            return view('content.yard.yard-search', compact('yards', 'total_yard','period',
+            'slots'));
         }
     }
 
