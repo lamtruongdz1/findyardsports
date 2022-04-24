@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Comment;
+use Illuminate\Support\Facades\DB;
 use Session;
 
 class CommentController extends Controller
@@ -38,5 +39,22 @@ class CommentController extends Controller
         return back();
     }
 
+    public function edit(Request $request,$id) {
+        $data = DB::table('comments')->find($id); 
+        return view('edit',compact('data')); 
+    }
+
+    public function update(Request $request, $id)
+        {
+        $data = Comment::find($id);
+        $data->description = $request->description;
+        $data->save();
+    }
+    
+    public function delete_cmt(Request $request, $param) {
+        Comment::where('id',$param)->delete();
+
+        return back();
+    }
 
 }
