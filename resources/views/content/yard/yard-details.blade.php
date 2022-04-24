@@ -136,115 +136,43 @@
                 width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
         </div>
         <div class="yard-detail-comments">
-            <h1>Đánh giá</h1>
-            @foreach ($comments as $comment)
-                <div class="yard-detail-comment">
-                <div class="container">
-        <div class="be-comment-block">
-	        <h1 class="comments-title">Comments (3)</h1>
-	        <div class="be-comment">
-		        <div class="be-img-comment">	
-			<a href="blog-detail-2.html">
-				<img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" class="be-ava-comment">
-			</a>
-		</div>
-		<div class="be-comment-content">
-			
-				<span class="be-comment-name">
-					<a href="blog-detail-2.html">Ravi Sah</a>
-					</span>
-				<span class="be-comment-time">
+            <div class="be-comment-block">
+                <h1 class="comments-title">Comments ({{ $total_comment }})</h1>
+                @foreach ($comments as $comment)
+                <div class="be-comment">
+                    <div class="be-img-comment">
+                <a href="blog-detail-2.html">
+                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" class="be-ava-comment">
+                </a>
+            </div>
+            <div class="be-comment-content">
 
-					May 27, 2015 at 3:14am
-				</span>
+                    <span class="be-comment-name">
+                        <a href="">{{ $comment->user->name }}</a>
+                        </span>
+                    <span class="be-comment-time">
 
-			<p class="be-comment-text">
-				Pellentesque gravida tristique ultrices. 
-				Sed blandit varius mauris, vel volutpat urna hendrerit id. 
-				Curabitur rutrum dolor gravida turpis tristique efficitur.
-			</p>
-		</div>
-	</div>
-	<div class="be-comment">
-		<div class="be-img-comment">	
-			<a href="blog-detail-2.html">
-				<img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="" class="be-ava-comment">
-			</a>
-		</div>
-		<div class="be-comment-content">
-			<span class="be-comment-name">
-				<a href="blog-detail-2.html">Phoenix, the Creative Studio</a>
-			</span>
-			<span class="be-comment-time">
-				May 27, 2015 at 3:14am
-			</span>
-			<p class="be-comment-text">
-				Nunc ornare sed dolor sed mattis. In scelerisque dui a arcu mattis, at maximus eros commodo. Cras magna nunc, cursus lobortis luctus at, sollicitudin vel neque. Duis eleifend lorem non ant. Proin ut ornare lectus, vel eleifend est. Fusce hendrerit dui in turpis tristique blandit.
-			</p>
-		</div>
-	</div>
-	<div class="be-comment">
-		<div class="be-img-comment">	
-			<a href="blog-detail-2.html">
-				<img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="" class="be-ava-comment">
-			</a>
-		</div>
-		<div class="be-comment-content">
-			<span class="be-comment-name">
-				<a href="blog-detail-2.html">Cüneyt ŞEN</a>
-			</span>
-			<span class="be-comment-time">
-				May 27, 2015 at 3:14am
-			</span>
-			<p class="be-comment-text">
-				Cras magna nunc, cursus lobortis luctus at, sollicitudin vel neque. Duis eleifend lorem non ant
-			</p>
-		</div>
-	</div>
-	<form class="form-block">
-		<div class="row">
-			<div class="col-xs-12 col-sm-6">
-				<div class="form-group fl_icon">
-					<div class="icon"><i class="fa fa-user"></i></div>
-					<input class="form-input" type="text" placeholder="Your name">
-				</div>
-			</div>
-			<div class="col-xs-12 col-sm-6 fl_icon">
-				<div class="form-group fl_icon">
-					<div class="icon"><i class="fa fa-envelope-o"></i></div>
-					<input class="form-input input-mail" type="text" placeholder="Your email">
-				</div>
-			</div>
-			<div class="col-xs-12">									
-				<div class="form-group">
-					<textarea class="form-input" required="" placeholder="Your text"></textarea>
-				</div>
-			</div>
-			<a class="btn btn-primary pull-right">submit</a>
-		</div>
-	</form>
-</div>
-</div>
-                    <div class="yard-detail-comment-left">
-                        <p>{{ $comment->user->name }}
-                    </div>
-                    <div class="yard-detail-comment-right">
-                        <p>{{ $comment->description }}</p> <span>{{ $comment->created_at }}</span>
-                    </div>
-                </div>
+                        {{ $comment->created_at }}
+                    </span>
+
+                <p class="be-comment-text">
+                    {{ $comment->description }}
+                </p>
+            </div>
             @endforeach
-            <form method="post" action="{{ route('comment.add') }}">
-                @csrf
-
-
-                <div class="form-group">
-                    <input type="text" name="description" class="form-control" />
-                    <input type="hidden" name="yard_id" value="{{ $yard->id }}" />
+        </div>
+        <form class="form-block" method="post" action="{{ route('comment.add') }}">
+            @csrf
+            <input type="hidden" name="yard_id" value="{{ $yard->id }}" />
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="form-group">
+                        <textarea class="form-input" name="description" required="" placeholder="Viết bình luận tại đây ..."></textarea>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <input type="submit" class="btn btn-primary" value="Add Comment" />
-                </div>
-            </form>
+                <input type="submit" class="btn btn-primary" value="Gửi" />
+            </div>
+        </form>
         </div>
         <div class="yard-detail-similar swiper">
             <h1>Sân trong khu vực</h1>

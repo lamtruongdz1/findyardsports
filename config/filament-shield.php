@@ -20,7 +20,7 @@ return [
 
     'filament_user' => [
         'role_name' => 'filament_user',
-        'enabled' => true
+        'enabled' => false
     ],
 
     /*

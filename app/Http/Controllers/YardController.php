@@ -8,6 +8,7 @@ use App\Models\Yard;
 use App\Models\Blog;
 use App\Models\Booking;
 use App\Models\typeYards;
+use App\Models\Comment;
 use App\Models\bookingdetail;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Category;
@@ -15,6 +16,8 @@ use App\Booking\TimeSlotGenerator;
 use RealRashid\SweetAlert\Facades\Alert;
 use Carbon\Carbon;
 use Carbon\CarbonPeriod;
+use COM;
+use FFI\CData;
 
 class YardController extends Controller
 {
@@ -115,6 +118,8 @@ class YardController extends Controller
 
         $yardLike = Yard::where('id_districts', $yard->id_districts)->limit(8)->get();
         $comments = $yard->comments()->orderBy('created_at', 'desc')->get();
+        $total_comment = $yard->comments()->count();
+
 
         $slots = (new TimeSlotGenerator($yard))->get();
         $period = CarbonPeriod::since((now()))->days()->until(now()->addWeek())->toArray();
@@ -131,7 +136,8 @@ class YardController extends Controller
                 'comments',
                 'yardLike',
                 'slots',
-                'period'
+                'period',
+                'total_comment'
             )
         );
     }
@@ -216,8 +222,6 @@ class YardController extends Controller
                 $updatebk->price = $data['price'];
                 $updatebk->quanlity = 1;
                 $updatebk->save();
-
-
             }
         }
 
@@ -229,7 +233,7 @@ class YardController extends Controller
         $vnp_HashSecret = "KBRZDIHERPCFNIKVPQTOVZWPJOXCSYPP"; //Chuỗi bí mật
 
         $vnp_TxnRef = $thembookings->id; //Mã đơn hàng. Trong thực tế Merchant cần insert đơn hàng vào DB và gửi mã này sang VNPAY
-        $vnp_OrderInfo = 'thanh toan hoa don web';
+        $vnp_OrderInfo = 'Thanh toán tiền đặt sân';
         $vnp_OrderType = 'billpayment';
         $vnp_Amount = $thembookings->total_price * 100;
         $vnp_Locale = 'vn';
@@ -293,7 +297,7 @@ class YardController extends Controller
         } else {
             echo json_encode($returnData);
         }
-        // vui lòng tham khảo thêm tại code demo
+
     }
 
 
