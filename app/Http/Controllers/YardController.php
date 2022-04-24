@@ -19,6 +19,7 @@ use Carbon\Carbon;
 use Carbon\CarbonPeriod;
 use DB;
 use Session;
+use App\Booking\RandomCodeBill;
 
 class YardController extends Controller
 {
@@ -240,7 +241,7 @@ class YardController extends Controller
 
         $data = $request->all();
         $thembookings = new Booking();
-
+        $thembookings->bill_code =  (new RandomCodeBill())->getRandomCodeBill();
         $thembookings->user_id = \Auth::user()->id;
         $thembookings->name = $data['name'];
         $thembookings->type_yard = $data['yard_type'];

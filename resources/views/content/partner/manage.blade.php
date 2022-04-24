@@ -13,8 +13,8 @@
               href="/"
               class="title-col d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none"
             >
-              <img src="images/logo.png" alt="" />
-              <span class="title-h">FindYardSport</span>
+              <img src="{{ asset('frontend/images/logo.png') }} alt=" />
+              <span class="title-h">Find Yard Sport</span>
             </a>
             <hr />
             <ul class="nav nav-pills flex-column mb-auto">

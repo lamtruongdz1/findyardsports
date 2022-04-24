@@ -20,7 +20,7 @@
         @endguest
         @auth
             <div class="login">
-                <a href="">Lịch sử đặt sân</a>
+                <a href="{{ route('payment.manage') }}">Lịch sử đặt sân</a>
                 <a href="{{ route('profile.show') }}">{{ Auth::user()->name }}</a>
                 <a href="{{ route('logout') }}" onclick="event.preventDefault();
                                     document.getElementById('logout-form').submit();">
