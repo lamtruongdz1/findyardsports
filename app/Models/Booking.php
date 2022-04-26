@@ -19,4 +19,8 @@ class Booking extends Model
     {
         return $this->belongsTo(Yard::class);
     }
+    protected $casts = [
+        'pay_booblean' => 'boolean',
+        'type_yard' => 'float',
+    ];
 }

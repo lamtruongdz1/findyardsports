@@ -233,32 +233,37 @@ class YardController extends Controller
 
     public function thanhtoansan(Request $request)
     {
-        // $request->validate([
-        //     'hovaten' => 'required',
-        //     'sodienthoai' => 'required',
-        //     'email' => 'required',
-        // ]);
+        $request->validate([
+            'name' => 'required',
+        ]);
 
         $data = $request->all();
         $thembookings = new Booking();
         $thembookings->bill_code =  (new RandomCodeBill())->getRandomCodeBill();
         $thembookings->user_id = \Auth::user()->id;
+        $thembookings->yard_id = $data['yard_id'];
         $thembookings->name = $data['name'];
         $thembookings->type_yard = $data['yard_type'];
-        $thembookings->address = $data['address'];
-        $thembookings->phone = $data['phone'];
-        $thembookings->date = $data['date'];
-        $thembookings->time = $data['time'];
+
+
         // thời gian đặt sân
+        $thembookings->time = $data['time'];
         $thembookings->time_da = $data['time_da'];
 
         // tính toán sau khi chọn time
         $minutes = $data['time_da'] * 60;
         $thembookings->end_time = Carbon::parse($data['time'])->addMinutes($minutes)->format('H:i');
+
+          // tổng tiền = giá sân * thời gian đặt sân * loại sân
+        $thembookings->total_price = $data['price'] * $data['time_da'] * $thembookings->type_yard;
+
+        $thembookings->address = $data['address'];
+        $thembookings->phone = $data['phone'];
+        $thembookings->date = $data['date'];
+
         // trạng thái đặt sâan
         $thembookings->status = 1; // 1 là đã đặt sân
-        // tổng tiền = giá sân * thời gian đặt sân * loại sân
-        $thembookings->total_price = $data['price'] * $data['time_da'] * $data['yard_type'];
+
         // dd($thembookings->total_price);
         if (Booking::where('date', '=', $data['date'])->exists() && Booking::where('time', '=', $data['time'])->exists()) {
             return redirect()->back()->with('loi', 'Đã có người đặt sân trong thời gian này');
@@ -268,9 +273,7 @@ class YardController extends Controller
 
                 $updatebk = new bookingdetail();
                 $updatebk->booking_id = $thembookings->id;
-                $updatebk->yard_id = $data['yard_id'];
                 $updatebk->price = $data['price'];
-                $updatebk->quanlity = 1;
                 $updatebk->save();
 
                 // update total_booking after booking

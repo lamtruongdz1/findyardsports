@@ -579,7 +579,86 @@ ul.pagination .page-item .page-link:hover {
     background-color: #e9ecef;
     border-color: #dee2e6;
 }
+/* update cho nay */
+.reviews{
+    padding-top: 15rem;
+}
+.reviews h1{
+    font-size: 2.5rem;
+    color: var(--yellow);
+    margin-bottom: 2rem;
+    text-align: center;
+}
+.bdge {
+    height: 21px;
+    background-color: orange;
+    color: #fff;
+    font-size: 11px;
+    padding: 8px;
+    border-radius: 4px;
+    line-height: 3px
+}
 
+.comments {
+    text-decoration: underline;
+    text-underline-position: under;
+    cursor: pointer
+}
+
+.dot {
+    height: 7px;
+    width: 7px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.hit-voting:hover {
+    color: blue
+}
+
+.hit-voting {
+    cursor: pointer
+}
+
+.servicedrop {
+    transition-delay: 1s
+}
+
+.action-collapse {
+    cursor: pointer
+}
+.rounded-circle{
+    width: 10rem;
+    height: 10rem;
+    object-fit: cover;
+}
+.h5, h5{
+    font-size: 1.6rem!important;
+}
+.stars{
+    color: var(--yellow);
+    font-size: 1.5rem;
+}
+.form-reviews{
+    padding: 1rem!important;
+    font-size: 1.5rem!important;
+}
+.btn-reviews{
+    font-size: 1.5rem!important;
+}
+.title-reviews{
+    font-size: 2rem;
+    color: var(--yellow);
+}
+.icon-rv{
+    font-size: 1.6rem;
+}
+.des-rv{
+    font-size: 1.2rem;
+    color: var(--black2);
+}
+/* end update */
 /* booking options */
 .booking-options {
     margin-top: 8rem;

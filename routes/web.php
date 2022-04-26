@@ -5,6 +5,7 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\RatingController;
 
 
 use Illuminate\Support\Facades\Route;
@@ -45,8 +46,11 @@ Route::post('/partner/getLogin',[PartnerController::class,'getLogin'])->name('pa
 Route::get('/partner/quan-ly-san-bong',[PartnerController::class,'manage'])->name('partner.manage');
 Route::resource('partner', PartnerController::class);
 
+// manager routes
+Route::get('quan-ly-san-bong/bill', [UserController::class, 'getBill'])->name('bill.list');
 
-
+// rating routes
+Route::get('/rating',[RatingController::class,'index'])->name('rating');
 
 Auth::routes();
 

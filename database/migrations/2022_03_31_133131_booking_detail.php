@@ -20,9 +20,7 @@ return new class extends Migration
             // $table->unsignedBigInteger('yard_id');
             // $table->foreign('yard_id')->references('id')->on('yards');
             $table->BigInteger('booking_id');
-            $table->BigInteger('yard_id');
             $table->string('price',150);
-            $table->string('quanlity',150);
             $table->timestamps();
             // $table->foreignId('id')->references('id_districts')->on('yards');
         });

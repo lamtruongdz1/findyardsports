@@ -1,4 +1,8 @@
 @extends('layout.client.master')
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"/>
+<link href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" rel="stylesheet">
 @section('content')
     <!-- pay -->
     <section class="history-yard" id="history-yard">
@@ -35,7 +39,7 @@
                             </li>
                             <li class="mb-3">
                                 <a href="{{ route('logout') }}" class="nav-link text-white" onclick="event.preventDefault();
-                            document.getElementById('logout-form').submit();">
+                                document.getElementById('logout-form').submit();">
                                     <i class="hs-icon bx bx-log-out-circle"></i><span class="content-h ms-2">Đăng
                                         xuất</span>
 
@@ -88,52 +92,23 @@
                                     </div>
                                 </div>
                             </form>
-                            <table class="table align-middle mb-0 bg-white">
-                                <thead class="bg-light">
+                            <table class="table table-bordered yajra-datatable" id="datatable">
+                                <thead>
                                     <tr>
                                         <th>STT</th>
-                                        <th>Mã Bill</th>
+                                        <th>Mã Hóa Đơn</th>
+                                        <th>Sân </th>
                                         <th>Giá</th>
-                                        <th>Sân</th>
-                                        <th>Thời gian đặt chỗ</th>
-                                        <th>Trạng thái	</th>
                                         <th>Ngày đặt</th>
-                                        <th>Hành động</th>
+                                        <th>Thời gian đặt chỗ</th>
+                                        <th>Trạng thái</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>FE7E3</td>
-                                        <td>150</td>
-                                        <td>Trí Hải</td>
-                                        <td>12:00 - 13:00</td>
-                                        <td>
-                                            <div class="d-flex align-items-center">
-                                                <img src="https://mdbootstrap.com/img/new/avatars/8.jpg" alt=""
-                                                    style="width: 45px; height: 45px" class="rounded-circle" />
-                                                <div class="ms-3">
-                                                    <p class="fw-bold mb-1">John Doe</p>
-                                                    <p class="text-muted mb-0">john.doe@gmail.com</p>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <p class="fw-normal mb-1">Software engineer</p>
-                                            <p class="text-muted mb-0">IT department</p>
-                                        </td>
-                                        <td>
-                                            Active
-                                        </td>
-                                        <td>
-                                            <button type="button" class="btn btn-link btn-sm btn-rounded">
-                                                Edit
-                                            </button>
-                                        </td>
-                                    </tr>
-
                                 </tbody>
                             </table>
+
 
                         </div>
                     </div>
@@ -141,5 +116,7 @@
             </div>
         </div>
     </section>
+
+
     <!-- JavaScript Bundle with Popper -->
 @endsection

@@ -19,6 +19,7 @@ return new class extends Migration
             // $table->unsignedBigInteger('user_id');
             // $table->foreign('user_id')->references('id')->on('users');
             $table->BigInteger('user_id');
+            $table->BigInteger('yard_id');
             $table->string('name',150);
             $table->float('type_yard');
             $table->date('date');

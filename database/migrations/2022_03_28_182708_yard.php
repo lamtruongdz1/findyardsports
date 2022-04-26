@@ -13,6 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
+
         Schema::create('districts', function (Blueprint $table) {
             $table->id();
             $table->string('name',150)->unique();
