@@ -20,6 +20,9 @@ use Carbon\CarbonPeriod;
 use DB;
 use Session;
 use App\Booking\RandomCodeBill;
+use App\Mail\BookingBill;
+use Mail;
+use App\Mail\MyDemoMail;
 
 class YardController extends Controller
 {
@@ -243,6 +246,7 @@ class YardController extends Controller
         $thembookings->user_id = \Auth::user()->id;
         $thembookings->yard_id = $data['yard_id'];
         $thembookings->name = $data['name'];
+        $thembookings->email = $data['email'];
         $thembookings->type_yard = $data['yard_type'];
 
 
@@ -269,6 +273,7 @@ class YardController extends Controller
             return redirect()->back()->with('loi', 'Đã có người đặt sân trong thời gian này');
         } else {
             if ($thembookings->save()) {
+                Mail::to($data['email'])->send(new BookingBill($thembookings));
                 // add info booking_detail
 
                 $updatebk = new bookingdetail();

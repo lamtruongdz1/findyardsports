@@ -6,7 +6,7 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\RatingController;
-
+use App\Http\Controllers\SendEmailController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -52,6 +52,8 @@ Route::get('quan-ly-san-bong/bill', [UserController::class, 'getBill'])->name('b
 // rating routes
 Route::get('/rating',[RatingController::class,'index'])->name('rating');
 
+// send mail routes
+Route::get('/send_mail',[SendEmailController::class,'sendMail'])->name('send-mail');
 Auth::routes();
 
 // Blog routes

@@ -21,6 +21,7 @@ return new class extends Migration
             $table->BigInteger('user_id');
             $table->BigInteger('yard_id');
             $table->string('name',150);
+            $table->string('email',50);
             $table->float('type_yard');
             $table->date('date');
             $table->time('time');

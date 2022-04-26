@@ -266,6 +266,12 @@
                                         placeholder="Số điện thoại" type="text" name="phone" id="phone">
                                 </div>
                             </div>
+                            <div class="col-md-12 mb-12">
+                                <div class="form-control d-flex flex-column">
+                                <label>Email</label>
+                                <input class="inputbox" placeholder="Email" type="email" name="email" id="email">
+                                </div>
+                            </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6 col-12 mb-4">
@@ -364,6 +370,7 @@
         $('#btnclick').on('click', function(e) {
             e.preventDefault();
             var yard_id = $('#yard_id').val();
+            var email = $('#email').val();
             var yard_type = $('#yard_type').val();
             var time_da = $('#time_da').val();
             var price = $('#price').val();
@@ -379,6 +386,7 @@
                 dataType: "JSON",
                 data: {
                     yard_id: yard_id,
+                    email: email,
                     yard_type: yard_type,
                     time_da: time_da,
                     price: price,
