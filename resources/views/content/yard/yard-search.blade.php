@@ -5,7 +5,7 @@
             <div class="booking-search-form">
 
                 <div class="input-name form-group">
-                    <input type="text" name="name" id="name" placeholder="tên sân bóng" class="form-control"
+                    <input type="text" name="name" id="name" placeholder="{{ $search_text }}" class="form-control"
                         autocomplete="off" />
                 </div>
                 <div class="input-date form-group">
@@ -17,7 +17,7 @@
                 @endif
 
                 <select class="form-select" name="date" id="date">
-                    <option value="" selected>Chọn Ngày</option>
+                    <option value="" selected></option>
                     @foreach ($period as $date)
                         <option value="{{ $date->format('Y-m-d') }}">
                             {{ $date->format('d-m-Y') }}</option>
@@ -51,7 +51,7 @@
     <!-- yard section start -->
     <section class="yard" id="yard">
         <div class="heading">
-            <h1 class="heading-title">có  {{$total_yard}} sân được tìm thấy tại <span>Tp.Hồ chí minh</span></h1>
+            <h1 class="heading-title">có  {{$total_yard}} sân được tìm thấy vào ngày {{ $datetime }} tại <span>Tp.Hồ chí minh</span></h1>
         </div>
         </div>
         <div class="yard-list">

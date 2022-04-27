@@ -7,7 +7,7 @@
         <ul class="menu">
             <li><a href="/">trang chủ</a></li>
             <li><a href="/san">Đặt sân</a></li>
-            <li><a href="">Liên hệ</a></li>
+            <li><a href="{{ route('contact') }}">Liên hệ</a></li>
 
         </ul>
         @guest

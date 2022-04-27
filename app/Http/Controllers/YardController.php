@@ -121,14 +121,25 @@ class YardController extends Controller
             $total_yard = $data->count();
             return view('content.yard.yard-search', compact('yards', 'total_yard'));
         } else {
+            $search_text = $_GET['name'];
+            $datetime = Carbon::parse($_GET['date'])->format('d-m-Y');
+
 
             $time = $_GET['time'];
-            $yards = Yard::where('time_open', '<=', $time)->paginate(6);
-            $data = Yard::where('time_open', '<=', $time)->get();
+
+            $yards = Yard::where('name', 'LIKE', '%' . $search_text . '%')->where('time_open', '<=', $time)->paginate(6);
+            $data = Yard::where('name', 'LIKE', '%' . $search_text . '%')->where('time_open', '<=', $time)->get();
 
             $total_yard = $data->count();
-            return view('content.yard.yard-search', compact('yards', 'total_yard','period',
-            'slots'));
+            return view('content.yard.yard-search', compact(
+                'yards',
+                'total_yard',
+                'period',
+                'slots',
+                'datetime',
+                'time',
+                'search_text'
+            ));
         }
     }
 
@@ -258,7 +269,7 @@ class YardController extends Controller
         $minutes = $data['time_da'] * 60;
         $thembookings->end_time = Carbon::parse($data['time'])->addMinutes($minutes)->format('H:i');
 
-          // tổng tiền = giá sân * thời gian đặt sân * loại sân
+        // tổng tiền = giá sân * thời gian đặt sân * loại sân
         $thembookings->total_price = $data['price'] * $data['time_da'] * $thembookings->type_yard;
 
         $thembookings->address = $data['address'];

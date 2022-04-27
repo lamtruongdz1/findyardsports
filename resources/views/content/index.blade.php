@@ -1,4 +1,5 @@
     @extends('layout.client.master')
+    @section('title', 'Trang Chủ')
     @section('content')
         <section class="booking-bar">
             <div class="booking-list">
