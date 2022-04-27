@@ -1,4 +1,6 @@
 @extends('layout.client.master')
+@section('title','Quản lý lịch đặt')
+
 <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"/>
 <link href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" rel="stylesheet">
@@ -56,11 +58,6 @@
                 <div class="col-md-8">
                     <div class="history-yard-content">
                         <div class="border-light">
-                            <div class="row justify-content-center m-2">
-                                <h2 class="w-100 text-center d-none d-md-block">
-                                    Lịch đặt
-                                </h2>
-                            </div>
                             <form action="" class="form-history">
                                 <div class="row pl-md-2">
                                     <div class="col-xl-3 col-md-3 mb-4">

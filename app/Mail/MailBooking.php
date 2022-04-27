@@ -7,10 +7,10 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use App\Models\Booking;
-class BookingBill extends Mailable
+class MailBooking extends Mailable
 {
     use Queueable, SerializesModels;
-
+    public $thembookings;
     /**
      * Create a new message instance.
      *
@@ -28,6 +28,6 @@ class BookingBill extends Mailable
      */
     public function build()
     {
-        return $this->view('content.mail.mail_booking');
+        return $this->markdown('emails.bookings')->with('thembookings', $this->thembookings);
     }
 }
