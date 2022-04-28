@@ -1,8 +1,11 @@
 @extends('layout.client.master')
+@section('title','Thông tin chi tiết sân')
+
+@section('style-custom')
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
-@section('content')
+@endsection
+    @section('content')
     <div class="yard-detail-image">
         <img src="{{ $yard->img }}" alt="">
     </div>
@@ -241,6 +244,8 @@
                                 <div class=" radio-btn mb-3"> <label> <input type="radio" value="2" id="yard_type"
                                             name="yard_type"> sân 11 <span></span> </label> </div>
                             </div>
+
+
                         </div>
 
                         <div class="row">
@@ -258,19 +263,35 @@
                                 <div class="form-control d-flex flex-column">
                                     <p class="h-blue">Họ Và tên</p>
                                     <input class="inputbox" placeholder="Họ và tên" type="text" name="name" id="name">
+
                                 </div>
+                                @if ($errors->first('name'))
+                                <span class="text-danger">
+                                    {{ $errors->first('name') }}
+                                </span>
+                            @endif
                             </div>
                             <div class="col-md-6 col-12 mb-4">
                                 <div class="form-control d-flex flex-column">
                                     <p class="h-blue">Số Điện Thoại</p> <input class="inputbox"
                                         placeholder="Số điện thoại" type="text" name="phone" id="phone">
                                 </div>
+                                @if ($errors->first('phone'))
+                                <span class="text-danger">
+                                    {{ $errors->first('phone') }}
+                                </span>
+                            @endif
                             </div>
                             <div class="col-md-12 mb-12">
                                 <div class="form-control d-flex flex-column">
                                 <label>Email</label>
                                 <input class="inputbox" placeholder="Email" type="email" name="email" id="email">
                                 </div>
+                                @if ($errors->first('email'))
+                                <span class="text-danger">
+                                    {{ $errors->first('email') }}
+                                </span>
+                            @endif
                             </div>
                         </div>
                         <div class="row">
@@ -283,6 +304,11 @@
                                             {{ $date->format('d-m-Y') }}</option>
                                     @endforeach
                                 </select>
+                                @if ($errors->first('date'))
+                                <span class="text-danger">
+                                    {{ $errors->first('date') }}
+                                </span>
+                            @endif
                             </div>
                             <div class="col-md-6 col-12 mb-4">
                                 <label for="">Giờ đặt</label>
@@ -293,6 +319,11 @@
                                         </option>
                                     @endforeach
                                 </select>
+                                @if ($errors->first('time'))
+                                <span class="text-danger">
+                                    {{ $errors->first('time') }}
+                                </span>
+                            @endif
 
                             </div>
                             <input class="inputbox textmuted" type="hidden" name="address" value="{{ $yard->address }}"
@@ -319,7 +350,7 @@
         </div>
     </div>
 @endsection
-@section('js')
+@section('script-custom')
     <script>
         jQuery(document).ready(function($) {
             $(document).on('click', '#strongslot', function() {
@@ -350,59 +381,60 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
         integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous">
     </script>
-@endsection
-<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
-<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
-<!-- CSS -->
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" />
-<!-- Default theme -->
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css" />
-<!-- Semantic UI theme -->
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css" />
-<!-- Bootstrap theme -->
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css" />
-<!-- Bootstrap theme -->
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css" />
-<script>
-    jQuery(document).ready(function($) {
-        $('#btnclick').on('click', function(e) {
-            e.preventDefault();
-            var yard_id = $('#yard_id').val();
-            var email = $('#email').val();
-            var yard_type = $('#yard_type').val();
-            var time_da = $('#time_da').val();
-            var price = $('#price').val();
-            var address = $('#address').val();
-            var date = $('#date').val();
-            var time = $('#time').val();
-            var name = $('#name').val();
-            var phone = $('#phone').val();
-            var _token = $('input[name="_token"]').val();
-            $.ajax({
-                url: '{{ route('thanhtoansan') }}',
-                method: "post",
-                dataType: "JSON",
-                data: {
-                    yard_id: yard_id,
-                    email: email,
-                    yard_type: yard_type,
-                    time_da: time_da,
-                    price: price,
-                    address: address,
-                    date: date,
-                    time: time,
-                    name: name,
-                    phone: phone,
-                    _token: _token
-                },
-                success: function(data) {
-                    if (data == 'done') {
-                        alertify.success('đặt hàng thành công');
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+    <!-- CSS -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" />
+    <!-- Default theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css" />
+    <!-- Semantic UI theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css" />
+    <!-- Bootstrap theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css" />
+    <!-- Bootstrap theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css" />
+    <script>
+        jQuery(document).ready(function($) {
+            $('#btnclick').on('click', function(e) {
+                e.preventDefault();
+                var yard_id = $('#yard_id').val();
+                var email = $('#email').val();
+                var yard_type = $('#yard_type').val();
+                var time_da = $('#time_da').val();
+                var price = $('#price').val();
+                var address = $('#address').val();
+                var date = $('#date').val();
+                var time = $('#time').val();
+                var name = $('#name').val();
+                var phone = $('#phone').val();
+                var _token = $('input[name="_token"]').val();
+                $.ajax({
+                    url: '{{ route('thanhtoansan') }}',
+                    method: "post",
+                    dataType: "JSON",
+                    data: {
+                        yard_id: yard_id,
+                        email: email,
+                        yard_type: yard_type,
+                        time_da: time_da,
+                        price: price,
+                        address: address,
+                        date: date,
+                        time: time,
+                        name: name,
+                        phone: phone,
+                        _token: _token
+                    },
+                    success: function(data) {
+                        if (data == 'done') {
+                            alertify.success('đặt hàng thành công');
+                        }
                     }
-                }
+                });
             });
         });
-    });
-</script>
+    </script>
+@endsection
+

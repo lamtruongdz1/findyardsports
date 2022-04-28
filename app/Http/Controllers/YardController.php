@@ -246,9 +246,28 @@ class YardController extends Controller
 
     public function thanhtoansan(Request $request)
     {
+
+        $messages = [
+            'time.required' => 'Vui lòng chọn giờ đặt sân',
+            'date.required' => 'Vui lòng chọn ngày cần đặt sân',
+            'name.required' => 'Vui lòng nhập họ tên',
+            'phone.required' => 'Vui lòng nhập số điện thoại',
+            'address.required' => 'Vui lòng nhập địa chỉ',
+            'yard_type.required' => 'Vui lòng chọn loại sân',
+            'time_da.required' => 'Vui lòng chọn thời gian đặt sân',
+
+        ];
+
         $request->validate([
-            'name' => 'required',
-        ]);
+        'yard_type' => 'required',
+        'time_da' => 'required',
+        'name' => 'required',
+        'phone' => 'required',
+        'email' => 'required',
+        'date' => 'required',
+        'time' => 'required',
+
+        ], $messages);
 
         $data = $request->all();
         $thembookings = new Booking();
@@ -280,12 +299,13 @@ class YardController extends Controller
 
         // dd($thembookings->total_price);
         if (Booking::where('date', '=', $data['date'])->exists() && Booking::where('time', '=', $data['time'])->exists()) {
-            return redirect()->back()->with('loi', 'Đã có người đặt sân trong thời gian này');
+            alert()->error('Thông Báo', 'Đã có người đặt sân trong thời gian này, vui lòng chọn thời gian khác');
+            return redirect()->back();
         } else {
             if ($thembookings->save()) {
                 Mail::to($data['email'])->send(new MailBooking($thembookings));
                 // add info booking_detail
-
+                alert()->success('Đặt sân thành công.', 'Thành công');
                 $updatebk = new bookingdetail();
                 $updatebk->booking_id = $thembookings->id;
                 $updatebk->price = $data['price'];
@@ -301,7 +321,7 @@ class YardController extends Controller
 
 
         $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
-        $vnp_Returnurl = "http://localhost:8000/vnpay_return";
+        $vnp_Returnurl = "http://127.0.0.1:8000/quan-ly-san-bong";
         $vnp_TmnCode = "2EHUOKRV"; //Mã website tại VNPAY
         $vnp_HashSecret = "KBRZDIHERPCFNIKVPQTOVZWPJOXCSYPP"; //Chuỗi bí mật
 

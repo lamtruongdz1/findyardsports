@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Rating;
+
 class RatingController extends Controller
 {
     /**
@@ -34,7 +35,10 @@ class RatingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        Rating::create($data);
+        alert()->success('Cảm ơn bạn đã đánh giá cho chúng tôi !', 'Thành công');
+        return redirect()->back();
     }
 
     /**
